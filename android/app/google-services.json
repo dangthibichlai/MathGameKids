@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "471104835855",
+    "project_id": "p52aicharacter-da684",
+    "storage_bucket": "p52aicharacter-da684.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:471104835855:android:a491ecb2cada3576e3ae7a",
+        "android_client_info": {
+          "package_name": "io.izisoft.mathgameskids"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVl0E-2I4wztbnT98GcHzaC7ko_MmFM6A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

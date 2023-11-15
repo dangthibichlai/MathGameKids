@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Hậu Cung</string>
+    <string name="facebook_app_id">1871107779938176</string>
+    <string name="fb_login_protocol_scheme">fb1871107779938176</string>
+    <string name="facebook_client_token">ee181d587f18fc3694809c735ec2a7b1</string>
+</resources>

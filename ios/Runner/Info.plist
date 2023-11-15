@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CADisableMinimumFrameDurationOnPhone</key>
+	<true/>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>AI Characters</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>AI Characters</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>$(MARKETING_VERSION)</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.546007763261-825403m6pdf74107ert74h4m8sio71r6</string>
+			</array>
+		</dict>
+	</array>
+	<key>CFBundleVersion</key>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>FacebookAppID</key>
+	<string>1871107779938176</string>
+	<key>FacebookClientToken</key>
+	<string>ee181d587f18fc3694809c735ec2a7b1</string>
+	<key>FacebookDisplayName</key>
+	<string>ShipTea</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-share-api</string>
+		<string>sms</string>
+  	<string>tel</string>
+		<string>comgooglemaps</string>
+	</array>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>Cho phép ShipTea sử dụng thư viện ảnh để tải lên hình ảnh giao hàng, giao dịch hoặc hình ảnh cửa hàng</string>
+	<!-- <key>NSLocationAlwaysUsageDescription</key>
+	<string>Cho phép ShipTea truy cập vị trí để lấy vị trí người dùng để tìm bạn bè gần nhất.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Cho phép ShipTea truy cập vị trí để lấy vị trí người dùng để tìm bạn bè hàng gần nhất.</string> -->
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Cho phép sử dụng thư viện ảnh để tải lên hình ảnh giao hàng, giao dịch hoặc hình ảnh cửa hàng</string>
+	<key>UIApplicationSupportsIndirectInputEvents</key>
+	<true/>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>remote-notification</string>
+	</array>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIMainStoryboardFile</key>
+	<string>Main</string>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
+	<!--Google admod-->
+	<key>GADApplicationIdentifier</key>
+	<string>ca-app-pub-7801106730942036~4429003120</string>
+	<!-- <key>googleMapsApiKey</key>
+	<string>$(MAPS_API_KEY)</string> -->
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Allows the application to use the microphone while using the speech-to-text feature.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Allows the application to use speech recognition while using the speech-to-text feature. </string>
+</dict>
+</plist>
