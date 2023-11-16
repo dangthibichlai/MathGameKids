@@ -37,7 +37,7 @@ class ExtendBackAds {
 
   static Future<void> showAdsCompleteGame() async {
     if (!sl<SharedPreferenceHelper>().getPremium) {
-      final AppOpenAds appOpenAdManager = await AppOpenAds();
+      final AppOpenAds appOpenAdManager = AppOpenAds();
 
       // Load ads.
       appOpenAdManager.showOpenAppAds(

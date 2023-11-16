@@ -27,10 +27,9 @@ class PlayPracticeController extends GetxController
   RxInt countWrong = 0.obs;
   RxInt countCorrect = 0.obs;
   RxInt countSkip = 0.obs;
-  final Map<String, dynamic> arguments = Get.arguments;
-  MATHLEVEL level = Get.arguments['level'];
-  String route = Get.arguments['route'];
-  String title = Get.arguments['title'];
+  MATHLEVEL level = MATHLEVEL.EASY;
+  String route = MainRouters.ADDITION;
+  String title = 'Addition';
   int rangeRandom = 10;
   RxString textLevel = ''.obs;
   RxBool isShowResult = false.obs;
@@ -161,7 +160,7 @@ class PlayPracticeController extends GetxController
         break;
       case MainRouters.MULTIPLICATION:
         routeOperation = 'x';
-         if (level == MathLevelValueMax.HARD_VALUE) {
+        if (level == MathLevelValueMax.HARD_VALUE) {
           level = MathLevelValueMax.HARD_VALUE_MUL;
           levelAdd = MathLevelValueMin.HARD_VALUE_MUL_ADD;
         } else if (level == MathLevelValueMax.MEDIUM_VALUE) {

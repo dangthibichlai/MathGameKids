@@ -4,9 +4,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 
 import 'package:template/data/model/response/package_model.dart';
-import 'package:template/core/di_container.dart';
 import 'package:template/core/helper/izi_validate.dart';
-import 'package:template/core/shared_pref/shared_preference_helper.dart';
 
 class SettingsModel {
   String? linkShareIos;

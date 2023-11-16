@@ -1,13 +1,10 @@
-import 'dart:io';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
-import 'package:share_plus/share_plus.dart';
 import 'package:template/config/routes/route_path/auth_routh.dart';
 import 'package:template/core/base_widget/izi_app_bar.dart';
-import 'package:template/core/di_container.dart';
 import 'package:template/core/helper/common_helper.dart';
 import 'package:template/core/helper/izi_size_util.dart';
 import 'package:template/core/utils/color_resources.dart';

@@ -17,7 +17,7 @@ Future<void> init() async {
   // External
   final sharedPreferences = await SharedPreferences.getInstance();
   sl.registerSingleton<SharedPreferenceHelper>(
-      SharedPreferenceHelper(sharedPreferences));
+      SharedPreferenceHelper(sharedPreferences, sharedPreferences));
   sl.registerSingleton<LoggingInterceptor>(LoggingInterceptor());
 
   /// Local Notification.
