@@ -18,7 +18,6 @@ void main() {
     testWidgets("checking router splash", (widgetTester) async {
       await tester.pumpWidget(const MyApp());
 
-      // Đợi một khoảng thời gian, giả định thời gian chuyển đến trang introduce
       await tester.pump(Duration(seconds: 2));
 
       // Kiểm tra xem đã chuyển đến trang introduce hay chưa
