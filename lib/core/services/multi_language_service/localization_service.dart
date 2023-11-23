@@ -111,7 +111,8 @@ class LocalizationService extends Translations {
 
   static Locale _getLocaleFromLanguage({String? langCode}) {
     late String lang;
-    if (IZIValidate.nullOrEmpty(langCode) && !IZIValidate.nullOrEmpty(sl<SharedPreferenceHelper>().getLocale)) {
+    if (IZIValidate.nullOrEmpty(langCode) &&
+        !IZIValidate.nullOrEmpty(sl<SharedPreferenceHelper>().getLocale)) {
       lang = sl<SharedPreferenceHelper>().getLocale.toString();
     } else if (!IZIValidate.nullOrEmpty(langCode)) {
       lang = langCode.toString();

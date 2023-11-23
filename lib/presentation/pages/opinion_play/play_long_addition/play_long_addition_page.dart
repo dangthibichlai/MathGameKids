@@ -59,51 +59,58 @@ class PlayLongAdditionPage extends GetView<PlayLongAdditionController> {
                   colorAnswer: controller.colorAnswer.value,
                 ),
                 Expanded(
-                  child: Padding(
-                    padding: IZISizeUtil.setEdgeInsetsOnly(
-                        left: IZISizeUtil.setSizeWithWidth(percent: .07),
-                        right: IZISizeUtil.setSizeWithWidth(percent: .07)),
-                    child: Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  child: Column(
+                    children: [
+                      Container(
+                        padding: IZISizeUtil.setEdgeInsetsOnly(
+                            left: IZISizeUtil.setSizeWithWidth(percent: .07),
+                            right: IZISizeUtil.setSizeWithWidth(percent: .07)),
+                        margin: IZISizeUtil.setEdgeInsetsOnly(bottom: IZISizeUtil.setSize(percent: .03)),
+                        child: Column(
                           children: [
-                            buildNumberButtonBasic("1"),
-                            buildNumberButtonBasic("2"),
-                            buildNumberButtonBasic("3"),
-                            buildNumberButtonBasic("4"),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                buildNumberButtonBasic("1"),
+                                buildNumberButtonBasic("2"),
+                                buildNumberButtonBasic("3"),
+                                buildNumberButtonBasic("4"),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                buildNumberButtonBasic("5"),
+                                buildNumberButtonBasic("6"),
+                                buildNumberButtonBasic("7"),
+                                buildNumberButtonBasic("8"),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                buildNumberButtonBasic("9"),
+                                buildNumberButtonBasic("0"),
+                                buildDeleteButtonBasic(),
+                                buildResultButtonBasic("OK"), // xóa
+                              ],
+                            ),
                           ],
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            buildNumberButtonBasic("5"),
-                            buildNumberButtonBasic("6"),
-                            buildNumberButtonBasic("7"),
-                            buildNumberButtonBasic("8"),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            buildNumberButtonBasic("9"),
-                            buildNumberButtonBasic("0"),
-                            buildDeleteButtonBasic(),
-                            buildResultButtonBasic("OK"), // xóa
-                          ],
-                        ),
-                      ],
-                    ),
+                      ),
+                      Expanded(
+                        child: Obx(() {
+                          if (Get.find<DashBoardController>().isPremium.value) {
+                            return const SizedBox();
+                          }
+                          return const BannerAdsFram();
+                        }),
+                      ),
+                    ],
                   ),
                 ),
 
                 // Banner.
-                Obx(() {
-                  if (Get.find<DashBoardController>().isPremium.value) {
-                    return const SizedBox();
-                  }
-                  return const BannerAdsFram();
-                }),
               ],
             ),
           ),

@@ -50,7 +50,8 @@ class PlayDecimalPage extends GetView<PlayDecimalController> {
                   )),
               Obx(
                 () => ShowAnswer(
-                  currentOptions: controller.currentOptions,
+                  // ignore: invalid_use_of_protected_member
+                  currentOptions: controller.currentOptions.value,
                   // ignore: invalid_use_of_protected_member
                   answerColors: controller.answerColors.value,
                   onTapAnswer: (index) {
@@ -63,12 +64,7 @@ class PlayDecimalPage extends GetView<PlayDecimalController> {
               ),
 
               // Banner.
-              Obx(() {
-                if (Get.find<DashBoardController>().isPremium.value) {
-                  return const SizedBox();
-                }
-                return const BannerAdsFram();
-              }),
+          
             ],
           ),
         ),

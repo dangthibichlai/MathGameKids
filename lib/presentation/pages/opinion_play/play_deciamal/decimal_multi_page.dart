@@ -33,9 +33,7 @@ class DecimalMultiPage extends GetView<MutilPlayDecimalController> {
                     Expanded(
                         child: RotatedBox(
                       quarterTurns: 2,
-                      child: _screenplay(
-                          color: ColorResources.BACKGROUND,
-                          screen: controller.player1.value),
+                      child: _screenplay(color: ColorResources.BACKGROUND, screen: controller.player1.value),
                     )),
                     Expanded(
                       child: _screenplay(screen: controller.player2.value),
@@ -93,8 +91,7 @@ class DecimalMultiPage extends GetView<MutilPlayDecimalController> {
             currentOptions: controller.currentOptions,
             answerColors: screen.answerColors.value,
             onTapAnswer: (index) {
-              controller.checkAnswerMuti(
-                  controller.currentOptions[index], index, screen);
+              controller.checkAnswerMuti(controller.currentOptions[index], index, screen);
             },
           ),
         ],
@@ -107,8 +104,7 @@ class DecimalMultiPage extends GetView<MutilPlayDecimalController> {
       height: 40,
       width: IZISizeUtil.getMaxWidth(),
       padding: IZISizeUtil.setEdgeInsetsOnly(
-          right: IZISizeUtil.setSizeWithWidth(percent: .08),
-          left: IZISizeUtil.setSizeWithWidth(percent: .08)),
+          right: IZISizeUtil.setSizeWithWidth(percent: .08), left: IZISizeUtil.setSizeWithWidth(percent: .08)),
       child: Row(
         children: [
           GestureDetector(
@@ -135,8 +131,7 @@ class DecimalMultiPage extends GetView<MutilPlayDecimalController> {
               borderRadius: BorderRadius.circular(100),
               child: LinearProgressIndicator(
                 value: controller.progress.value,
-                valueColor: const AlwaysStoppedAnimation<Color>(
-                    ColorResources.ORANGE_MG),
+                valueColor: const AlwaysStoppedAnimation<Color>(ColorResources.ORANGE_MG),
                 backgroundColor: ColorResources.LIGHT_GREY,
                 minHeight: 12,
               ),

@@ -9,11 +9,13 @@ class BannerAdsFram extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      constraints: BoxConstraints(
+        minHeight: IZISizeUtil.setSize(percent: .06),
+        maxHeight: IZISizeUtil.setSize(percent: .06),
+      ),
       color: ColorResources.BLACK,
-      // margin: IZISizeUtil.setEdgeInsetsOnly(
-      //     bottom: IZISizeUtil.SPACE_1X),
       child: BannerAdsWidget(
-        adSizeHeight: IZISizeUtil.setSize(percent: .05),
+        adSizeHeight: IZISizeUtil.setSize(percent: .06),
         adSizeWidth: IZISizeUtil.getMaxWidth(),
         useLoadingLogo: false,
       ),

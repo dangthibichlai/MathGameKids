@@ -133,15 +133,15 @@ class IZIButton extends StatelessWidget {
               : LinearGradient(
                   colors: gradientColorList ??
                       const [
-                        ColorResources.PRIMARY_1,
-                        ColorResources.PRIMARY_2,
+                        ColorResources.BACKGROUND,
+                        ColorResources.BACKGROUND_2,
                       ],
                 ),
           color: getColorBG(type!),
           border: type == IZIButtonType.DEFAULT
               ? null
               : Border.all(
-                  color: colorBorder ?? ColorResources.PRIMARY_1,
+                  color: colorBorder ?? ColorResources.BACKGROUND,
                   width: withBorder ?? 1,
                 ),
           borderRadius:

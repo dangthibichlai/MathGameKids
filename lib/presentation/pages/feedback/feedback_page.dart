@@ -133,8 +133,8 @@ class FeedbackPage extends GetView<FeedbackController> {
                             height: IZISizeUtil.setSize(percent: .06),
                             isGradient: true,
                             gradientColorList: const [
-                              ColorResources.PRIMARY_1,
-                              ColorResources.PRIMARY_2
+                              ColorResources.BACKGROUND,
+                              ColorResources.BACKGROUND_2
                             ],
                             borderRadius: IZISizeUtil.RADIUS_3X,
                             colorText: ColorResources.WHITE,

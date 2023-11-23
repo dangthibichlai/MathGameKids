@@ -29,7 +29,6 @@ class PlayMemoryPage extends GetView<PlayMemoryController> {
         backgroundColor: ColorResources.BACKGROUND,
         appBar: BaseAppBar(
           title: controller.title,
-          isPremium: false,
           leading: IconButton(
             onPressed: () {
               Get.back();
@@ -43,16 +42,17 @@ class PlayMemoryPage extends GetView<PlayMemoryController> {
             children: [
               // hiện text trong 10s rồi ẩn đi
               SizedBox(
-                height: IZISizeUtil.setSizeWithWidth(percent: .27),
+                height: IZISizeUtil.setSize(percent: .07),
                 width: IZISizeUtil.getMaxWidth(),
                 child: Padding(
-                  padding: IZISizeUtil.setEdgeInsetsAll(
-                    IZISizeUtil.setSizeWithWidth(percent: .02),
+                  padding: IZISizeUtil.setEdgeInsetsOnly(
+                    left: IZISizeUtil.setSizeWithWidth(percent: .02),
+                    right: IZISizeUtil.setSizeWithWidth(percent: .02),
                   ),
                   child: Stack(
                     children: [
                       Positioned(
-                        top: IZISizeUtil.setSizeWithWidth(percent: .13),
+                        top: IZISizeUtil.setSize(percent: .02),
                         left: IZISizeUtil.setSizeWithWidth(percent: .1),
                         child: controller.isDone.value
                             ? Row(
@@ -64,13 +64,8 @@ class PlayMemoryPage extends GetView<PlayMemoryController> {
                                   ),
                                   Text(
                                     "GOOD JOB!".tr,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headlineMedium!
-                                        .copyWith(
-                                            fontWeight: FontWeight.w900,
-                                            color: ColorResources.WHITE,
-                                            fontFamily: 'Filson'),
+                                    style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                                        fontWeight: FontWeight.w900, color: ColorResources.WHITE, fontFamily: 'Filson'),
                                   ),
                                   IZIImage(
                                     ImagesPath.star_memory,
@@ -83,7 +78,7 @@ class PlayMemoryPage extends GetView<PlayMemoryController> {
                       ),
                       Padding(
                         padding: IZISizeUtil.setEdgeInsetsOnly(
-                          top: IZISizeUtil.setSizeWithWidth(percent: .14),
+                          top: IZISizeUtil.setSize(percent: .04),
                           left: IZISizeUtil.setSizeWithWidth(percent: .17),
                         ),
                         child: AnimatedOpacity(
@@ -91,13 +86,8 @@ class PlayMemoryPage extends GetView<PlayMemoryController> {
                           duration: const Duration(seconds: 1),
                           child: Text(
                             "Remember numbers!".tr,
-                            style: Theme.of(context)
-                                .textTheme
-                                .headlineSmall!
-                                .copyWith(
-                                    fontWeight: FontWeight.w900,
-                                    color: ColorResources.WHITE,
-                                    fontFamily: 'Filson'),
+                            style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                                fontWeight: FontWeight.w900, color: ColorResources.WHITE, fontFamily: 'Filson'),
                           ),
                         ),
                       ),
@@ -106,69 +96,72 @@ class PlayMemoryPage extends GetView<PlayMemoryController> {
                 ),
               ),
 
-              SizedBox(
-                height: IZISizeUtil.setSizeWithWidth(percent: .02),
-              ),
+              // SizedBox(
+              //   height: IZISizeUtil.setSizeWithWidth(percent: .02),
+              // ),
               Expanded(
                 child: Obx(
-                  () => GriViewComponent(
-                      childAspectRatio: .92,
-                      crossAxisCount: 3,
-                      // childAspectRatio : 1.9,
-                      crossAxisSpacing: IZISizeUtil.SPACE_2X,
-                      mainAxisSpacing: IZISizeUtil.SPACE_2X,
-                      itemCount: controller.listGrid.length,
-                      itemBuilder: (context, index) {
-                        final item = controller.listGrid[index];
-                        return GridViewContainer(
-                          maxLine: 2,
-                          withBorder: 7,
-                          fontWeight: FontWeight.w900,
+                  () => Column(
+                    children: [
+                      GriViewComponent(
+                          padding: IZISizeUtil.setEdgeInsetsAll(IZISizeUtil.setSizeWithWidth(percent: .03)),
+                          childAspectRatio: .92,
+                          crossAxisCount: 3,
+                          // childAspectRatio : 1.9,
+                          crossAxisSpacing: IZISizeUtil.SPACE_2X,
+                          mainAxisSpacing: IZISizeUtil.SPACE_1X,
+                          itemCount: controller.listGrid.length,
+                          itemBuilder: (context, index) {
+                            final item = controller.listGrid[index];
+                            return GridViewContainer(
+                              maxLine: 2,
+                              withBorder: 7,
+                              fontWeight: FontWeight.w900,
 
-                          fontSizedLabel: IZISizeUtil.DISPLAY_LARGE_FONT_SIZE,
-                          // height: IZISizeUtil.setSizeWithWidth(percent: .4),
-                          onTap: () => controller.flipTile(index),
-                          titleText: item.expression,
+                              fontSizedLabel: IZISizeUtil.DISPLAY_LARGE_FONT_SIZE,
+                              // height: IZISizeUtil.setSizeWithWidth(percent: .4),
+                              onTap: () => controller.flipTile(index),
+                              titleText: item.expression,
 
-                          colorText: (item.isFlipped ?? true) ||
-                                  (item.isMatched ?? false)
-                              ? ColorResources.NUMBER_MEMORY
-                              : ColorResources.MATHGAME_BUTTON_BG,
-                          color: (item.isFlipped ?? true) ||
-                                  (item.isMatched ?? false)
-                              //  ? item.color ?? ColorResources.WHITE
-                              ? item.isMatched ?? false
-                                  ? ColorResources.TRUE_MEMORY
-                                  : ColorResources.WHITE
-                              : ColorResources.MATHGAME_BUTTON_BG,
-                        );
-                      }),
+                              colorText: (item.isFlipped ?? true) || (item.isMatched ?? false)
+                                  ? ColorResources.NUMBER_MEMORY
+                                  : ColorResources.MATHGAME_BUTTON_BG,
+                              color: (item.isFlipped ?? true) || (item.isMatched ?? false)
+                                  //  ? item.color ?? ColorResources.WHITE
+                                  ? item.isMatched ?? false
+                                      ? ColorResources.TRUE_MEMORY
+                                      : ColorResources.WHITE
+                                  : ColorResources.MATHGAME_BUTTON_BG,
+                            );
+                          }),
+                      if (controller.isDone.value)
+                        ButtonAnimated(
+                          text: 'Play Again'.tr,
+                          onTap: () {
+                            // Chuyển tới trang hiện tại
+                            //  controller.reset();
+                            controller.reset();
+                            controller.onInit();
+                            if (controller.isRegistered) {
+                              controller.sound.playClickGameSound();
+                            }
+                          },
+                        ),
+                      SizedBox(
+                        height: IZISizeUtil.setSize(percent: .014),
+                      ),
+                      Expanded(
+                        child: Obx(() {
+                          if (Get.find<DashBoardController>().isPremium.value) {
+                            return const SizedBox();
+                          }
+                          return const BannerAdsFram();
+                        }),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-
-              if (controller.isDone.value)
-                ButtonAnimated(
-                  text: 'Play Again'.tr,
-                  onTap: () {
-                    // Chuyển tới trang hiện tại
-                    //  controller.reset();
-                    controller.reset();
-                    controller.onInit();
-                  },
-                )
-              else
-                SizedBox(
-                  height: IZISizeUtil.setSizeWithWidth(percent: .0),
-                ),
-              SizedBox(
-                height: IZISizeUtil.setSizeWithWidth(percent: .05),
-              ),
-              Obx(() {
-                if (Get.find<DashBoardController>().isPremium.value) {
-                  return const SizedBox();
-                }
-                return const BannerAdsFram();
-              }),
             ],
           ),
         ),

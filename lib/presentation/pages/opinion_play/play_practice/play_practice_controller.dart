@@ -10,8 +10,7 @@ import 'package:template/core/export/core_export.dart';
 import 'package:template/core/shared_pref/constants/enum_helper.dart';
 import 'package:template/presentation/widgets/controller/sound_controller.dart';
 
-class PlayPracticeController extends GetxController
-    with WidgetsBindingObserver {
+class PlayPracticeController extends GetxController with WidgetsBindingObserver {
   final KeyValidateAds keyValidateAds = GetIt.I.get<KeyValidateAds>();
   // ignore_for_file: unnecessary_statements, avoid_bool_literals_in_conditional_expressions
 
@@ -27,12 +26,15 @@ class PlayPracticeController extends GetxController
   RxInt countWrong = 0.obs;
   RxInt countCorrect = 0.obs;
   RxInt countSkip = 0.obs;
-  MATHLEVEL level = MATHLEVEL.EASY;
-  String route = MainRouters.ADDITION;
-  String title = 'Addition';
+  final Map<String, dynamic> arguments = Get.arguments;
+  MATHLEVEL level = Get.arguments['level'];
+  String route = Get.arguments['route'];
+  String title = Get.arguments['title'];
   int rangeRandom = 10;
   RxString textLevel = ''.obs;
   RxBool isShowResult = false.obs;
+  int levelAdd = 1;
+  Rx<bool> isEnable = true.obs;
 
   @override
   void onInit() {
@@ -65,6 +67,11 @@ class PlayPracticeController extends GetxController
   // enable skip
 
   void checkAnswer(int selectedAnswer) {
+    if (!isEnable.value) {
+      print('double');
+      return;
+    }
+    isEnable.value = false;
     // kiểm tra đáp án  đúng hay sai sai thì hiển thị màu đỏ cho button, đúng hiện màu xanh cho button, sai làm cho đến khi chọn đúng thì mới qua câu tiếp theo
     if (selectedAnswer == correctAnswer) {
       if (Get.isRegistered<SoundController>()) {
@@ -82,20 +89,22 @@ class PlayPracticeController extends GetxController
           Get.find<SoundController>().closeSoundGame();
         }
         // chuyển trang và truyền biến qua trang kết quả
-        Get.toNamed(MainRouters.RESULT, arguments: {
-          'countWrong': countWrong,
-          'countCorrect': countCorrect,
-          'countSkip': countSkip,
-          'route': route,
+
+        Get.offAndToNamed(MainRouters.RESULT, arguments: {
+          'countWrong': countWrong.value,
+          'countCorrect': countCorrect.value,
+          'countSkip': countSkip.value,
         });
+
         isShowResult.value = true;
         count = 1.obs;
       }
 
-      Future.delayed(const Duration(milliseconds: 300), () {
+      Future.delayed(const Duration(milliseconds: 800), () {
         // khởi tạo lại màu cho button
         answerColors.clear();
         generateQuestion(rangeRandom, route);
+        isEnable.value = true;
       });
     } else {
       if (Get.isRegistered<SoundController>()) {
@@ -105,6 +114,7 @@ class PlayPracticeController extends GetxController
       answerColors[selectedAnswer] = ColorResources.RED;
       answerColors.refresh();
       countWrong++;
+      isEnable.value = true;
     }
   }
 
@@ -113,33 +123,29 @@ class PlayPracticeController extends GetxController
       case MATHLEVEL.EASY:
         textLevel = RxString('easy'.tr);
         rangeRandom = MathLevelValueMax.EASY_VALUE;
+        levelAdd = MathLevelValueMin.EASY_VALUE_ADD;
+
         break;
       case MATHLEVEL.MEDIUM:
         textLevel = RxString('medium'.tr);
         rangeRandom = MathLevelValueMax.MEDIUM_VALUE;
+        levelAdd = MathLevelValueMin.MEDIUM_VALUE_ADD;
+
         break;
       case MATHLEVEL.HARD:
         textLevel = RxString('hard'.tr);
         rangeRandom = MathLevelValueMax.HARD_VALUE;
+        levelAdd = MathLevelValueMin.HARD_VALUE_ADD;
+        break;
     }
   }
 
   void generateQuestion(int level, String route) {
+    print('cau:  $count');
     // random theo mức độ với phép tính cộng trừ nhân chia
     final Random random = Random();
     String routeOperation = '';
-    int levelAdd = 1;
-    switch (level) {
-      case MathLevelValueMax.EASY_VALUE:
-        levelAdd = MathLevelValueMin.EASY_VALUE_ADD;
-        break;
-      case MathLevelValueMax.MEDIUM_VALUE:
-        levelAdd = MathLevelValueMin.MEDIUM_VALUE_ADD;
-        break;
-      case MathLevelValueMax.HARD_VALUE:
-        levelAdd = MathLevelValueMin.HARD_VALUE_ADD;
-        break;
-    }
+
     int num1 = random.nextInt(level) + levelAdd;
     int num2 = random.nextInt(level) + levelAdd;
     print('num1 is: $num1');
@@ -188,8 +194,7 @@ class PlayPracticeController extends GetxController
     while (currentOptions.length < 4) {
       int option = random.nextInt(level * 2) + levelAdd;
       if (correctAnswer.toString().length > 2) {
-        option = random.nextInt(levelAdd) +
-            correctAnswer; // giảm miền giá trị của đáp án với hard
+        option = random.nextInt(levelAdd) + correctAnswer; // giảm miền giá trị của đáp án với hard
       }
       if (!currentOptions.contains(option)) {
         currentOptions.add(option);

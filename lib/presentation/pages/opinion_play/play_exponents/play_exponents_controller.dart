@@ -9,8 +9,7 @@ import 'package:template/presentation/widgets/controller/sound_controller.dart';
 import '../../../../core/utils/color_resources.dart';
 import 'exponents_model.dart';
 
-class PlayExponentsController extends GetxController
-    with SingleGetTickerProviderMixin {
+class PlayExponentsController extends GetxController with GetSingleTickerProviderStateMixin {
   int correctAnswer = 13;
   RxList<int> currentOptions = List<int>.generate(4, (index) => 0).obs;
   bool isCorrect = true;
@@ -24,10 +23,14 @@ class PlayExponentsController extends GetxController
   String route = Get.arguments['route'];
   String title = Get.arguments['title'];
   int rangeRandom = 10;
+  int levelAdd = 1;
+  int exponentRandom = 1;
+
   RxString textLevel = ''.obs;
   Rx<ExponentsModel> exponentsModel = ExponentsModel(base: 0, exponent: 0).obs;
   bool isSkip = false;
   bool isScreenExited = false;
+  Rx<bool> isEnable = true.obs;
 
 // multi
 
@@ -51,29 +54,33 @@ class PlayExponentsController extends GetxController
     currentOptions.close();
     answerColors.close();
     super.onClose();
-    
   }
 
   void skipQuestion() {
     countSkip.value++; // Tăng biến đếm số câu đã bỏ qua lên 1
     count++;
     if (count.value > 10) {
-       if (Get.isRegistered<SoundController>()) {
-          Get.find<SoundController>().closeSoundGame();
-        }
+      if (Get.isRegistered<SoundController>()) {
+        Get.find<SoundController>().closeSoundGame();
+      }
       //Nếu đã bỏ qua câu hỏi thứ 10, chuyển đến trang kết quả
-      Get.toNamed(MainRouters.RESULT, arguments: {
-        'countWrong': countWrong,
-        'countCorrect': countCorrect,
-        'countSkip': countSkip,
-        'route': route,
+      Get.offAndToNamed(MainRouters.RESULT, arguments: {
+        'countWrong': countWrong.value,
+        'countCorrect': countCorrect.value,
+        'countSkip': countSkip.value,
       });
+
       count = 1.obs;
     }
     generateQuestion(rangeRandom, route); // Tạo câu hỏi mới} //
   }
 
   void checkAnswer(int selectedAnswer) {
+    if (!isEnable.value) {
+      print('double');
+      return;
+    }
+    isEnable.value = false;
     // kiểm tra đáp án  đúng hay sai sai thì hiển thị màu đỏ cho button, đúng hiện màu xanh cho button, sai làm cho đến khi chọn đúng thì mới qua câu tiếp theo
     if (selectedAnswer == correctAnswer) {
       if (Get.isRegistered<SoundController>()) {
@@ -87,23 +94,23 @@ class PlayExponentsController extends GetxController
       print('count is: $count');
       // ignore: unrelated_type_equality_checks
       if (count > 10) {
-         if (Get.isRegistered<SoundController>()) {
+        if (Get.isRegistered<SoundController>()) {
           Get.find<SoundController>().closeSoundGame();
         }
         // chuyển trang và truyền biến qua trang kết quả
-        Get.toNamed(MainRouters.RESULT, arguments: {
-          'countWrong': countWrong,
-          'countCorrect': countCorrect,
-          'countSkip': countSkip,
-          'route': route,
+        Get.offAndToNamed(MainRouters.RESULT, arguments: {
+          'countWrong': countWrong.value,
+          'countCorrect': countCorrect.value,
+          'countSkip': countSkip.value,
         });
         count = 1.obs;
       }
 
-      Future.delayed(const Duration(milliseconds: 300), () {
+      Future.delayed(const Duration(milliseconds: 800), () {
         // khởi tạo lại màu cho button
         answerColors.clear();
         generateQuestion(rangeRandom, route);
+        isEnable.value = true;
       });
     } else {
       if (Get.isRegistered<SoundController>()) {
@@ -113,38 +120,60 @@ class PlayExponentsController extends GetxController
       answerColors[selectedAnswer] = ColorResources.RED;
       answerColors.refresh();
       countWrong++;
+      isEnable.value = true;
     }
   }
 
   void checkLevel(MATHLEVEL level) {
-    if (title.compareTo('select_four_5'.tr) == 0) {
+    if (title.compareTo('select_game_2'.tr) == 0) {
       isSkip = true;
     }
+
     switch (level) {
       case MATHLEVEL.EASY:
-        textLevel = RxString('Easy');
-        rangeRandom = 8;
+        textLevel = RxString('easy'.tr);
+        rangeRandom = MathLevelValueMax.EASY_VALUE__EX;
+        levelAdd = MathLevelValueMin.EASY_VALUE__EX_ADD;
+        exponentRandom = MathLevelValueMin.EASY_VALUE_EX_BASE;
         break;
       case MATHLEVEL.MEDIUM:
-        textLevel = RxString('Medium');
-        rangeRandom = 15;
+        textLevel = RxString('medium'.tr);
+        rangeRandom = MathLevelValueMax.MEDIUM_VALUE_EX;
+        levelAdd = MathLevelValueMin.MEDIUM_VALUE_EX_ADD;
+        exponentRandom = MathLevelValueMin.MEDIUM_VALUE_EX_BASE;
+
         break;
       case MATHLEVEL.HARD:
-        textLevel = RxString('Hard');
-        rangeRandom = 22;
+        textLevel = RxString('hard'.tr);
+        rangeRandom = MathLevelValueMax.HARD_VALUE_EX;
+        levelAdd = MathLevelValueMin.HARD_VALUE_EX_ADD;
+        exponentRandom = MathLevelValueMin.HARD_VALUE_EX_BASE;
+        break;
     }
   }
 
   void generateQuestion(int level, String route) {
-    exponentsModel.value =
-        exponentsModel.value.createRandomExponents(rangeRandom, 2);
-    correctAnswer =
-        exponentsModel.value.calculateExponent(exponentsModel.value);
+    final ex = exponentsModel.value;
+    print('ex1 is: $rangeRandom');
+    print('ex2 is: $levelAdd');
+    print('ex3 is: $exponentRandom');
+    final Random random = Random();
+    exponentsModel.value.base = random.nextInt(level) + levelAdd;
+    // cấp độ khó random k có số mũ 1
+    if (textLevel.value.compareTo('hard'.tr) == 0) {
+      ex.exponent = random.nextInt(exponentRandom) + 2;
+    } else {
+      ex.exponent = random.nextInt(exponentRandom) + 1;
+    }
+
+    // tăng tỉ lệ random để không bị trùng số mũ nhiều
+    ExponentsModel(base: ex.base, exponent: ex.exponent);
+    // exponentsModel.value = exponentsModel.value
+    //     .createRandomExponents(rangeRandom, levelAdd, exponentRandom);
+    correctAnswer = exponentsModel.value.calculateExponent(exponentsModel.value);
     currentOptions.clear();
     currentOptions.add(correctAnswer);
-    print('ex1:${exponentsModel.value.base}');
-    print('ex2:${exponentsModel.value.exponent}');
-    print('num1 is: $correctAnswer');
+    print('ex4 is: $correctAnswer');
 
     while (currentOptions.length < 4) {
       final option = generateRandomResult(correctAnswer, rangeRandom);

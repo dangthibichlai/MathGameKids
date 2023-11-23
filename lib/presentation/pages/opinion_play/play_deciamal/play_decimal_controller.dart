@@ -7,8 +7,7 @@ import 'package:template/core/shared_pref/constants/enum_helper.dart';
 import 'package:template/core/utils/color_resources.dart';
 import 'package:template/presentation/widgets/controller/sound_controller.dart';
 
-class PlayDecimalController extends GetxController
-    with SingleGetTickerProviderMixin {
+class PlayDecimalController extends GetxController with GetSingleTickerProviderStateMixin {
   RxString currentQuestion = "5 + 8 = ?".obs;
   double correctAnswer = 13.0;
   RxList<String> currentOptions = List<String>.generate(4, (index) => '').obs;
@@ -26,6 +25,8 @@ class PlayDecimalController extends GetxController
   RxString textLevel = ''.obs;
   RxBool isShowResult = false.obs;
   bool isSkip = false;
+  int levelAdd = 1;
+  Rx<bool> isEnable = true.obs;
 
   @override
   void onInit() {
@@ -56,6 +57,11 @@ class PlayDecimalController extends GetxController
   // enable skip
 
   void checkAnswer(String selectedAnswer) {
+    if (!isEnable.value) {
+      print('double');
+      return;
+    }
+    isEnable.value = false;
     // kiểm tra đáp án  đúng hay sai sai thì hiển thị màu đỏ cho button, đúng hiện màu xanh cho button, sai làm cho đến khi chọn đúng thì mới qua câu tiếp theo
     if (selectedAnswer.compareTo(correctAnswer.toStringAsFixed(2)) == 0) {
       if (Get.isRegistered<SoundController>()) {
@@ -74,20 +80,21 @@ class PlayDecimalController extends GetxController
           Get.find<SoundController>().closeSoundGame();
         }
         // chuyển trang và truyền biến qua trang kết quả
-        Get.toNamed(MainRouters.RESULT, arguments: {
-          'countWrong': countWrong,
-          'countCorrect': countCorrect,
-          'countSkip': countSkip,
-          'route': route,
+        Get.offAndToNamed(MainRouters.RESULT, arguments: {
+          'countWrong': countWrong.value,
+          'countCorrect': countCorrect.value,
+          'countSkip': countSkip.value,
         });
+
         isShowResult.value = true;
         count = 1.obs;
       }
 
-      Future.delayed(const Duration(milliseconds: 300), () {
+      Future.delayed(const Duration(milliseconds: 800), () {
         // khởi tạo lại màu cho button
         answerColors.clear();
         generateQuestion(rangeRandom, route);
+        isEnable.value = true;
       });
     } else {
       if (Get.isRegistered<SoundController>()) {
@@ -97,6 +104,7 @@ class PlayDecimalController extends GetxController
       answerColors[selectedAnswer] = ColorResources.RED;
       answerColors.refresh();
       countWrong++;
+      isEnable.value = true;
       if (isSkip) {
         answerColors[correctAnswer.toStringAsFixed(2)] = Colors.green;
         count++;
@@ -105,17 +113,17 @@ class PlayDecimalController extends GetxController
             Get.find<SoundController>().closeSoundGame();
           }
           // chuyển trang và truyền biến qua trang kết quả
-          Get.toNamed(MainRouters.RESULT, arguments: {
-            'countWrong': countWrong,
-            'countCorrect': countCorrect,
-            'countSkip': countSkip,
-            'route': route,
+          Get.offAndToNamed(MainRouters.RESULT, arguments: {
+            'countWrong': countWrong.value,
+            'countCorrect': countCorrect.value,
+            'countSkip': countSkip.value,
           });
+
           isShowResult.value = true;
           count = 1.obs;
         }
 
-        Future.delayed(const Duration(milliseconds: 300), () {
+        Future.delayed(const Duration(milliseconds: 800), () {
           // khởi tạo lại màu cho button
           answerColors.clear();
           generateQuestion(rangeRandom, route);
@@ -125,18 +133,26 @@ class PlayDecimalController extends GetxController
   }
 
   void checkLevel(MATHLEVEL level) {
+    if (title.compareTo('select_game_2'.tr) == 0) {
+      isSkip = true;
+    }
     switch (level) {
       case MATHLEVEL.EASY:
         textLevel = RxString('easy'.tr);
         rangeRandom = MathLevelValueMax.EASY_VALUE;
+        levelAdd = MathLevelValueMin.EASY_VALUE_ADD;
+
         break;
       case MATHLEVEL.MEDIUM:
         textLevel = RxString('medium'.tr);
         rangeRandom = MathLevelValueMax.MEDIUM_VALUE;
+        levelAdd = MathLevelValueMin.MEDIUM_VALUE_ADD;
+
         break;
       case MATHLEVEL.HARD:
         textLevel = RxString('hard'.tr);
         rangeRandom = MathLevelValueMax.HARD_VALUE;
+        levelAdd = MathLevelValueMin.HARD_VALUE_ADD;
     }
   }
 
@@ -144,22 +160,8 @@ class PlayDecimalController extends GetxController
     // random theo mức độ với phép tính cộng trừ nhân chia
     final Random random = Random();
     String routeOperation = '';
-    int levelAdd = 1;
-    switch (level) {
-      case MathLevelValueMax.EASY_VALUE:
-        levelAdd = MathLevelValueMin.EASY_VALUE_ADD;
-        break;
-      case MathLevelValueMax.MEDIUM_VALUE:
-        levelAdd = MathLevelValueMin.MEDIUM_VALUE_ADD;
-        break;
-      case MathLevelValueMax.HARD_VALUE:
-        levelAdd = MathLevelValueMin.HARD_VALUE_ADD;
-        break;
-    }
     String num1 = ((random.nextDouble() * level) + levelAdd).toStringAsFixed(2);
     String num2 = ((random.nextDouble() * level) + levelAdd).toStringAsFixed(2);
-    print('num1 is: $num1');
-    print('num1 is: $num2');
 
     ///
     /// Random loại phép tính cho từng trang
@@ -174,7 +176,7 @@ class PlayDecimalController extends GetxController
         num2 = ((random.nextDouble() * level) + levelAdd).toStringAsFixed(2);
       }
       correctAnswer = double.parse(num1) - double.parse(num2);
-    } else if (title.compareTo('select_four_5'.tr) == 0) {
+    } else if (title.compareTo('select_game_2'.tr) == 0) {
       isSkip = true;
       final int randomOperation = random.nextInt(2);
       switch (randomOperation) {
@@ -185,10 +187,8 @@ class PlayDecimalController extends GetxController
         case 1:
           routeOperation = '-';
           while (double.parse(num1) < double.parse(num2)) {
-            num1 =
-                ((random.nextDouble() * level) + levelAdd).toStringAsFixed(2);
-            num2 =
-                ((random.nextDouble() * level) + levelAdd).toStringAsFixed(2);
+            num1 = ((random.nextDouble() * level) + levelAdd).toStringAsFixed(2);
+            num2 = ((random.nextDouble() * level) + levelAdd).toStringAsFixed(2);
           }
           correctAnswer = double.parse(num1) - double.parse(num2);
       }
@@ -200,8 +200,7 @@ class PlayDecimalController extends GetxController
     print('num1 is: $correctAnswer');
 
     while (currentOptions.length < 4) {
-      final String option =
-          ((random.nextDouble() * level) + levelAdd).toStringAsFixed(2);
+      final String option = ((random.nextDouble() * level) + levelAdd).toStringAsFixed(2);
 
       if (!currentOptions.contains(option)) {
         currentOptions.add(option);
@@ -219,12 +218,12 @@ class PlayDecimalController extends GetxController
         Get.find<SoundController>().closeSoundGame();
       }
       //Nếu đã bỏ qua câu hỏi thứ 10, chuyển đến trang kết quả
-      Get.toNamed(MainRouters.RESULT, arguments: {
-        'countWrong': countWrong,
-        'countCorrect': countCorrect,
-        'countSkip': countSkip,
-        'route': route,
+      Get.offAndToNamed(MainRouters.RESULT, arguments: {
+        'countWrong': countWrong.value,
+        'countCorrect': countCorrect.value,
+        'countSkip': countSkip.value,
       });
+
       isShowResult.value = true;
       count = 1.obs;
     }

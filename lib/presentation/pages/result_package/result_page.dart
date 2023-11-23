@@ -59,21 +59,21 @@ class ResultPage extends GetView<ResultController> {
                     ),
                     ContainerResult(
                       title: 'result_Page_2'.tr,
-                      numberAnswer: controller.countCorrect.value,
+                      numberAnswer: controller.countCorrect,
                       icon: Icons.check,
                       colorBackground: ColorResources.GREEN_BG,
                       boderColor: ColorResources.GREEN_BD,
                     ),
                     ContainerResult(
                       title: 'result_Page_3'.tr,
-                      numberAnswer: controller.countWrong.value,
+                      numberAnswer: controller.countWrong,
                       icon: Icons.close,
                       colorBackground: ColorResources.ORANGE_BG,
                       boderColor: ColorResources.ORANGE_BD,
                     ),
                     ContainerResult(
                       title: 'result_Page_4'.tr,
-                      numberAnswer: controller.countSkip.value,
+                      numberAnswer: controller.countSkip,
                       icon: Icons.double_arrow,
                       colorBackground: ColorResources.HOME_BG_1,
                       boderColor: ColorResources.HOME_BD_1,
@@ -89,8 +89,8 @@ class ResultPage extends GetView<ResultController> {
                             Get.find<SoundController>().playClickDoneSound();
                           }
                           Get.back();
-                          Get.offNamedUntil(controller.router,
-                              (route) => Get.currentRoute == controller.router);
+                          // Get.offNamedUntil(controller.router,
+                          //     (route) => Get.currentRoute == controller.router);
                           //  ExtendBackAds.showAdsBackMulti();
                           if (Get.isRegistered<SoundController>()) {
                             Get.find<SoundController>()

@@ -21,6 +21,8 @@ class PlayerModel {
     isEnable = Rx<bool>(true);
   }
   // toJson answerColors
-  
- 
+  @override
+  String toString() {
+    return 'PlayerModel(id: $id, correctAnswer: $correctAnswer, wrongAnswer: $wrongAnswer, isEnable: $isEnable, result: $result, answerColors: $answerColors)';
+  }
 }

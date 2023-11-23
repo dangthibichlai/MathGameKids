@@ -25,7 +25,7 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
       this.widgetText,
       this.urlImage,
       this.subTitle,
-      this.isPremium,
+      this.isPremium = false,
       this.onTapRight,
       this.colorTitle});
 
@@ -43,7 +43,7 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool? isFlexibleSpace;
   final Widget? widgetText;
   final String? urlImage;
-  final bool? isPremium;
+  final bool isPremium;
   final Color? colorTitle;
 
   @override
@@ -85,12 +85,14 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
                               }
                             : Get.back();
                       },
-                      child: !Get.find<DashBoardController>().isPremium.value
-                          ? IZIImage(
-                              ImagesPath.prediumIcon,
-                              width: IZISizeUtil.setSize(percent: .04),
-                            )
-                          : const SizedBox(),
+                      child:
+                          (!Get.find<DashBoardController>().isPremium.value) &&
+                                  isPremium
+                              ? IZIImage(
+                                  ImagesPath.prediumIcon,
+                                  width: IZISizeUtil.setSize(percent: .04),
+                                )
+                              : const SizedBox(),
                     ),
                   ],
                 ),

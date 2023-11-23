@@ -28,8 +28,8 @@ Future<void> main() async {
 
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
-    statusBarBrightness: Brightness.light,
-    statusBarIconBrightness: Brightness.light,
+    statusBarBrightness: Brightness.dark,
+    statusBarIconBrightness: Brightness.dark,
   ));
 
   time_ago.setLocaleMessages('vi', time_ago.ViMessages());

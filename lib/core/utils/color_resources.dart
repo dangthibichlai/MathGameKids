@@ -206,8 +206,8 @@ mixin Gradients {
 
   static LinearGradient backGroundScaffold = const LinearGradient(
     colors: [
-      ColorResources.PRIMARY_1,
-      ColorResources.PRIMARY_2,
+      ColorResources.BACKGROUND,
+      ColorResources.BACKGROUND_2,
     ],
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
@@ -215,7 +215,7 @@ mixin Gradients {
 
   static LinearGradient feedbackScafold = const LinearGradient(
     colors: [
-      ColorResources.PRIMARY_4,
+      ColorResources.BACKGROUND,
       ColorResources.color_buy,
     ],
     begin: Alignment.topCenter,
@@ -224,8 +224,8 @@ mixin Gradients {
 
   static LinearGradient feedbackBottom = const LinearGradient(
     colors: [
-      ColorResources.color_backgroud,
-      ColorResources.color_buy,
+      ColorResources.BLACK,
+      ColorResources.BLACK,
     ],
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,

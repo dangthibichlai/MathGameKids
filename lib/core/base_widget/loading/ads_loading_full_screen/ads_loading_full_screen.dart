@@ -34,9 +34,12 @@ class AdsLoadingWidget extends StatelessWidget {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  IZIImage(
-                    ImagesPath.loadingLogo,
-                    width: IZISizeUtil.setSize(percent: .08),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(100),
+                    child: IZIImage(
+                      ImagesPath.loadingLogo,
+                      width: IZISizeUtil.setSize(percent: .08),
+                    ),
                   ),
                   Padding(
                     padding: IZISizeUtil.setEdgeInsetsOnly(top: 10),

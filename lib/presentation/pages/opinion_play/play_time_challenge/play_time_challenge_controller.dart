@@ -11,7 +11,7 @@ import 'package:template/presentation/widgets/controller/sound_controller.dart';
 class PlayTimeChallengeController extends GetxController
     // ignore: deprecated_member_use
     with
-        SingleGetTickerProviderMixin,
+        GetSingleTickerProviderStateMixin,
         WidgetsBindingObserver {
   // ignore_for_file: unnecessary_statements, avoid_bool_literals_in_conditional_expressions
 
@@ -32,6 +32,7 @@ class PlayTimeChallengeController extends GetxController
   String route = Get.arguments['route'];
   String title = Get.arguments['title'];
   int rangeRandom = 10;
+  int levelAdd = 1;
   RxString textLevel = ''.obs;
   late AnimationController _animationController;
   bool isScreenExited = false;
@@ -45,8 +46,7 @@ class PlayTimeChallengeController extends GetxController
     print(level.name);
     print('route is: ${level.name}');
     generateQuestion(rangeRandom, route);
-    _animationController =
-        AnimationController(vsync: this, duration: const Duration(seconds: 30));
+    _animationController = AnimationController(vsync: this, duration: const Duration(seconds: 30));
 
     _animationController.addListener(() {
       print('It run please');
@@ -56,20 +56,19 @@ class PlayTimeChallengeController extends GetxController
     });
 
     // check logged in or not.
-    _animationController.forward().whenComplete(() async {
-      print('It inside');
+    // _animationController.forward().whenComplete(() async {
+    //   print('It inside');
 
-      if (!Get.isDialogOpen!) {
-        print('It run please???');
-        Get.toNamed(MainRouters.RESULT, arguments: {
-          'countWrong': countWrong,
-          'countCorrect': countCorrect,
-          'countSkip': countSkip,
-          'route': route,
-        });
-        isScreenExited = true;
-      }
-    });
+    //   if (!Get.isDialogOpen!) {
+    //     print('It run please???');
+    //     Get.offAndToNamed(MainRouters.RESULT, arguments: {
+    //       'countWrong': countWrong.value,
+    //       'countCorrect': countCorrect.value,
+    //       'countSkip': countSkip.value,
+    //     });
+    //     isScreenExited = true;
+    //   }
+    // });
   }
 
   // @override
@@ -114,7 +113,7 @@ class PlayTimeChallengeController extends GetxController
     }
 
     count.value++; // Tăng biến đếm số câu đã chuyển qua lên 1
-    Future.delayed(const Duration(milliseconds: 300), () {
+    Future.delayed(const Duration(milliseconds: 800), () {
       // khởi tạo lại màu cho button
       answerColors.clear();
       generateQuestion(rangeRandom, route);
@@ -126,14 +125,20 @@ class PlayTimeChallengeController extends GetxController
       case MATHLEVEL.EASY:
         textLevel = RxString('easy'.tr);
         rangeRandom = MathLevelValueMax.EASY_VALUE;
+        levelAdd = MathLevelValueMin.EASY_VALUE_ADD;
+
         break;
       case MATHLEVEL.MEDIUM:
         textLevel = RxString('medium'.tr);
         rangeRandom = MathLevelValueMax.MEDIUM_VALUE;
+        levelAdd = MathLevelValueMin.MEDIUM_VALUE_ADD;
+
         break;
       case MATHLEVEL.HARD:
         textLevel = RxString('hard'.tr);
         rangeRandom = MathLevelValueMax.HARD_VALUE;
+        levelAdd = MathLevelValueMin.HARD_VALUE_ADD;
+        break;
     }
   }
 
@@ -141,18 +146,7 @@ class PlayTimeChallengeController extends GetxController
     // random theo mức độ với phép tính cộng trừ nhân chia
     final Random random = Random();
     String routeOperation = '';
-    int levelAdd = 1;
-    switch (level) {
-      case MathLevelValueMax.EASY_VALUE:
-        levelAdd = MathLevelValueMin.EASY_VALUE_ADD;
-        break;
-      case MathLevelValueMax.MEDIUM_VALUE:
-        levelAdd = MathLevelValueMin.MEDIUM_VALUE_ADD;
-        break;
-      case MathLevelValueMax.HARD_VALUE:
-        levelAdd = MathLevelValueMin.HARD_VALUE_ADD;
-        break;
-    }
+
     int num1 = random.nextInt(level) + levelAdd;
     int num2 = random.nextInt(level) + levelAdd;
     print('num1 is: $num1');
@@ -200,8 +194,7 @@ class PlayTimeChallengeController extends GetxController
     while (currentOptions.length < 4) {
       int option = random.nextInt(level * 2) + levelAdd;
       if (correctAnswer.toString().length > 2) {
-        option = random.nextInt(levelAdd) +
-            correctAnswer; // giảm miền giá trị của đáp án với hard
+        option = random.nextInt(levelAdd) + correctAnswer; // giảm miền giá trị của đáp án với hard
       }
       if (!currentOptions.contains(option)) {
         currentOptions.add(option);

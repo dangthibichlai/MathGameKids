@@ -163,7 +163,7 @@ class ChooseLanguagePage extends GetView<ChooseLanguageController> {
       decoration: const ShapeDecoration(
         color: Colors.white,
         shape: OvalBorder(
-          side: BorderSide(color: Color(0xFF18C0FF)),
+          side: BorderSide(width: 1, color: Color(0xFF18C0FF)),
         ),
       ),
     );

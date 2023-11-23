@@ -54,12 +54,6 @@ class PlayQuiz extends GetView<playQuizController> {
                     controller.checkAnswer(controller.currentOptions[index]);
                   },
                 ),
-                Obx(() {
-                  if (Get.find<DashBoardController>().isPremium.value) {
-                    return const SizedBox();
-                  }
-                  return const BannerAdsFram();
-                }),
               ],
             ),
           ),

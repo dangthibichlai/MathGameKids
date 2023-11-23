@@ -24,7 +24,6 @@ class PlaySquareRoot extends GetView<PlaySquareRootController> {
         backgroundColor: ColorResources.BACKGROUND,
         appBar: BaseAppBar(
           title: controller.title,
-          isPremium: false,
           leading: IconButton(
             onPressed: () {
               ExtendBackAds.onBackPress(controller.route);
@@ -53,7 +52,7 @@ class PlaySquareRoot extends GetView<PlaySquareRootController> {
               ),
               Obx(
                 () => ShowAnswer(
-                  currentOptions: controller.currentOptions,
+                  currentOptions: controller.currentOptions.value,
                   // ignore: invalid_use_of_protected_member
                   answerColors: controller.answerColors.value,
                   onTapAnswer: (index) {
@@ -62,12 +61,6 @@ class PlaySquareRoot extends GetView<PlaySquareRootController> {
                   },
                 ),
               ),
-              Obx(() {
-                if (Get.find<DashBoardController>().isPremium.value) {
-                  return const SizedBox();
-                }
-                return const BannerAdsFram();
-              }),
             ],
           ),
         ),
@@ -78,30 +71,33 @@ class PlaySquareRoot extends GetView<PlaySquareRootController> {
   Widget _textQuestion(BuildContext context) {
     return Obx(
       () => SizedBox(
-        width: IZISizeUtil.setSizeWithWidth(percent: .35),
+        width: IZISizeUtil.setSizeWithWidth(percent: .4),
         height: IZISizeUtil.setSize(percent: .1),
         child: Stack(
           children: [
             Positioned.fill(
-                child: IZIImage(
-              ImagesPath.squareRoot,
-              // width: IZISizeUtil.setSizeWithWidth(percent: .1),
-              // height: IZISizeUtil.setSize(percent: .15),
-              fit: BoxFit.fill,
-            )),
+              child: IZIImage(
+                ImagesPath.squareRoot,
+                fit: BoxFit.fill,
+              ),
+            ),
             Positioned(
               bottom: 0,
-              left: 60,
-              child: SizedBox(
-                width: IZISizeUtil.setSizeWithWidth(percent: .2),
-                height: IZISizeUtil.setSize(percent: .06),
-                child: FittedBox(
-                  child: Text(
-                    controller.currentQuestion.value.toString(),
-                    style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                        fontWeight: FontWeight.w900,
-                        color: ColorResources.BLUE_BLACK,
-                        fontFamily: 'Filson'),
+              left: IZISizeUtil.setSizeWithWidth(percent: .17),
+              child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  minWidth: IZISizeUtil.setSizeWithWidth(percent: .15),
+                  maxWidth: IZISizeUtil.setSizeWithWidth(percent: .25),
+                ),
+                child: SizedBox(
+                  width: IZISizeUtil.setSizeWithWidth(percent: .2),
+                  height: IZISizeUtil.setSize(percent: .06),
+                  child: FittedBox(
+                    child: Text(
+                      ' ${controller.currentQuestion.value.toString()}',
+                      style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                          fontWeight: FontWeight.w900, color: ColorResources.BLUE_BLACK, fontFamily: 'Filson'),
+                    ),
                   ),
                 ),
               ),

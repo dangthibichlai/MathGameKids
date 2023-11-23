@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:template/core/helper/izi_size_util.dart';
+import 'package:template/presentation/pages/dash_board/dash_board_controller.dart';
 import 'package:template/presentation/pages/opinion_play/extend_back_ads.dart';
 import 'package:template/presentation/pages/opinion_play/play_exponents/play_exponents_controller.dart';
 import 'package:template/presentation/pages/opinion_play/widget/showAnswer.dart';
 import 'package:template/presentation/pages/opinion_play/widget/show_quesition_dif.dart';
+import 'package:template/presentation/widgets/banner_ads.dart';
 
 import '../../../../core/base_widget/izi_app_bar.dart';
 import '../../../../core/utils/color_resources.dart';
@@ -60,7 +62,8 @@ class PlayExponentsPage extends GetWidget<PlayExponentsController> {
                   onTapAnswer: (index) {
                     controller.checkAnswer(controller.currentOptions[index]);
                   },
-                )
+                ),
+              
               ],
             ),
           ),
@@ -70,7 +73,6 @@ class PlayExponentsPage extends GetWidget<PlayExponentsController> {
   }
 
   Widget _textQuestion(BuildContext context) {
-    
     return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
       Text(
         controller.exponentsModel.value.base.toString(),

@@ -4,15 +4,13 @@ import 'dart:math';
 import 'package:flutter_neumorphic_plus/flutter_neumorphic.dart';
 import 'package:template/config/routes/route_path/main_routh.dart';
 import 'package:template/core/shared_pref/constants/enum_helper.dart';
-import 'package:template/presentation/pages/opinion_play/extend_back_ads.dart';
 import 'package:template/presentation/pages/opinion_play/play_multiplayer/player_model.dart';
 import 'package:template/presentation/widgets/controller/sound_controller.dart';
 
 import '../../../../core/utils/color_resources.dart';
 import 'exponents_model.dart';
 
-class MultiExponentsController extends GetxController
-    with SingleGetTickerProviderMixin {
+class MultiExponentsController extends GetxController with SingleGetTickerProviderMixin {
   int correctAnswer = 13;
   RxList<int> currentOptions = List<int>.generate(4, (index) => 0).obs;
   bool isCorrect = true;
@@ -35,6 +33,8 @@ class MultiExponentsController extends GetxController
   late Animation<double> animation;
   String resultPlay = '';
   final sound = Get.find<SoundController>();
+  int levelAdd = 1;
+  int exponentRandom = 1;
   Rx<PlayerModel> player1 = PlayerModel(
     id: 1,
     correctAnswer: 0,
@@ -59,15 +59,14 @@ class MultiExponentsController extends GetxController
     print(level.name);
     print('route is: ${level.name}');
     generateQuestion(rangeRandom, route);
-    animationController =
-        AnimationController(vsync: this, duration: const Duration(seconds: 10));
-    animation =
-        Tween<double>(begin: 0.0, end: 1.0).animate(animationController);
+    animationController = AnimationController(vsync: this, duration: const Duration(seconds: 10));
+    animation = Tween<double>(begin: 0.0, end: 1.0).animate(animationController);
     animationController.forward();
-    if (isScreenExited) {
-      animationController.stop();
-    }
+
     animation.addListener(() {
+      if (isScreenExited) {
+        animationController.stop();
+      }
       progress.value = animation.value;
       if (animation.isCompleted) {
         count.value++;
@@ -78,8 +77,12 @@ class MultiExponentsController extends GetxController
             sound.closeSoundGame();
             sound.continueBackgroundSound();
           }
-          Get.toNamed(MainRouters.RESULTEPONENTS);
-           ExtendBackAds.showAdsCompleteGame();
+          Get.offNamed(MainRouters.RESULTEPONENTS, arguments: {
+            'player1': player1.value,
+            'player2': player2.value,
+            'oldArguments': arguments,
+          });
+          //   ExtendBackAds.showAdsCompleteGame();
           count = 1.obs;
         } else {
           generateQuestion(rangeRandom, route);
@@ -116,12 +119,12 @@ class MultiExponentsController extends GetxController
         Get.find<SoundController>().closeSoundGame();
       }
       //Nếu đã bỏ qua câu hỏi thứ 10, chuyển đến trang kết quả
-      Get.toNamed(MainRouters.RESULT, arguments: {
-        'countWrong': countWrong,
-        'countCorrect': countCorrect,
-        'countSkip': countSkip,
-        'route': route,
+      Get.offAndToNamed(MainRouters.RESULT, arguments: {
+        'countWrong': countWrong.value,
+        'countCorrect': countCorrect.value,
+        'countSkip': countSkip.value,
       });
+
       count = 1.obs;
     }
     generateQuestion(rangeRandom, route); // Tạo câu hỏi mới} //
@@ -132,34 +135,41 @@ class MultiExponentsController extends GetxController
       case MATHLEVEL.EASY:
         textLevel = RxString('easy'.tr);
         rangeRandom = MathLevelValueMax.EASY_VALUE__EX;
+        levelAdd = MathLevelValueMin.EASY_VALUE__EX_ADD;
+        exponentRandom = MathLevelValueMin.EASY_VALUE_EX_BASE;
         break;
       case MATHLEVEL.MEDIUM:
         textLevel = RxString('medium'.tr);
         rangeRandom = MathLevelValueMax.MEDIUM_VALUE_EX;
+        levelAdd = MathLevelValueMin.MEDIUM_VALUE_EX_ADD;
+        exponentRandom = MathLevelValueMin.MEDIUM_VALUE_EX_BASE;
+
         break;
       case MATHLEVEL.HARD:
         textLevel = RxString('hard'.tr);
         rangeRandom = MathLevelValueMax.HARD_VALUE_EX;
+        levelAdd = MathLevelValueMin.HARD_VALUE_EX_ADD;
+        exponentRandom = MathLevelValueMin.HARD_VALUE_EX_BASE;
+        break;
     }
   }
 
   void generateQuestion(int level, String route) {
-    int levelAdd = 1;
-    switch (level) {
-      case MathLevelValueMax.EASY_VALUE__EX:
-        levelAdd = MathLevelValueMin.EASY_VALUE__EX_ADD;
-        break;
-      case MathLevelValueMax.MEDIUM_VALUE_EX:
-        levelAdd = MathLevelValueMin.MEDIUM_VALUE_EX_ADD;
-        break;
-      case MathLevelValueMax.HARD_VALUE_EX:
-        levelAdd = MathLevelValueMin.HARD_VALUE_EX_ADD;
-        break;
+    final ex = exponentsModel.value;
+
+    final Random random = Random();
+    exponentsModel.value.base = random.nextInt(level) + levelAdd;
+    // tỉ lệ 1/2 để random số mũ là 1 hoặc 2
+    // cấp độ khó random k có số mũ 1
+    if (textLevel.value.compareTo('hard'.tr) == 0) {
+      ex.exponent = random.nextInt(exponentRandom) + 2;
+    } else {
+      ex.exponent = random.nextInt(exponentRandom) + 1;
     }
-    exponentsModel.value =
-        exponentsModel.value.createRandomExponents(rangeRandom, levelAdd);
-    correctAnswer =
-        exponentsModel.value.calculateExponent(exponentsModel.value);
+
+    // tăng tỉ lệ random để không bị trùng số mũ nhiều
+    ExponentsModel(base: ex.base, exponent: ex.exponent);
+    correctAnswer = exponentsModel.value.calculateExponent(exponentsModel.value);
     currentOptions.clear();
     currentOptions.add(correctAnswer);
     print('ex1:${exponentsModel.value.base}');
@@ -232,8 +242,12 @@ class MultiExponentsController extends GetxController
             sound.closeSoundGame();
             sound.continueBackgroundSound();
           }
-          Get.toNamed(MainRouters.RESULTEPONENTS);
-           ExtendBackAds.showAdsCompleteGame();
+          Get.offNamed(MainRouters.RESULTEPONENTS, arguments: {
+            'player1': player1.value,
+            'player2': player2.value,
+            'oldArguments': arguments,
+          });
+          return;
         }
         count.value++;
         generateQuestion(rangeRandom, route);
@@ -246,8 +260,7 @@ class MultiExponentsController extends GetxController
       player.wrongAnswer++;
       // enable các button
       player.isEnable.value = false;
-      if (player1.value.isEnable.value == false &&
-          player2.value.isEnable.value == false) {
+      if (player1.value.isEnable.value == false && player2.value.isEnable.value == false) {
         final int index = currentOptions.indexOf(correctAnswer);
         player1.value.answerColors.value[index] = ColorResources.GREEN;
         player2.value.answerColors.value[index] = ColorResources.GREEN;
@@ -275,8 +288,11 @@ class MultiExponentsController extends GetxController
               sound.closeSoundGame();
               sound.continueBackgroundSound();
             }
-            Get.toNamed(MainRouters.RESULTEPONENTS);
-             ExtendBackAds.showAdsCompleteGame();
+            Get.offNamed(MainRouters.RESULTEPONENTS, arguments: {
+              'player1': player1.value,
+              'player2': player2.value,
+              'oldArguments': arguments,
+            });
           }
           count.value++;
           generateQuestion(rangeRandom, route);
@@ -312,10 +328,8 @@ class MultiExponentsController extends GetxController
     player1.value.isEnable.value = true;
     player2.value.isEnable.value = true;
     currentOptions.clear();
-    animationController =
-        AnimationController(vsync: this, duration: const Duration(seconds: 10));
-    animation =
-        Tween<double>(begin: 0.0, end: 1.0).animate(animationController);
+    animationController = AnimationController(vsync: this, duration: const Duration(seconds: 10));
+    animation = Tween<double>(begin: 0.0, end: 1.0).animate(animationController);
     animationController.forward();
     if (isScreenExited) {
       animationController.stop();

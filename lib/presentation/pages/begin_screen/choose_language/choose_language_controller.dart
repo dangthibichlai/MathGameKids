@@ -16,7 +16,7 @@ class ChooseLanguageController extends GetxController {
   List<Map<String, dynamic>> multipleLanguages = [
     {
       'value': 'vi',
-      'name': 'Tiếng Việt'.tr,
+      'name': 'Vietnamese'.tr,
       'image': ImagesPath.vnFlag,
       'valueNumber': 7,
     },

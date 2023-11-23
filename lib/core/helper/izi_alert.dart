@@ -36,7 +36,8 @@ class IZIAlert {
 
   /// Show api error
   void commonError(dynamic err) {
-    final message = ApiResponse.withError(ApiErrorHandler.getMessage(err)).error.toString();
+    final message =
+        ApiResponse.withError(ApiErrorHandler.getMessage(err)).error.toString();
 
     error(message: message);
   }
@@ -148,13 +149,13 @@ class IZIAlert {
     String _genTitleAlert(TypeOfAlert type) {
       switch (type) {
         case TypeOfAlert.SUCCESS:
-          return 'Success';
+          return 'success'.tr;
         case TypeOfAlert.INFO:
-          return 'Info';
+          return 'info'.tr;
         case TypeOfAlert.ERROR:
-          return 'Error';
+          return 'error'.tr;
         default:
-          return 'Warning';
+          return 'warring'.tr;
       }
     }
 
@@ -181,19 +182,23 @@ class IZIAlert {
       switch (type) {
         case TypeOfAlert.SUCCESS:
           final hsl = HSLColor.fromColor(ColorResources.SUCCESS_ALERT);
-          final hslDark = hsl.withLightness((hsl.lightness - 0.1).clamp(0.0, 0.9));
+          final hslDark =
+              hsl.withLightness((hsl.lightness - 0.1).clamp(0.0, 0.9));
           return hslDark;
         case TypeOfAlert.INFO:
           final hsl = HSLColor.fromColor(ColorResources.INFO_ALERT);
-          final hslDark = hsl.withLightness((hsl.lightness - 0.1).clamp(0.0, 0.9));
+          final hslDark =
+              hsl.withLightness((hsl.lightness - 0.1).clamp(0.0, 0.9));
           return hslDark;
         case TypeOfAlert.WARRING:
           final hsl = HSLColor.fromColor(ColorResources.WARRING_ALERT);
-          final hslDark = hsl.withLightness((hsl.lightness - 0.1).clamp(0.0, 0.9));
+          final hslDark =
+              hsl.withLightness((hsl.lightness - 0.1).clamp(0.0, 0.9));
           return hslDark;
         default:
           final hsl = HSLColor.fromColor(ColorResources.ERROR_ALERT);
-          final hslDark = hsl.withLightness((hsl.lightness - 0.1).clamp(0.0, 0.9));
+          final hslDark =
+              hsl.withLightness((hsl.lightness - 0.1).clamp(0.0, 0.9));
           return hslDark;
       }
     }
@@ -219,7 +224,8 @@ class IZIAlert {
             clipBehavior: Clip.none,
             children: [
               Container(
-                margin: IZISizeUtil.setEdgeInsetsSymmetric(horizontal: IZISizeUtil.setSizeWithWidth(percent: .03)),
+                margin: IZISizeUtil.setEdgeInsetsSymmetric(
+                    horizontal: IZISizeUtil.setSizeWithWidth(percent: .03)),
                 padding: IZISizeUtil.setEdgeInsetsOnly(
                   left: IZISizeUtil.setSizeWithWidth(percent: .13),
                   top: 15,
@@ -228,7 +234,8 @@ class IZIAlert {
                 ),
                 decoration: BoxDecoration(
                   color: _genBackgroundColor(typeOfAlert),
-                  borderRadius: IZISizeUtil.setBorderRadiusAll(radius: IZISizeUtil.SPACE_2X),
+                  borderRadius: IZISizeUtil.setBorderRadiusAll(
+                      radius: IZISizeUtil.SPACE_2X),
                 ),
                 child: Row(
                   children: [
@@ -240,7 +247,10 @@ class IZIAlert {
                         children: [
                           Text(
                             _genTitleAlert(typeOfAlert),
-                            style: Theme.of(Get.context!).textTheme.labelMedium?.copyWith(
+                            style: Theme.of(Get.context!)
+                                .textTheme
+                                .labelMedium
+                                ?.copyWith(
                                   color: ColorResources.WHITE,
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -249,7 +259,10 @@ class IZIAlert {
                             padding: IZISizeUtil.setEdgeInsetsOnly(top: 3),
                             child: Text(
                               message,
-                              style: Theme.of(Get.context!).textTheme.bodyLarge?.copyWith(
+                              style: Theme.of(Get.context!)
+                                  .textTheme
+                                  .bodyLarge
+                                  ?.copyWith(
                                     color: ColorResources.WHITE,
                                   ),
                               textAlign: TextAlign.start,

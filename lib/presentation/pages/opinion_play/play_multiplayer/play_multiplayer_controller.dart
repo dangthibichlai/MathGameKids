@@ -7,12 +7,10 @@ import 'package:get/get.dart';
 import 'package:template/config/routes/route_path/main_routh.dart';
 import 'package:template/core/shared_pref/constants/enum_helper.dart';
 import 'package:template/core/utils/color_resources.dart';
-import 'package:template/presentation/pages/opinion_play/extend_back_ads.dart';
 import 'package:template/presentation/pages/opinion_play/play_multiplayer/player_model.dart';
 import 'package:template/presentation/widgets/controller/sound_controller.dart';
 
-class MultiPlayerController extends GetxController
-    with SingleGetTickerProviderMixin {
+class MultiPlayerController extends GetxController with GetSingleTickerProviderStateMixin {
   RxString currentQuestion = "5 + 8 = ?".obs;
   int correctAnswer = 13;
   RxList<int> currentOptions = List<int>.generate(4, (index) => 0).obs;
@@ -54,21 +52,23 @@ class MultiPlayerController extends GetxController
   @override
   void onInit() {
     super.onInit();
+    print(title);
+    print('level is: $level');
+    print('route is: $route');
     player1.value.isEnable.value = true;
     player2.value.isEnable.value = true;
     checkLevel(level);
     generateQuestion(rangeRandom, route);
     progress.value = 0;
     // ignore: prefer_final_locals
-    animationController =
-        AnimationController(vsync: this, duration: const Duration(seconds: 10));
-    animation =
-        Tween<double>(begin: 0.0, end: 1.0).animate(animationController);
+    animationController = AnimationController(vsync: this, duration: const Duration(seconds: 10));
+    animation = Tween<double>(begin: 0.0, end: 1.0).animate(animationController);
     animationController.forward();
-    if (isScreenExited) {
-      animationController.stop();
-    }
+
     animation.addListener(() {
+      if (isScreenExited) {
+        animationController.stop();
+      }
       progress.value = animation.value;
       if (animation.isCompleted) {
         if (count.value > 10) {
@@ -78,9 +78,18 @@ class MultiPlayerController extends GetxController
             sound.closeSoundGame();
             sound.continueBackgroundSound();
           }
-          Get.toNamed(MainRouters.MULTIPLAYER_RESULT);
-           ExtendBackAds.showAdsCompleteGame();
+          player1.value.isEnable.value = true;
+          player2.value.isEnable.value = true;
+          Get.offNamed(MainRouters.MULTIPLAYER_RESULT, arguments: {
+            'player1': player1.value,
+            'player2': player2.value,
+            'oldArguments': arguments,
+          });
+          return;
+          //ExtendBackAds.showAdsCompleteGame();
         } else {
+          player1.value.isEnable.value = true;
+          player2.value.isEnable.value = true;
           generateQuestion(rangeRandom, route);
           progress.value = 0;
           animationController.reset();
@@ -120,42 +129,6 @@ class MultiPlayerController extends GetxController
     isCorrect.value = true;
   }
 
-  void resetGame() {
-    count.value = 0;
-    countWrong.value = 0;
-    countCorrect.value = 0;
-    countSkip.value = 0;
-    isShowResult.value = false;
-    player1.value.correctAnswer = 0;
-    player2.value.correctAnswer = 0;
-    player1.value.wrongAnswer = 0;
-    player2.value.wrongAnswer = 0;
-    player1.value.isEnable.value = true;
-    player2.value.isEnable.value = true;
-    currentOptions.clear();
-    isCorrect.value = true;
-    animationController =
-        AnimationController(vsync: this, duration: const Duration(seconds: 10));
-    animation =
-        Tween<double>(begin: 0.0, end: 1.0).animate(animationController);
-    animationController.forward();
-    if (isScreenExited) {
-      animationController.stop();
-    }
-  }
-
-  // @override
-  // void onClose() {
-  //   super.onClose();
-  //   textLevel.value = '';
-  //   count = 0.obs;
-  //   countWrong = 0.obs;
-  //   countCorrect = 0.obs;
-  //   countSkip = 0.obs;
-  //   // ignore: invalid_use_of_protected_member
-  //   //animationController.clearListeners();
-  // } // được gọi
-
   void checkAnswer(int selectedAnswer, int index, PlayerModel player) {
     if (selectedAnswer == correctAnswer) {
       if (Get.isRegistered<SoundController>()) {
@@ -185,8 +158,7 @@ class MultiPlayerController extends GetxController
       print('isCorrect is: ${isCorrect.value}');
       // enable các button
       player.isEnable.value = false;
-      if (player1.value.isEnable.value == false &&
-          player2.value.isEnable.value == false) {
+      if (player1.value.isEnable.value == false && player2.value.isEnable.value == false) {
         final int index = currentOptions.indexOf(correctAnswer);
         player1.value.answerColors.value[index] = ColorResources.GREEN;
         player2.value.answerColors.value[index] = ColorResources.GREEN;
@@ -236,8 +208,15 @@ class MultiPlayerController extends GetxController
         sound.closeSoundGame();
         sound.continueBackgroundSound();
       }
-      Get.toNamed(MainRouters.PLAYMULTI_RESULT);
-      ExtendBackAds.showAdsCompleteGame();
+      //  ExtendBackAds.showAdsCompleteGame();
+
+      Get.offNamed(MainRouters.MULTIPLAYER_RESULT, arguments: {
+        'player1': player1.value,
+        'player2': player2.value,
+        'oldArguments': arguments,
+      });
+      isScreenExited = true;
+      return;
     }
     count.value++;
     print(count);
@@ -305,8 +284,7 @@ class MultiPlayerController extends GetxController
     while (currentOptions.length < 4) {
       int option = random.nextInt(level * 2) + levelAdd;
       if (correctAnswer.toString().length > 2) {
-        option = random.nextInt(levelAdd) +
-            correctAnswer; // giảm miền giá trị của đáp án với hard
+        option = random.nextInt(levelAdd) + correctAnswer; // giảm miền giá trị của đáp án với hard
       }
       if (!currentOptions.contains(option)) {
         currentOptions.add(option);

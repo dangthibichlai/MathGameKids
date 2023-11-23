@@ -3,12 +3,10 @@ import 'package:get/get.dart';
 import 'package:template/core/base_widget/izi_app_bar.dart';
 import 'package:template/core/helper/izi_size_util.dart';
 import 'package:template/core/utils/color_resources.dart';
-import 'package:template/presentation/pages/dash_board/dash_board_controller.dart';
 import 'package:template/presentation/pages/opinion_play/extend_back_ads.dart';
 import 'package:template/presentation/pages/opinion_play/play_time_challenge/play_time_challenge_controller.dart';
 import 'package:template/presentation/pages/opinion_play/widget/showAnswer.dart';
 import 'package:template/presentation/pages/opinion_play/widget/show_question.dart';
-import 'package:template/presentation/widgets/banner_ads.dart';
 
 class PlayTimeChallengePage extends GetView<PlayTimeChallengeController> {
   @override
@@ -23,7 +21,6 @@ class PlayTimeChallengePage extends GetView<PlayTimeChallengeController> {
         backgroundColor: ColorResources.BACKGROUND,
         appBar: BaseAppBar(
           title: controller.title,
-          isPremium: false,
           leading: IconButton(
             onPressed: () {
               controller.isScreenExited = true;
@@ -37,7 +34,7 @@ class PlayTimeChallengePage extends GetView<PlayTimeChallengeController> {
             () => Column(
               children: [
                 SizedBox(
-                  height: IZISizeUtil.setSizeWithWidth(percent: .06),
+                  height: IZISizeUtil.setSize(percent: .03),
                 ),
                 ShowQuestion(
                   title: controller.title,
@@ -57,12 +54,12 @@ class PlayTimeChallengePage extends GetView<PlayTimeChallengeController> {
                     controller.checkAnswer(controller.currentOptions[index]);
                   },
                 ),
-                Obx(() {
-                  if (Get.find<DashBoardController>().isPremium.value) {
-                    return const SizedBox();
-                  }
-                  return const BannerAdsFram();
-                }),
+                // Obx(() {
+                //   // if (Get.find<DashBoardController>().isPremium.value) {
+                //   //   return const SizedBox();
+                //   // }
+                //   return const BannerAdsFram();
+                // }),
               ],
             ),
           ),

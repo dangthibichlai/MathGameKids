@@ -1,5 +1,5 @@
 buildscript {
-    ext.kotlin_version = '1.7.0'
+    ext.kotlin_version = '1.7.10'
     repositories {
         google()
         jcenter()
@@ -9,7 +9,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.0.3'
+        classpath 'com.android.tools.build:gradle:7.3.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
         classpath 'com.google.gms:google-services:4.3.15'
@@ -31,7 +31,16 @@ subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
      project.evaluationDependsOn(':app')
 }
+buildTypes {
+    release {
+        signingConfig signingConfigs.release
 
+        minifyEnabled true
+        useProguard true
+
+        proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    }
+}
 
 tasks.register("clean", Delete) {
     delete rootProject.buildDir

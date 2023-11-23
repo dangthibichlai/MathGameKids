@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:template/core/base_widget/izi_app_bar.dart';
 import 'package:template/core/utils/color_resources.dart';
 import 'package:template/core/utils/images_path.dart';
-import 'package:template/model/list_game_model.dart';
 import 'package:template/presentation/pages/algebra/algebra_controller.dart';
+import 'package:template/presentation/pages/dash_board/dash_board_controller.dart';
 import 'package:template/presentation/widgets/gri_cont_addition.dart';
 import 'package:template/presentation/widgets/grid_view_component.dart';
 import 'package:template/presentation/widgets/header_page.dart';
@@ -23,6 +23,8 @@ class AlgebraPage extends GetView<AlgebraController> {
         backgroundColor: ColorResources.BACKGROUND,
         appBar: BaseAppBar(
           title: 'algebra'.tr,
+                  isPremium: true,
+
           leading: IconButton(
             onPressed: () {
               Get.toNamed(MainRouters.HOME);
@@ -40,9 +42,10 @@ class AlgebraPage extends GetView<AlgebraController> {
                   urlInmage: ImagesPath.aigebraImage,
                 ),
                 GriViewComponent(
-                  itemCount: listFourAlgebra.length,
+                  itemCount:
+                      Get.find<DashBoardController>().listFourAlgebra.length,
                   itemBuilder: (p0, p1) => ContainerGridFunction(
-                    item: listFourAlgebra[p1],
+                    item: Get.find<DashBoardController>().listFourAlgebra[p1],
                   ),
                 ),
               ],

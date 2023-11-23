@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:template/core/base_widget/izi_app_bar.dart';
 import 'package:template/core/utils/color_resources.dart';
 import 'package:template/core/utils/images_path.dart';
-import 'package:template/model/list_game_model.dart';
+import 'package:template/presentation/pages/dash_board/dash_board_controller.dart';
 import 'package:template/presentation/pages/subtraction/subtraction_controller.dart';
 import 'package:template/presentation/widgets/gri_cont_addition.dart';
 import 'package:template/presentation/widgets/grid_view_component.dart';
@@ -42,9 +42,9 @@ class SubtractionPage extends GetView<SubtractionController> {
                   urlInmage: ImagesPath.subtractionImage,
                 ),
                 GriViewComponent(
-                  itemCount: listEight.length,
+                  itemCount: Get.find<DashBoardController>().listEight.length,
                   itemBuilder: (p0, p1) => ContainerGridFunction(
-                    item: listEight[p1],
+                    item: Get.find<DashBoardController>().listEight[p1],
                   ),
                 ),
               ],
