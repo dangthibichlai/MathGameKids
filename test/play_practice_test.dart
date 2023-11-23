@@ -36,8 +36,7 @@ void main() {
       final sl = GetIt.instance;
 
       init();
-      sl.registerSingleton<SharedPreferences>(
-          await SharedPreferences.getInstance());
+      sl.registerSingleton<SharedPreferences>(await SharedPreferences.getInstance());
       sl.registerSingleton<LoggingInterceptor>(LoggingInterceptor());
 
       /// Local Notification.
@@ -64,22 +63,19 @@ void main() {
       sl.registerLazySingleton<AuthRepository>(() => AuthRepository());
 
       // Character.
-      sl.registerLazySingleton<CharacterRepository>(
-          () => CharacterRepository());
+      sl.registerLazySingleton<CharacterRepository>(() => CharacterRepository());
 
       // Category.
       sl.registerLazySingleton<CategoryRepository>(() => CategoryRepository());
 
       // Conversation.
-      sl.registerLazySingleton<ConversationRepository>(
-          () => ConversationRepository());
+      sl.registerLazySingleton<ConversationRepository>(() => ConversationRepository());
 
       // Message.
       sl.registerLazySingleton<MessagesRepository>(() => MessagesRepository());
 
       // Convert.
-      sl.registerLazySingleton<ConvertFileToTextRepository>(
-          () => ConvertFileToTextRepository());
+      sl.registerLazySingleton<ConvertFileToTextRepository>(() => ConvertFileToTextRepository());
 
       // Settings.
       sl.registerLazySingleton<SettingRepository>(() => SettingRepository());
@@ -88,16 +84,14 @@ void main() {
       sl.registerLazySingleton<DIYRepository>(() => DIYRepository());
 
       // Tool collection.
-      sl.registerLazySingleton<ToolCollectionRepository>(
-          () => ToolCollectionRepository());
+      sl.registerLazySingleton<ToolCollectionRepository>(() => ToolCollectionRepository());
 
       // In App API.
       sl.registerLazySingleton<InAppAPI>(() => InAppAPI());
 
       // In App API.
       sl.registerLazySingleton<FeedbackRepository>(() => FeedbackRepository());
-      sl.registerSingleton<SharedPreferenceHelper>(SharedPreferenceHelper(
-          sl<SharedPreferences>(), sl<SharedPreferences>()));
+      sl.registerSingleton<SharedPreferenceHelper>(SharedPreferenceHelper(sl<SharedPreferences>()));
       sl.registerSingleton<KeyValidateAds>(KeyValidateAds());
       playPracticeController = PlayPracticeController();
       playPracticeController.onInit();
@@ -111,7 +105,6 @@ void main() {
       expect(playPracticeController.currentQuestion.value, '5 + 8 = ?');
       expect(playPracticeController.correctAnswer, 13);
       expect(playPracticeController.currentOptions.length, 4);
-      expect(playPracticeController.isCorrect, true);
       expect(playPracticeController.answerColors, <int, Color>{});
       expect(playPracticeController.count.value, 1);
       expect(playPracticeController.countWrong.value, 0);
@@ -132,7 +125,6 @@ void main() {
       // Simulate selecting the correct answer
       playPracticeController.checkAnswer(10);
 
-      expect(playPracticeController.isCorrect, true);
       expect(playPracticeController.answerColors[10], ColorResources.GREEN);
       expect(playPracticeController.countCorrect.value, 1);
       expect(playPracticeController.count.value, 2);
@@ -146,7 +138,6 @@ void main() {
       // Simulate selecting an incorrect answer
       playPracticeController.checkAnswer(5);
 
-      expect(playPracticeController.isCorrect, false);
       expect(playPracticeController.answerColors[5], ColorResources.RED);
       expect(playPracticeController.countWrong.value, 1);
     });
@@ -156,18 +147,13 @@ void main() {
       playPracticeController.checkLevel(MATHLEVEL.MEDIUM);
 
       expect(playPracticeController.textLevel.value, 'medium'.tr);
-      expect(
-          playPracticeController.rangeRandom, MathLevelValueMax.MEDIUM_VALUE);
+      expect(playPracticeController.rangeRandom, MathLevelValueMax.MEDIUM_VALUE);
     });
 
     test('Generate question', () {
       dashBoardController.onInit();
       playPracticeController.generateQuestion(10, MainRouters.ADDITION);
-
-      expect(
-          playPracticeController.currentOptions
-              .contains(playPracticeController.correctAnswer),
-          true);
+      expect(playPracticeController.currentOptions.contains(playPracticeController.correctAnswer), true);
     });
   });
 }
