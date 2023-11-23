@@ -64,8 +64,7 @@ void main() async {
     authRepository = GetIt.instance<AuthRepository>();
   });
 
-  testWidgets('Splash screen navigates to introduce screen',
-      (WidgetTester tester) async {
+  testWidgets('Splash screen navigates to introduce screen', (WidgetTester tester) async {
     final authRepository = MockAuthRepository();
 
     await tester.pumpWidget(const MyApp());
