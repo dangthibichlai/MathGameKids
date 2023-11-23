@@ -10,9 +10,6 @@ import 'package:template/presentation/widgets/controller/sound_controller.dart';
 //import 'package:template/data/export/data_export.dart';
 
 class PlayAlgebraController extends GetxController with WidgetsBindingObserver {
-  // 1-9 : easy
-  // 10-99 : medium
-  // 100-999 : hard
   RxString currentQuestion = "5 + X = 8".obs;
   int correctAnswer = 13;
   RxList<int> currentOptions = List<int>.generate(4, (index) => 0).obs;
@@ -27,15 +24,16 @@ class PlayAlgebraController extends GetxController with WidgetsBindingObserver {
   String route = Get.arguments['route'];
   String title = Get.arguments['title'];
   int rangeRandom = 10;
+  int levelAdd = 1;
   RxString textLevel = ''.obs;
   RxBool isShowResult = false.obs;
   Rx<int> positionMissing = 0.obs;
+  Rx<bool> isEnable = true.obs;
 
   @override
   void onInit() {
     super.onInit();
 
-    // textLevel = RxString(level.name);
     checkLevel(level);
     generateQuestion(rangeRandom, route);
   }
@@ -54,9 +52,11 @@ class PlayAlgebraController extends GetxController with WidgetsBindingObserver {
     super.onClose();
   }
 
-  // enable skip
-
   void checkAnswer(int selectedAnswer) {
+    if (!isEnable.value) {
+      return;
+    }
+    isEnable.value = false;
     if (selectedAnswer == correctAnswer) {
       if (Get.isRegistered<SoundController>()) {
         Get.find<SoundController>().playAnswerTrueSound();
@@ -66,27 +66,25 @@ class PlayAlgebraController extends GetxController with WidgetsBindingObserver {
       countCorrect++;
       count++;
 
-      print('count is: $count');
-      // ignore: unrelated_type_equality_checks
       if (count > 10) {
         if (Get.isRegistered<SoundController>()) {
           Get.find<SoundController>().closeSoundGame();
         }
         // chuyển trang và truyền biến qua trang kết quả
-        Get.toNamed(MainRouters.RESULT, arguments: {
-          'countWrong': countWrong,
-          'countCorrect': countCorrect,
-          'countSkip': countSkip,
-          'route': route,
+        Get.offAndToNamed(MainRouters.RESULT, arguments: {
+          'countWrong': countWrong.value,
+          'countCorrect': countCorrect.value,
+          'countSkip': countSkip.value,
         });
         isShowResult.value = true;
         count = 1.obs;
       }
 
-      Future.delayed(const Duration(milliseconds: 300), () {
+      Future.delayed(const Duration(milliseconds: 800), () {
         // khởi tạo lại màu cho button
         answerColors.clear();
         generateQuestion(rangeRandom, route);
+        isEnable.value = true;
       });
     } else {
       if (Get.isRegistered<SoundController>()) {
@@ -96,6 +94,7 @@ class PlayAlgebraController extends GetxController with WidgetsBindingObserver {
       answerColors[selectedAnswer] = ColorResources.RED;
       answerColors.refresh();
       countWrong++;
+      isEnable.value = true;
     }
   }
 
@@ -104,14 +103,19 @@ class PlayAlgebraController extends GetxController with WidgetsBindingObserver {
       case MATHLEVEL.EASY:
         textLevel = RxString('easy'.tr);
         rangeRandom = MathLevelValueMax.EASY_VALUE;
+        levelAdd = MathLevelValueMin.EASY_VALUE_ADD;
+
         break;
       case MATHLEVEL.MEDIUM:
         textLevel = RxString('medium'.tr);
         rangeRandom = MathLevelValueMax.MEDIUM_VALUE;
+        levelAdd = MathLevelValueMin.MEDIUM_VALUE_ADD;
+
         break;
       case MATHLEVEL.HARD:
         textLevel = RxString('hard'.tr);
         rangeRandom = MathLevelValueMax.HARD_VALUE;
+        levelAdd = MathLevelValueMin.HARD_VALUE_ADD;
     }
   }
 
@@ -119,22 +123,8 @@ class PlayAlgebraController extends GetxController with WidgetsBindingObserver {
     // random theo mức độ với phép tính cộng trừ nhân chia
     final Random random = Random();
     String routeOperation = '';
-    int levelAdd = 1;
-    switch (level) {
-      case 8:
-        levelAdd = MathLevelValueMin.EASY_VALUE_ADD;
-        break;
-      case MathLevelValueMax.MEDIUM_VALUE:
-        levelAdd = MathLevelValueMin.MEDIUM_VALUE_ADD;
-        break;
-      case MathLevelValueMax.HARD_VALUE:
-        levelAdd = MathLevelValueMin.HARD_VALUE_ADD;
-        break;
-    }
     int num1 = random.nextInt(level) + levelAdd;
     int num2 = random.nextInt(level) + levelAdd;
-    print('num1 is: $num1');
-    print('num1 is: $num2');
 
     ///
     /// random phép toán
@@ -151,6 +141,17 @@ class PlayAlgebraController extends GetxController with WidgetsBindingObserver {
       correctAnswer = num1 - num2;
     } else if (title.compareTo('select_four_3'.tr) == 0) {
       routeOperation = 'x';
+      if (level == MathLevelValueMax.HARD_VALUE) {
+        // ignore: parameter_assignments
+        level = MathLevelValueMax.HARD_VALUE_MUL;
+        levelAdd = MathLevelValueMin.HARD_VALUE_MUL_ADD;
+      } else if (level == MathLevelValueMax.MEDIUM_VALUE) {
+        // ignore: parameter_assignments
+        level = MathLevelValueMax.MEDIUM_VALUE_MUL;
+        levelAdd = MathLevelValueMin.MEDIUM_VALUE_MUL_ADD;
+      }
+      num1 = random.nextInt(level) + levelAdd;
+      num2 = random.nextInt(level) + levelAdd;
       correctAnswer = num1 * num2;
     } else if (title.compareTo('select_four_4'.tr) == 0) {
       routeOperation = '/';
@@ -175,20 +176,16 @@ class PlayAlgebraController extends GetxController with WidgetsBindingObserver {
     } else {
       currentQuestion.value = '$num1 $routeOperation $num2 = X \nX = ';
     }
-    //currentQuestion.value = '$num1 $routeOperation $num2 = ?';
     currentOptions.clear();
     currentOptions.add(correctAnswer);
-    print('num1 is: $correctAnswer');
 
     while (currentOptions.length < 4) {
       int option = random.nextInt(level * 2) + levelAdd;
       if (correctAnswer.toString().length > 2) {
-        option = random.nextInt(levelAdd) +
-            correctAnswer; // giảm miền giá trị của đáp án với hard
+        option = random.nextInt(levelAdd) + correctAnswer; // giảm miền giá trị của đáp án với hard
       }
       if (!currentOptions.contains(option)) {
         currentOptions.add(option);
-        // answerColors[option] = ColorResources.GREEN;
       }
     }
     currentOptions.shuffle();

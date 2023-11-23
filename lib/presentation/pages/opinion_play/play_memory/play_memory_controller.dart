@@ -6,6 +6,8 @@ import 'dart:math';
 import 'package:get/get.dart';
 import 'package:template/config/routes/route_path/main_routh.dart';
 import 'package:template/core/shared_pref/constants/enum_helper.dart';
+import 'package:template/presentation/pages/opinion_play/extend_back_ads.dart';
+import 'package:template/presentation/widgets/controller/sound_controller.dart';
 
 import '../../../../core/utils/color_resources.dart';
 import 'ui_model/title_model.dart';
@@ -30,11 +32,15 @@ class PlayMemoryController extends GetxController
   String title = Get.arguments['title'];
   int rangeRandom = 10;
   int correctAnswer = 13;
-  String textLevel = '';
+  int levelAdd = 1;
+  RxString textLevel = ''.obs;
   RxList<Tile> listGrid = <Tile>[].obs;
   RxBool isVisible = true.obs;
   RxBool isDone = false.obs;
   bool isDisposed = false;
+  final sound = Get.find<SoundController>();
+  final isRegistered = Get.isRegistered<SoundController>();
+
   @override
   void onClose() {
     super.onClose();
@@ -91,36 +97,29 @@ class PlayMemoryController extends GetxController
   void checkLevel(MATHLEVEL level) {
     switch (level) {
       case MATHLEVEL.EASY:
-        rangeRandom = 8;
-        textLevel = 'Easy';
+        textLevel = RxString('easy'.tr);
+        rangeRandom = MathLevelValueMax.EASY_VALUE;
+        levelAdd = MathLevelValueMin.EASY_VALUE_ADD;
+
         break;
       case MATHLEVEL.MEDIUM:
-        rangeRandom = 89;
-        textLevel = 'Medium';
+        textLevel = RxString('medium'.tr);
+        rangeRandom = MathLevelValueMax.MEDIUM_VALUE;
+        levelAdd = MathLevelValueMin.MEDIUM_VALUE_ADD;
+
         break;
       case MATHLEVEL.HARD:
-        rangeRandom = 899;
-        textLevel = 'Hard';
+        textLevel = RxString('hard'.tr);
+        rangeRandom = MathLevelValueMax.HARD_VALUE;
+        levelAdd = MathLevelValueMin.HARD_VALUE_ADD;
         break;
     }
-    print(textLevel);
   }
 
   void generateQuestion(int level, String route) {
     final Random random = Random();
     String routeOperation = '';
-    int levelAdd = 1;
-    switch (level) {
-      case MathLevelValueMax.EASY_VALUE:
-        levelAdd = MathLevelValueMin.EASY_VALUE_ADD;
-        break;
-      case MathLevelValueMax.MEDIUM_VALUE:
-        levelAdd = MathLevelValueMin.MEDIUM_VALUE_ADD;
-        break;
-      case MathLevelValueMax.HARD_VALUE:
-        levelAdd = MathLevelValueMin.HARD_VALUE_ADD;
-        break;
-    }
+
     for (int i = 0; i < 6; i++) {
       int num1 = random.nextInt(level) + levelAdd;
       int num2 = random.nextInt(level) + levelAdd;
@@ -141,15 +140,15 @@ class PlayMemoryController extends GetxController
           break;
         case MainRouters.MULTIPLICATION:
           routeOperation = 'x';
-           if (level == MathLevelValueMax.HARD_VALUE) {
-          level = MathLevelValueMax.HARD_VALUE_MUL;
-          levelAdd = MathLevelValueMin.HARD_VALUE_MUL_ADD;
-        } else if (level == MathLevelValueMax.MEDIUM_VALUE) {
-          level = MathLevelValueMax.MEDIUM_VALUE_MUL;
-          levelAdd = MathLevelValueMin.MEDIUM_VALUE_MUL_ADD;
-        }
-        num1 = random.nextInt(level) + levelAdd;
-        num2 = random.nextInt(level) + levelAdd;
+          if (level == MathLevelValueMax.HARD_VALUE) {
+            level = MathLevelValueMax.HARD_VALUE_MUL;
+            levelAdd = MathLevelValueMin.HARD_VALUE_MUL_ADD;
+          } else if (level == MathLevelValueMax.MEDIUM_VALUE) {
+            level = MathLevelValueMax.MEDIUM_VALUE_MUL;
+            levelAdd = MathLevelValueMin.MEDIUM_VALUE_MUL_ADD;
+          }
+          num1 = random.nextInt(level) + levelAdd;
+          num2 = random.nextInt(level) + levelAdd;
           correctAnswer = num1 * num2;
           break;
         case MainRouters.DIVISION:
@@ -188,6 +187,9 @@ class PlayMemoryController extends GetxController
       previousIndex = index;
       listGrid[index].isFlipped = true;
       listGrid.refresh();
+      if (isRegistered) {
+        sound.playClickGameSound();
+      }
     } else {
       /// Nếu đã có ô được lật trước đó
 
@@ -196,6 +198,10 @@ class PlayMemoryController extends GetxController
 
       /// Nếu ô hiện tại và ô trước đó có cùng kết quả
       if (listGrid[index].result == listGrid[previousIndex].result) {
+        // hiện âm thanh đúng
+        if (isRegistered) {
+          sound.playAnswerTrueSound();
+        }
         listGrid[index].isMatched = true;
         listGrid[previousIndex].isMatched = true;
         countCorrect.value++;
@@ -208,11 +214,18 @@ class PlayMemoryController extends GetxController
         /// Nếu tất cả các ô đều đã được lật và khớp
         if (countCorrect.value == listGrid.length ~/ 2) {
           isDone.value = true;
-          print('Chúc mừng! Bạn đã hoàn thành trò chơi!');
+          // delay 1s để hiện ads
+          await Future.delayed(const Duration(seconds: 1), () {
+            ExtendBackAds.showAdsCompleteGame();
+          });
           listGrid.refresh();
         }
       } else {
         /// Nếu ô hiện tại và ô trước đó không khớp
+        ///
+        if (isRegistered) {
+          sound.playAnswerFalseSound();
+        }
         isProcessing.value = true;
         countWrong.value++;
         listGrid.refresh();

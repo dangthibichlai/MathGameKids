@@ -65,7 +65,6 @@ class _PackageButtonWidgetState extends State<PackageButtonWidget>
         });
       },
       child: AnimatedBuilder(
-        
           animation: _animation,
           builder: (context, child) {
             return Container(
@@ -77,7 +76,6 @@ class _PackageButtonWidgetState extends State<PackageButtonWidget>
                 borderRadius: IZISizeUtil.setBorderRadiusAll(
                     radius: IZISizeUtil.RADIUS_2X),
                 color: ColorResources.START_BT,
-              
                 boxShadow: [
                   BoxShadow(
                     offset: const Offset(2, 5),
@@ -91,9 +89,10 @@ class _PackageButtonWidgetState extends State<PackageButtonWidget>
                 child: Text(
                   'text_button_prenium'.tr,
                   style: widget.textStyle ??
-                      Theme.of(context).textTheme.labelSmall!.copyWith(
-                          fontWeight: FontWeight.w600,
-                          color: ColorResources.WHITE),
+                      Theme.of(context).textTheme.labelMedium!.copyWith(
+                          fontWeight: FontWeight.w800,
+                          color: ColorResources.WHITE,
+                          letterSpacing: 1),
                 ),
               ),
             );

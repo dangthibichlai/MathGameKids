@@ -43,19 +43,12 @@ class PlayAlgebraPage extends GetView<PlayAlgebraController> {
                     level: controller.textLevel.value,
                     count: controller.count.value,
                     currentQuestion: Padding(
-                      padding: IZISizeUtil.setEdgeInsetsOnly(
-                          left: IZISizeUtil.SPACE_2X,
-                          right: IZISizeUtil.SPACE_2X),
+                      padding: IZISizeUtil.setEdgeInsetsOnly(left: IZISizeUtil.SPACE_2X, right: IZISizeUtil.SPACE_2X),
                       child: FittedBox(
                         child: Text(
                           controller.currentQuestion.value,
-                          style: Theme.of(context)
-                              .textTheme
-                              .headlineLarge!
-                              .copyWith(
-                                  fontWeight: FontWeight.w900,
-                                  color: ColorResources.BLUE_BLACK,
-                                  fontFamily: 'Filson'),
+                          style: Theme.of(context).textTheme.headlineLarge!.copyWith(
+                              fontWeight: FontWeight.w900, color: ColorResources.BLUE_BLACK, fontFamily: 'Filson'),
                           maxLines: 2,
                         ),
                       ),
@@ -73,12 +66,6 @@ class PlayAlgebraPage extends GetView<PlayAlgebraController> {
                       );
                     },
                   )),
-              Obx(() {
-                if (Get.find<DashBoardController>().isPremium.value) {
-                  return const SizedBox();
-                }
-                return const BannerAdsFram();
-              }),
             ],
           ),
         ),

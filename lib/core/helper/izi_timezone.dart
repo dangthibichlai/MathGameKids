@@ -1,4 +1,4 @@
-import 'package:flutter_native_timezone/flutter_native_timezone.dart';
+import 'package:flutter_native_timezone_updated_gradle/flutter_native_timezone.dart';
 import 'package:intl/intl.dart';
 import 'package:template/core/di_container.dart';
 import 'package:template/core/shared_pref/shared_preference_helper.dart';

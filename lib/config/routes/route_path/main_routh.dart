@@ -22,6 +22,7 @@ import 'package:template/presentation/pages/opinion_play/play_deciamal/decimal_m
 import 'package:template/presentation/pages/opinion_play/play_deciamal/play_decimal_binding.dart';
 import 'package:template/presentation/pages/opinion_play/play_deciamal/play_decimal_page.dart';
 import 'package:template/presentation/pages/opinion_play/play_deciamal/result_decimal.dart';
+import 'package:template/presentation/pages/opinion_play/play_deciamal/result_decimal_bingding.dart';
 import 'package:template/presentation/pages/opinion_play/play_exponents/exponent_multi_page.dart';
 import 'package:template/presentation/pages/opinion_play/play_exponents/play_exponents_binding.dart';
 import 'package:template/presentation/pages/opinion_play/play_exponents/play_exponents_page.dart';
@@ -90,7 +91,6 @@ mixin MainRouters {
   static const String PLAYDECIMAL = '/play_decimal';
   static const String PLAYEXPONENTS = '/play_exponents';
   static const String PLAYDECIMALMULTI = '/play_decimal_multi';
-  static const String PLAYMULTI_RESULT = '/play_multi_result';
   static const String RESULTDECIMAL = '/result_decimal';
   static const String MULTIEXPONETS = '/multi_exponents';
   static const String RESULTEPONENTS = '/result_exponents';
@@ -108,12 +108,12 @@ mixin MainRouters {
     GetPage(
       name: RESULTMULTISQUARE,
       page: () => const ResultSquarePage(),
-      binding: PlaySquareRootBinding(),
+      binding: ResultDecimalBinding(),
     ),
     GetPage(
       name: RESULTEPONENTS,
       page: () => const ResulExponentsPage(),
-      binding: PlayExponentsBinding(),
+      binding: ResultDecimalBinding(),
     ),
     GetPage(
       name: MULTISQUARE,
@@ -133,13 +133,13 @@ mixin MainRouters {
     GetPage(
       name: RESULTDECIMAL,
       page: () => const ResultDecilmalPage(),
-      binding: PlayDecimalBinding(),
+      binding: ResultDecimalBinding(),
     ),
-    GetPage(
-      name: PLAYMULTI_RESULT,
-      page: () => const ResultMultiPlayerPage(),
-      binding: MultiplayerBinding(),
-    ),
+    // GetPage(
+    //   name: PLAYMULTI_RESULT,
+    //   page: () => const ResultMultiPlayerPage(),
+    //   binding: ResultDecimalBinding(),
+    // ),
     GetPage(
       name: PLAYDECIMALMULTI,
       page: () => const DecimalMultiPage(),
@@ -163,7 +163,7 @@ mixin MainRouters {
     GetPage(
       name: MULTIPLAYER_RESULT,
       page: () => const ResultMultiPlayerPage(),
-      binding: MultiplayerBinding(),
+      binding: ResultDecimalBinding(),
     ),
     GetPage(
       name: HOME,

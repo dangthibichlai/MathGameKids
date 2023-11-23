@@ -21,7 +21,6 @@ class PlayPracticePage extends GetView<PlayPracticeController> {
         backgroundColor: ColorResources.BACKGROUND,
         appBar: BaseAppBar(
           title: controller.title,
-          isPremium: false,
           leading: IconButton(
             onPressed: () {
               //Get.back();
@@ -48,8 +47,10 @@ class PlayPracticePage extends GetView<PlayPracticeController> {
                   currentOptions: controller.currentOptions,
                   // ignore: invalid_use_of_protected_member
                   answerColors: controller.answerColors.value,
+
                   onTapAnswer: (index) {
                     print('index is: $index');
+
                     controller.checkAnswer(
                       controller.currentOptions[index],
                     );
@@ -58,12 +59,12 @@ class PlayPracticePage extends GetView<PlayPracticeController> {
               ),
 
               // Banner.
-              Obx(() {
-                if (Get.find<DashBoardController>().isPremium.value) {
-                  return const SizedBox();
-                }
-                return const BannerAdsFram();
-              }),
+              // Obx(() {
+              //   if (Get.find<DashBoardController>().isPremium.value) {
+              //     return const SizedBox();
+              //   }
+              //   return const BannerAdsFram();
+              // }),
             ],
           ),
         ),

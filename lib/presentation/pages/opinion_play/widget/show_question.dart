@@ -47,8 +47,7 @@ class ShowQuestion extends StatelessWidget {
     return Padding(
       padding: padding ??
           IZISizeUtil.setEdgeInsetsOnly(
-              top: IZISizeUtil.setSizeWithWidth(
-                  percent: .1 - (time ?? false ? .05 : 0)),
+              top: IZISizeUtil.setSize(percent: .02 - (time ?? false ? .01 : 0)),
               //bottom: IZISizeUtil.setSizeWithWidth(percent: .02),
               left: IZISizeUtil.setSizeWithWidth(percent: .07),
               right: IZISizeUtil.setSizeWithWidth(percent: .07)),
@@ -62,33 +61,28 @@ class ShowQuestion extends StatelessWidget {
             children: [
               SizedBox(
                 width: IZISizeUtil.setSizeWithWidth(percent: .9),
-                height:
-                    heightQuestion ?? IZISizeUtil.setSizeWithWidth(percent: .9),
+                height: heightQuestion ?? IZISizeUtil.setSize(percent: .35),
               ),
               Container(
                   margin: IZISizeUtil.setEdgeInsetsOnly(
                     top: IZISizeUtil.setSizeWithWidth(percent: .02),
                   ),
-                  padding: IZISizeUtil.setEdgeInsetsOnly(
-                      left: IZISizeUtil.SPACE_2X, right: IZISizeUtil.SPACE_2X),
+                  padding: IZISizeUtil.setEdgeInsetsOnly(left: IZISizeUtil.SPACE_2X, right: IZISizeUtil.SPACE_2X),
                   alignment: Alignment.center,
                   width: width ?? IZISizeUtil.setSizeWithWidth(percent: .85),
-                  height: height ?? IZISizeUtil.setSizeWithWidth(percent: .74),
+                  height: height ?? IZISizeUtil.setSize(percent: .3),
                   decoration: BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
                           color ?? ColorResources.WHITE,
                           ColorResources.WHITE,
                         ], // Màu đỏ và xanh
-                        begin:
-                            Alignment.bottomCenter, // Điểm bắt đầu ở dưới cùng
+                        begin: Alignment.bottomCenter, // Điểm bắt đầu ở dưới cùng
                         end: Alignment.topCenter, // Điểm kết thúc ở trên cùng
                       ),
                       //color: color ?? ColorResources.WHITE,
-                      borderRadius:
-                          BorderRadius.circular(IZISizeUtil.RADIUS_3X),
-                      border: Border.all(
-                          color: ColorResources.BD_CT_QUESITION, width: 5),
+                      borderRadius: BorderRadius.circular(IZISizeUtil.RADIUS_3X),
+                      border: Border.all(color: ColorResources.BD_CT_QUESITION, width: 5),
                       boxShadow: const [
                         BoxShadow(
                           color: Colors.transparent,
@@ -99,13 +93,8 @@ class ShowQuestion extends StatelessWidget {
                   child: FittedBox(
                     child: Text(
                       currentQuestion ?? '',
-                      style: Theme.of(context)
-                          .textTheme
-                          .headlineLarge!
-                          .copyWith(
-                              fontWeight: FontWeight.w900,
-                              color: ColorResources.BLUE_BLACK,
-                              fontFamily: 'Filson'),
+                      style: Theme.of(context).textTheme.headlineLarge!.copyWith(
+                          fontWeight: FontWeight.w900, color: ColorResources.BLUE_BLACK, fontFamily: 'Filson'),
                       maxLines: 1,
                     ),
                   )),
@@ -128,13 +117,10 @@ class ShowQuestion extends StatelessWidget {
                         ),
                         Text(
                           level ?? '',
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleSmall!
-                              .copyWith(
-                                  fontWeight: FontWeight.w600,
-                                  color: colorTextLevel ?? ColorResources.GREEN,
-                                  fontFamily: 'Filson'),
+                          style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                              fontWeight: FontWeight.w600,
+                              color: colorTextLevel ?? ColorResources.GREEN,
+                              fontFamily: 'Filson'),
                         ),
                       ],
                     ),
@@ -143,13 +129,8 @@ class ShowQuestion extends StatelessWidget {
                         children: [
                           Text(
                             '$countCorrect',
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleMedium!
-                                .copyWith(
-                                    fontWeight: FontWeight.w800,
-                                    color: ColorResources.GREEN,
-                                    fontFamily: 'Filson'),
+                            style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                                fontWeight: FontWeight.w800, color: ColorResources.GREEN, fontFamily: 'Filson'),
                           ),
                           const SizedBox(
                             width: IZISizeUtil.SPACE_1X,
@@ -178,21 +159,20 @@ class ShowQuestion extends StatelessWidget {
                     height: IZISizeUtil.setSize(percent: .03),
                     decoration: BoxDecoration(
                       color: ColorResources.BACKGROUND,
-                      borderRadius:
-                          BorderRadius.circular(IZISizeUtil.RADIUS_2X),
+                      borderRadius: BorderRadius.circular(IZISizeUtil.RADIUS_2X),
                     ),
                     child: Text(
                       '$count/10',
-                      style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                          fontWeight: FontWeight.w600,
-                          color: ColorResources.WHITE,
-                          fontFamily: 'Filson'),
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleSmall!
+                          .copyWith(fontWeight: FontWeight.w600, color: ColorResources.WHITE, fontFamily: 'Filson'),
                     ),
                   ),
                 ),
               if (isSkip ?? false)
                 Positioned(
-                  bottom: IZISizeUtil.setSizeWithWidth(percent: .2),
+                  bottom: IZISizeUtil.setSize(percent: .06),
                   right: IZISizeUtil.setSizeWithWidth(percent: .04),
                   child: GestureDetector(
                     onTap: () {
@@ -204,8 +184,7 @@ class ShowQuestion extends StatelessWidget {
                       height: IZISizeUtil.setSize(percent: .045),
                       decoration: BoxDecoration(
                         color: ColorResources.WHITE,
-                        borderRadius:
-                            BorderRadius.circular(IZISizeUtil.RADIUS_2X),
+                        borderRadius: BorderRadius.circular(IZISizeUtil.RADIUS_2X),
                         border: Border.all(color: ColorResources.LIGHT_BLUE),
                       ),
                       child: const Icon(

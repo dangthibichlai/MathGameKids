@@ -12,7 +12,7 @@ import '../../../core/export/core_export.dart';
 class HomeController extends GetxController
     // ignore: deprecated_member_use
     with
-        SingleGetTickerProviderMixin,
+        GetSingleTickerProviderStateMixin,
         WidgetsBindingObserver {
 // viết hàm rung ảnh ở đây: truyền vào ảnh cần rung
   late AnimationController _animationController;
@@ -133,8 +133,7 @@ class HomeController extends GetxController
 
   void _checkUserHavePurchase() {
     // kiểm tra ngày hết hạn premium
-    if (DateTime.parse(sl<SharedPreferenceHelper>().getEndTimePremium)
-        .isAfter(DateTime.now())) {
+    if (DateTime.parse(sl<SharedPreferenceHelper>().getEndTimePremium).isAfter(DateTime.now())) {
       sl<SharedPreferenceHelper>().setPremium(isPremium: true);
     } else {
       sl<SharedPreferenceHelper>().setPremium(isPremium: false);

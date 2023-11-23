@@ -42,12 +42,12 @@ class PlayController extends GetxController {
     count++;
     generateQuestion(rangeRandom, route);
     if (count.value == 3) {
-      Get.toNamed(MainRouters.RESULT, arguments: {
-        'countWrong': countWrong,
-        'countCorrect': countCorrect,
-        'countSkip': countSkip,
-        'route': route,
+      Get.offAndToNamed(MainRouters.RESULT, arguments: {
+        'countWrong': countWrong.value,
+        'countCorrect': countCorrect.value,
+        'countSkip': countSkip.value,
       });
+
       count = 1.obs;
     }
   }
@@ -64,13 +64,11 @@ class PlayController extends GetxController {
       // ignore: unrelated_type_equality_checks
       if (count == 3) {
         // chuyển trang và truyền biến qua trang kết quả
-        Get.toNamed(MainRouters.RESULT, arguments: {
-          'countWrong': countWrong,
-          'countCorrect': countCorrect,
-          'countSkip': countSkip,
-          'route': route,
-        });
-        count = 1.obs;
+          Get.offAndToNamed(MainRouters.RESULT, arguments: {
+          'countWrong': countWrong.value,
+          'countCorrect': countCorrect.value,
+          'countSkip': countSkip.value,
+        }); count = 1.obs;
       }
 
       Future.delayed(const Duration(milliseconds: 300), () {
@@ -162,8 +160,7 @@ class PlayController extends GetxController {
     while (currentOptions.length < 4) {
       int option = random.nextInt(level * 2) + levelAdd;
       if (correctAnswer.toString().length > 2) {
-        option = random.nextInt(levelAdd) +
-            correctAnswer; // giảm miền giá trị của đáp án với hard
+        option = random.nextInt(levelAdd) + correctAnswer; // giảm miền giá trị của đáp án với hard
       }
       if (!currentOptions.contains(option)) {
         currentOptions.add(option);

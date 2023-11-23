@@ -7,10 +7,18 @@ import 'package:template/core/utils/images_path.dart';
 import 'package:template/presentation/pages/addition/addition_page.dart';
 
 class HeaderPage extends StatelessWidget {
-  const HeaderPage({super.key, this.urlInmage, this.top, this.bottom});
+  const HeaderPage(
+      {super.key,
+      this.urlInmage,
+      this.top,
+      this.bottom,
+      this.width,
+      this.height});
   final String? urlInmage;
   final double? top;
   final double? bottom;
+  final double? width;
+  final double? height;
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +32,8 @@ class HeaderPage extends StatelessWidget {
           ),
           child: IZIImage(
             urlInmage ?? ImagesPath.aditionImage,
-            width: IZISizeUtil.setSizeWithWidth(percent: .3),
-            height: IZISizeUtil.setSizeWithWidth(percent: .3),
+            width: width ?? IZISizeUtil.setSizeWithWidth(percent: .3),
+            height: height ?? IZISizeUtil.setSizeWithWidth(percent: .3),
           ),
         ),
         Padding(

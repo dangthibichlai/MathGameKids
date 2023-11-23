@@ -22,7 +22,6 @@ class PlayTrueFalsePage extends GetView<PlayTrueFalseController> {
         backgroundColor: ColorResources.BACKGROUND,
         appBar: BaseAppBar(
           title: controller.title,
-          isPremium: false,
           leading: IconButton(
             onPressed: () {
               ExtendBackAds.onBackPress(controller.route);

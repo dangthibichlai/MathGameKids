@@ -2,7 +2,20 @@ const Map<String, String> vi = {
   ///
   ///setting
   ///
+  ///'buy_Package_5': 'Đang mua... Vui lòng đợi một chút.',
+  'buy_Package_6': 'Bạn chưa mua gói nào.',
+  'buy_Package_7': 'Khôi phục mua hàng...',
+  'buy_Package_8': 'Khôi phục mua hàng thành công.',
+  'buy_Package_9': 'Lỗi khôi phục mua hàng. Vui lòng thử lại sau.',
+  'buy_Package_10': 'Đang cài đặt tài khoản',
+
+  'success': 'Thành công',
+  'info': 'Thông tin',
+  'warning': 'Cảnh báo',
+  'error': 'Lỗi',
+  'error_001': 'Có lỗi xảy ra. Vui lòng thử lại sau!',
   'pro': 'Pro',
+  'not_vip': 'Bạn không phải là thành viên VIP. Vui lòng đăng ký để trở thành thành viên VIP.',
 
   'text_speech_06': 'Đang tạo...',
   'rematch': 'Chơi lại',
@@ -10,7 +23,7 @@ const Map<String, String> vi = {
   'rate': 'Vui lòng đánh giá để nâng cao trải nghiệm của bạn. Cảm ơn!',
   'rate_1': 'Tốt nhất mà chúng tôi có thể nhận :)',
   'You Won': 'Bạn đã thắng',
-  'You Lost': 'Bạn đã thua',
+  'You Lose': 'Bạn đã thua',
   'Tie': 'Hòa',
   'sub_text_premium': 'Vừa học vừa chơi - Khám phá thế giới Toán học',
   'true': 'ĐÚNG',
@@ -79,7 +92,7 @@ const Map<String, String> vi = {
   'setting_8': 'Âm thanh',
 // Home Page
   'home_Page_1_1': 'Trò chơi',
-  'home_Page_1_2': 'Toán',
+  'home_Page_1_2': 'Toán học',
   'home_Page_2': 'Xin chào,',
   'home_Page_3': "Hãy Nâng Cao\nKỹ Năng Toán Của Bạn",
   'home_Page_4': 'THOÁT',
@@ -97,21 +110,17 @@ const Map<String, String> vi = {
   // Rate us
   'setting_05': 'Đánh giá chúng tôi',
   'setting_07': 'Tốt nhất chúng tôi có :”>',
-  'setting_24':
-      'Vui lòng đánh giá chúng tôi để nâng cao trải nghiệm của bạn. Cảm ơn bạn!',
+  'setting_24': 'Vui lòng đánh giá chúng tôi để nâng cao trải nghiệm của bạn. Cảm ơn bạn!',
   'setting_25': 'Chúng tôi đánh giá cao phản hồi của bạn.',
   'setting_26': "Chúng tôi sẽ cải thiện trải nghiệm của bạn",
   'setting_27': "Chúng tôi cam kết làm cho nó càng tốt hơn.",
-  'setting_28':
-      "Chúng tôi rất vui khi bạn thích sử dụng ứng dụng của chúng tôi",
-  'setting_29':
-      "Chúng tôi rất vui khi nghe bạn yêu thích ứng dụng của chúng tôi.",
+  'setting_28': "Chúng tôi rất vui khi bạn thích sử dụng ứng dụng của chúng tôi",
+  'setting_29': "Chúng tôi rất vui khi nghe bạn yêu thích ứng dụng của chúng tôi.",
   'setting_30': "Đánh giá trên Google Play",
 
 // feedback
   'feedback_001': 'Gửi phản hồi cho chúng tôi!',
-  'feedback_002':
-      'Tìm thấy lỗi? Có đề xuất gì không? Hãy điền vào mẫu dưới đây và chúng tôi sẽ xem xét!',
+  'feedback_002': 'Tìm thấy lỗi? Có đề xuất gì không? Hãy điền vào mẫu dưới đây và chúng tôi sẽ xem xét!',
   'feedback_003': 'Nhập phản hồi của bạn vào đây! (ít nhất 6 ký tự)',
   'feedback_004': 'Tải lên hình ảnh',
   'feedback_005': 'GỬI',

@@ -5,8 +5,8 @@ import 'package:get/get_instance/get_instance.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:template/core/helper/izi_size_util.dart';
 import 'package:template/core/utils/color_resources.dart';
-import 'package:template/model/list_game_model.dart';
 import 'package:template/presentation/pages/addition/addition_controller.dart';
+import 'package:template/presentation/pages/dash_board/UIGame_model.dart';
 import 'package:template/presentation/widgets/animation_home.dart';
 import 'package:template/presentation/widgets/controller/sound_controller.dart';
 import 'package:template/presentation/widgets/diaolog_select_dificult.dart';
@@ -57,20 +57,24 @@ class ContainerGridFunction extends GetView<AdditionController> {
           Positioned(
             left: IZISizeUtil.setSizeWithWidth(percent: .03),
             bottom: IZISizeUtil.setSizeWithWidth(percent: .03),
-            child: SizedBox(
-              width: IZISizeUtil.setSizeWithWidth(percent: .24),
-              child: AutoSizeText(
-                item.name,
-
-                // textHeightBehavior:
-                //     const TextHeightBehavior(applyHeightToFirstAscent: false),
-                style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                      fontWeight: FontWeight.w700,
-                      color: ColorResources.WHITE,
-                      fontFamily: 'Filson',
-                    ),
-                maxLines: 2,
-                softWrap: true,
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                maxWidth: IZISizeUtil.setSizeWithWidth(percent: .233),
+              ),
+              child: SizedBox(
+                width: IZISizeUtil.setSizeWithWidth(percent: .233),
+                child: Text(
+                  item.name,
+                  style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                        fontWeight: FontWeight.w900,
+                        color: ColorResources.WHITE,
+                        fontFamily: 'Filson',
+                        height: 1.2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                  textScaleFactor: 1.0,
+                  maxLines: item.name.split(' ').length == 1 ? 1 : 2,
+                ),
               ),
             ),
           ),

@@ -27,15 +27,19 @@ class LoadingApp extends StatelessWidget {
             child: Stack(
               alignment: Alignment.center,
               children: [
-                IZIImage(
-                  ImagesPath.loadingLogo,
-                  width: IZISizeUtil.setSize(percent: .08),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(100),
+                  child: IZIImage(
+                    ImagesPath.loadingLogo,
+                    width: IZISizeUtil.setSize(percent: .08),
+                  ),
                 ),
                 SizedBox(
                   width: IZISizeUtil.setSize(percent: .14),
                   height: IZISizeUtil.setSize(percent: .14),
                   child: const CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation<Color>(ColorResources.WHITE),
+                    valueColor:
+                        AlwaysStoppedAnimation<Color>(ColorResources.WHITE),
                     strokeWidth: 3,
                   ),
                 ),

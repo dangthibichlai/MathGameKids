@@ -35,9 +35,7 @@ class SquareRootMultiPage extends GetView<MultiSquareRootController> {
                     Expanded(
                         child: RotatedBox(
                       quarterTurns: 2,
-                      child: _screenPlayer(
-                          color: ColorResources.BACKGROUND,
-                          screen: controller.player1.value),
+                      child: _screenPlayer(color: ColorResources.BACKGROUND, screen: controller.player1.value),
                     )),
                     Expanded(
                       child: _screenPlayer(screen: controller.player2.value),
@@ -63,8 +61,7 @@ class SquareRootMultiPage extends GetView<MultiSquareRootController> {
       height: 40,
       width: IZISizeUtil.getMaxWidth(),
       padding: IZISizeUtil.setEdgeInsetsOnly(
-          right: IZISizeUtil.setSizeWithWidth(percent: .08),
-          left: IZISizeUtil.setSizeWithWidth(percent: .08)),
+          right: IZISizeUtil.setSizeWithWidth(percent: .08), left: IZISizeUtil.setSizeWithWidth(percent: .08)),
       child: Row(
         children: [
           GestureDetector(
@@ -89,8 +86,7 @@ class SquareRootMultiPage extends GetView<MultiSquareRootController> {
               borderRadius: BorderRadius.circular(100),
               child: LinearProgressIndicator(
                 value: controller.progress.value,
-                valueColor: const AlwaysStoppedAnimation<Color>(
-                    ColorResources.ORANGE_MG),
+                valueColor: const AlwaysStoppedAnimation<Color>(ColorResources.ORANGE_MG),
                 backgroundColor: ColorResources.LIGHT_GREY,
                 minHeight: 12,
               ),
@@ -124,8 +120,7 @@ class SquareRootMultiPage extends GetView<MultiSquareRootController> {
             level: controller.textLevel.value,
             count: controller.count.value,
             countCorrect: screen.correctAnswer,
-            currentQuestion:
-                TextSquare(text: controller.currentQuestion.value.toString()),
+            currentQuestion: TextSquare(text: controller.currentQuestion.value.toString()),
             colorTextLevel: controller.getLevelColor(controller.level),
           ),
 
@@ -140,8 +135,7 @@ class SquareRootMultiPage extends GetView<MultiSquareRootController> {
             currentOptions: controller.currentOptions,
             answerColors: screen.answerColors.value,
             onTapAnswer: (index) {
-              controller.checkMultiAnswer(
-                  controller.currentOptions[index], index, screen);
+              controller.checkMultiAnswer(controller.currentOptions[index], index, screen);
             },
           ),
           // ShowAnswer(

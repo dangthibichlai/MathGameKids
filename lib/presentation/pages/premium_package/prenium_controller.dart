@@ -11,6 +11,7 @@ import 'package:in_app_purchase/in_app_purchase.dart';
 import 'package:in_app_purchase_storekit/in_app_purchase_storekit.dart';
 import 'package:ntp/ntp.dart';
 import 'package:template/config/routes/route_path/in_app_purchase_routers.dart';
+import 'package:template/config/routes/route_path/main_routh.dart';
 import 'package:template/core/di_container.dart';
 import 'package:template/core/export/core_export.dart';
 import 'package:template/core/services/google_admod_services/reward_ads_manager/reward_ads.dart';
@@ -144,6 +145,8 @@ class PreniumController extends GetxController with WidgetsBindingObserver {
     //   }
 
     productsList.value = InAppPurchaseService.products;
+    print('TechMind ${productsList.length}');
+
     // currentIndex ban đầu focus vào gói 1 tháng
     currentIndexPackage.value = productsList.indexWhere(
         (element) => element.id.compareTo(IdSubscription.monthlyId) == 0);
@@ -167,10 +170,7 @@ class PreniumController extends GetxController with WidgetsBindingObserver {
     //
     // Show toast don't have purchase.
     if (purchaseDetailsList.isEmpty) {
-      IZIAlert().info(
-          message:
-              'You are not a VIP member. Please subscribe to become a VIP member'
-                  .tr);
+      IZIAlert().info(message: 'not_vip'.tr);
     }
 
     for (final PurchaseDetails purchaseDetails in purchaseDetailsList) {
@@ -204,6 +204,7 @@ class PreniumController extends GetxController with WidgetsBindingObserver {
               serverVerificationData:
                   purchaseDetails.verificationData.serverVerificationData,
             );
+            Get.toNamed(MainRouters.HOME);
           }
         }
 

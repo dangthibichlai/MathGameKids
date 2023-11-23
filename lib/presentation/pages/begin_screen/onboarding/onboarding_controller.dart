@@ -104,7 +104,7 @@ class PackageDescriptionController extends GetxController {
     if (purchaseDetailsList.isEmpty) {
       IZIAlert().info(
           message:
-              'You are not a VIP member. Please subscribe to become a VIP member'
+              'not_vip'
                   .tr);
     }
     for (final PurchaseDetails purchaseDetails in purchaseDetailsList) {

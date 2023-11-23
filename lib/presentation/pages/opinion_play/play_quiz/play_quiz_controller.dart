@@ -27,6 +27,7 @@ class playQuizController extends GetxController {
   int rangeRandom = 10;
   RxString textLevel = ''.obs;
   RxBool isShowResult = false.obs;
+  int levelAdd = 1;
 
   @override
   void onInit() {
@@ -56,16 +57,16 @@ class playQuizController extends GetxController {
     countSkip.value++; // Tăng biến đếm số câu đã bỏ qua lên 1
     count++;
     if (count.value > 10) {
-       if (Get.isRegistered<SoundController>()) {
-          Get.find<SoundController>().closeSoundGame();
-        }
+      if (Get.isRegistered<SoundController>()) {
+        Get.find<SoundController>().closeSoundGame();
+      }
       //Nếu đã bỏ qua câu hỏi thứ 10, chuyển đến trang kết quả
-      Get.toNamed(MainRouters.RESULT, arguments: {
-        'countWrong': countWrong,
-        'countCorrect': countCorrect,
-        'countSkip': countSkip,
-        'route': route,
+      Get.offAndToNamed(MainRouters.RESULT, arguments: {
+        'countWrong': countWrong.value,
+        'countCorrect': countCorrect.value,
+        'countSkip': countSkip.value,
       });
+
       isShowResult.value = true;
       count = 1.obs;
     }
@@ -93,22 +94,22 @@ class playQuizController extends GetxController {
     }
 
     count.value++; // Tăng biến đếm số câu đã chuyển qua lên 1
-    Future.delayed(const Duration(milliseconds: 300), () {
+    Future.delayed(const Duration(milliseconds: 800), () {
       // khởi tạo lại màu cho button
       answerColors.clear();
       generateQuestion(rangeRandom, route);
     });
     if (count.value > 10) {
-       if (Get.isRegistered<SoundController>()) {
-          Get.find<SoundController>().closeSoundGame();
-        }
+      if (Get.isRegistered<SoundController>()) {
+        Get.find<SoundController>().closeSoundGame();
+      }
       // chuyển trang và truyền biến qua trang kết quả
-      Get.toNamed(MainRouters.RESULT, arguments: {
-        'countWrong': countWrong,
-        'countCorrect': countCorrect,
-        'countSkip': countSkip,
-        'route': route,
+      Get.offAndToNamed(MainRouters.RESULT, arguments: {
+        'countWrong': countWrong.value,
+        'countCorrect': countCorrect.value,
+        'countSkip': countSkip.value,
       });
+
       count = 1.obs;
     } // Tạo câu hỏi mới
   }
@@ -118,14 +119,20 @@ class playQuizController extends GetxController {
       case MATHLEVEL.EASY:
         textLevel = RxString('easy'.tr);
         rangeRandom = MathLevelValueMax.EASY_VALUE;
+        levelAdd = MathLevelValueMin.EASY_VALUE_ADD;
+
         break;
       case MATHLEVEL.MEDIUM:
         textLevel = RxString('medium'.tr);
         rangeRandom = MathLevelValueMax.MEDIUM_VALUE;
+        levelAdd = MathLevelValueMin.MEDIUM_VALUE_ADD;
+
         break;
       case MATHLEVEL.HARD:
         textLevel = RxString('hard'.tr);
         rangeRandom = MathLevelValueMax.HARD_VALUE;
+        levelAdd = MathLevelValueMin.HARD_VALUE_ADD;
+        break;
     }
   }
 
@@ -133,18 +140,7 @@ class playQuizController extends GetxController {
     // random theo mức độ với phép tính cộng trừ nhân chia
     final Random random = Random();
     String routeOperation = '';
-    int levelAdd = 1;
-    switch (level) {
-      case MathLevelValueMax.EASY_VALUE:
-        levelAdd = MathLevelValueMin.EASY_VALUE_ADD;
-        break;
-      case MathLevelValueMax.MEDIUM_VALUE:
-        levelAdd = MathLevelValueMin.MEDIUM_VALUE_ADD;
-        break;
-      case MathLevelValueMax.HARD_VALUE:
-        levelAdd = MathLevelValueMin.HARD_VALUE_ADD;
-        break;
-    }
+
     int num1 = random.nextInt(level) + levelAdd;
     int num2 = random.nextInt(level) + levelAdd;
     print('num1 is: $num1');
@@ -164,7 +160,7 @@ class playQuizController extends GetxController {
         break;
       case MainRouters.MULTIPLICATION:
         routeOperation = 'x';
-         if (level == MathLevelValueMax.HARD_VALUE) {
+        if (level == MathLevelValueMax.HARD_VALUE) {
           level = MathLevelValueMax.HARD_VALUE_MUL;
           levelAdd = MathLevelValueMin.HARD_VALUE_MUL_ADD;
         } else if (level == MathLevelValueMax.MEDIUM_VALUE) {
@@ -192,8 +188,7 @@ class playQuizController extends GetxController {
     while (currentOptions.length < 4) {
       int option = random.nextInt(level * 2) + levelAdd;
       if (correctAnswer.toString().length > 2) {
-        option = random.nextInt(levelAdd) +
-            correctAnswer; // giảm miền giá trị của đáp án với hard
+        option = random.nextInt(levelAdd) + correctAnswer; // giảm miền giá trị của đáp án với hard
       }
       if (!currentOptions.contains(option)) {
         currentOptions.add(option);

@@ -3,7 +3,8 @@ import 'package:get/get.dart';
 import 'package:template/core/base_widget/izi_app_bar.dart';
 import 'package:template/core/utils/color_resources.dart';
 import 'package:template/core/utils/images_path.dart';
-import 'package:template/model/list_game_model.dart';
+import 'package:template/presentation/pages/dash_board/dash_board_controller.dart';
+
 import 'package:template/presentation/pages/exponents/exponents_controller.dart';
 import 'package:template/presentation/widgets/gri_cont_addition.dart';
 import 'package:template/presentation/widgets/grid_view_component.dart';
@@ -25,6 +26,8 @@ class ExponentsPage extends GetView<ExponentsController> {
           backgroundColor: ColorResources.BACKGROUND,
           appBar: BaseAppBar(
             title: 'exponent'.tr,
+                  isPremium: true,
+
             leading: IconButton(
               onPressed: () {
                 Get.toNamed(MainRouters.HOME);
@@ -42,9 +45,9 @@ class ExponentsPage extends GetView<ExponentsController> {
                     urlInmage: ImagesPath.exponentsImage,
                   ),
                   GriViewComponent(
-                    itemCount: listThree.length,
+                    itemCount: Get.find<DashBoardController>().listThree.length,
                     itemBuilder: (p0, p1) => ContainerGridFunction(
-                      item: listThree[p1],
+                      item: Get.find<DashBoardController>().listThree[p1],
                     ),
                   ),
                 ],

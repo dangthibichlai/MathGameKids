@@ -25,9 +25,7 @@ class GriViewComponent extends StatelessWidget {
     return GridView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      padding: padding ??
-          IZISizeUtil.setEdgeInsetsAll(
-              IZISizeUtil.setSizeWithWidth(percent: .05)),
+      padding: padding ?? IZISizeUtil.setEdgeInsetsAll(IZISizeUtil.setSizeWithWidth(percent: .05)),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: crossAxisCount,
         crossAxisSpacing: crossAxisSpacing,

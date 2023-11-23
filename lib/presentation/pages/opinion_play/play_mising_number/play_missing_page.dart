@@ -3,10 +3,12 @@ import 'package:get/get.dart';
 import 'package:template/core/base_widget/izi_app_bar.dart';
 import 'package:template/core/helper/izi_size_util.dart';
 import 'package:template/core/utils/color_resources.dart';
+import 'package:template/presentation/pages/dash_board/dash_board_controller.dart';
 import 'package:template/presentation/pages/opinion_play/extend_back_ads.dart';
 import 'package:template/presentation/pages/opinion_play/play_mising_number/play_mising_controller.dart';
 import 'package:template/presentation/pages/opinion_play/widget/showAnswer.dart';
 import 'package:template/presentation/pages/opinion_play/widget/show_quesition_mising.dart';
+import 'package:template/presentation/widgets/banner_ads.dart';
 
 class PlayMissingNumberPage extends GetView<PlayMissingNumberController> {
   @override
@@ -20,7 +22,6 @@ class PlayMissingNumberPage extends GetView<PlayMissingNumberController> {
         backgroundColor: ColorResources.BACKGROUND,
         appBar: BaseAppBar(
           title: controller.title,
-          isPremium: false,
           leading: IconButton(
             onPressed: () {
               ExtendBackAds.onBackPress(controller.route);
@@ -62,7 +63,7 @@ class PlayMissingNumberPage extends GetView<PlayMissingNumberController> {
                     print(controller.currentOptions[index]);
                     controller.checkAnswer(controller.currentOptions[index]);
                   },
-                )
+                ),
               ],
             ),
           ),

@@ -1,11 +1,25 @@
 const Map<String, String> fr = {
+  'buy_Package_5': 'Achat en cours... Veuillez patienter un moment.',
+  'buy_Package_6': "Vous n'avez pas encore acheté de package.",
+  'buy_Package_7': "Restauration de l'achat...",
+  'buy_Package_8': "Restauration de l'achat réussie.",
+  'buy_Package_9': "Erreur lors de la restauration de l'achat. Veuillez réessayer ultérieurement.",
+  'buy_Package_10': 'Configuration du compte...',
+  'success': 'Succès',
+  'info': 'Info',
+  'warning': 'Avertissement',
+  'error': 'Erreur',
+  'error_001': "Quelque chose s'est mal passé. Veuillez réessayer plus tard!",
+  'not_vip':
+      "Vous n'êtes pas membre VIP. Veuillez vous abonner pour devenir membre VIP.",
+
   'pro': 'Pro',
   'rematch': 'Revanche',
   'exit': 'Quitter',
   'rate': 'Veuillez noter pour améliorer votre expérience. Merci !',
   'rate_1': 'Le meilleur que nous pouvions obtenir :)',
   'You Won': 'Vous avez gagné',
-  'You Lost': 'Vous avez perdu',
+  'You Lose': 'Vous avez perdu',
   'Tie': 'Égalité',
   'sub_text_premium':
       'Apprenez et jouez en même temps - Explorez le monde des mathématiques',
@@ -76,7 +90,7 @@ const Map<String, String> fr = {
   'result_Page_5': ' Terminé',
   'preminum_Page_1': 'DÉBLOQUER POUR 4.99 \$',
   'addition_Page_1': 'Addition',
-  
+
   // Feedback
   'feedback_001': 'Envoyez-nous quelques commentaires !',
   'feedback_002':
@@ -96,12 +110,14 @@ const Map<String, String> fr = {
   'setting_05': 'Évaluez-nous',
   'setting_07': 'Le meilleur que nous puissions obtenir :”>',
   'setting_08': '',
-  'setting_24': 'Veuillez nous évaluer pour améliorer votre expérience. Merci !',
+  'setting_24':
+      'Veuillez nous évaluer pour améliorer votre expérience. Merci !',
   'setting_25': 'Nous apprécions vos commentaires.',
   'setting_26': 'Nous améliorerons votre expérience',
   'setting_27': 'Nous nous engageons à rendre les choses encore meilleures.',
-  'setting_28': "Nous sommes ravis que vous appréciez l'utilisation de notre application",
-  'setting_29': "Nous sommes ravis d'apprendre que vous adorez notre application.",
+  'setting_28':
+      "Nous sommes ravis que vous appréciez l'utilisation de notre application",
+  'setting_29':
+      "Nous sommes ravis d'apprendre que vous adorez notre application.",
   'setting_30': 'Évaluer sur Google Play',
-
 };

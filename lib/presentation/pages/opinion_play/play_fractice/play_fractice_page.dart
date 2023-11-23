@@ -48,10 +48,7 @@ class PlayFracticePage extends GetView<PlayFracticeController> {
                   level: controller.textLevel.value,
                   count: controller.count.value,
                   currentQuestion: TextQuesition(
-                      controller.operand1.value,
-                      controller.operand2.value,
-                      controller.routeOperation,
-                      context),
+                      controller.operand1.value, controller.operand2.value, controller.routeOperation, context),
                   colorTextLevel: controller.getLevelColor(controller.level),
                   isSkip: true,
                   onTapSkip: controller.skipQuestion,
@@ -62,8 +59,7 @@ class PlayFracticePage extends GetView<PlayFracticeController> {
                   answerColors: controller.answerColors.value,
                   onTapAnswer: (index) {
                     print(controller.currentOptions[index]);
-                    controller.checkAnswer(
-                        controller.currentOptions[index], index);
+                    controller.checkAnswer(controller.currentOptions[index], index);
                   },
                 ),
                 Obx(() {
@@ -82,18 +78,17 @@ class PlayFracticePage extends GetView<PlayFracticeController> {
 }
 
 // ignore: non_constant_identifier_names
-Widget TextQuesition(Fraction fraction1, Fraction fraction2, String operator,
-    BuildContext context) {
+Widget TextQuesition(Fraction fraction1, Fraction fraction2, String operator, BuildContext context) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
       FittedBox(child: TextPraction(fraction: fraction1, context: context)),
       Text(
         operator,
-        style: Theme.of(context).textTheme.headlineLarge!.copyWith(
-            fontWeight: FontWeight.w900,
-            color: ColorResources.BLUE_BLACK,
-            fontFamily: 'Filson'),
+        style: Theme.of(context)
+            .textTheme
+            .headlineLarge!
+            .copyWith(fontWeight: FontWeight.w900, color: ColorResources.BLUE_BLACK, fontFamily: 'Filson'),
       ),
       FittedBox(child: TextPraction(fraction: fraction2, context: context)),
       Padding(
@@ -112,20 +107,16 @@ Widget TextQuesition(Fraction fraction1, Fraction fraction2, String operator,
   );
 }
 
-Widget textNumber(String text, BuildContext context,
-    {double? fontSize, FontWeight? fontWeight, Color? colorText}) {
+Widget textNumber(String text, BuildContext context, {double? fontSize, FontWeight? fontWeight, Color? colorText}) {
   return Text(
     text,
     style: Theme.of(context).textTheme.headlineLarge!.copyWith(
-        fontWeight: fontWeight ?? FontWeight.w700,
-        color: colorText ?? ColorResources.BLUE_BLACK,
-        fontFamily: 'Filson'),
+        fontWeight: fontWeight ?? FontWeight.w700, color: colorText ?? ColorResources.BLUE_BLACK, fontFamily: 'Filson'),
     maxLines: 1,
   );
 }
 
-Widget divider(
-    {double? height, Color? color, double? thickness, Color? colorText}) {
+Widget divider({double? height, Color? color, double? thickness, Color? colorText}) {
   return Padding(
     padding: IZISizeUtil.setEdgeInsetsOnly(
       left: IZISizeUtil.setSizeWithWidth(percent: .03),

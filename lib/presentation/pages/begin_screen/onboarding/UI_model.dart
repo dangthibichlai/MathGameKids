@@ -38,8 +38,7 @@ List<PageViewModel> payViews = [
     title: 'page_view_title_002'.tr,
     subtitle: 'page_view_subtitle_002'.tr,
     bodyImage: _bodyImage(ImagesPath.img1_next2,
-        height: IZISizeUtil.setSize(percent: .35),
-        top: IZISizeUtil.setSize(percent: .3)),
+        height: IZISizeUtil.setSize(percent: .35), top: IZISizeUtil.setSize(percent: .3)),
     backgroundImage: ImagesPath.bg_next2,
     headerImage: _headerNext2(),
   ),
@@ -90,35 +89,38 @@ Widget _bodyImage(
 Widget _headerImagePage1() {
   return Column(
     children: [
-      SizedBox(
-        width: IZISizeUtil.getMaxWidth(),
-        height: IZISizeUtil.setSize(percent: .25),
+      ConstrainedBox(
+        // maxWidth: IZISizeUtil.getMaxWidth(),
+        // height: IZISizeUtil.setSize(percent: .22),
+        constraints: BoxConstraints(
+          maxWidth: IZISizeUtil.getMaxWidth(),
+          maxHeight: IZISizeUtil.setSize(percent: .22),
+        ),
         child: Stack(
           children: [
             Positioned(
-              left: 0,
-              top: 101.20,
+              left: IZISizeUtil.setSizeWithWidth(percent: .03),
+              top: IZISizeUtil.setSize(percent: .08),
               child: SizedBox(
-                width: 98.29,
-                height: 116.35,
+                width: IZISizeUtil.setSizeWithWidth(percent: .27),
+                height: IZISizeUtil.setSize(percent: .14),
                 child: IZIImage(
                   ImagesPath.img1_next1,
                   width: IZISizeUtil.setSizeWithWidth(percent: .04),
-                  height: IZISizeUtil.setSizeWithWidth(percent: .08),
                   colorIconsSvg: ColorResources.WHITE,
                 ),
               ),
             ),
             Positioned(
               left: IZISizeUtil.setSizeWithWidth(percent: .3),
-              top: IZISizeUtil.setSizeWithWidth(percent: .05),
+              top: IZISizeUtil.setSize(percent: .03),
               child: SizedBox(
                 width: IZISizeUtil.setSizeWithWidth(percent: .4),
-                height: 210.63,
+                height: IZISizeUtil.setSize(percent: .18),
                 child: IZIImage(
                   ImagesPath.img2_next1,
                   width: IZISizeUtil.setSizeWithWidth(percent: .04),
-                  height: IZISizeUtil.setSizeWithWidth(percent: .08),
+                  //   height: IZISizeUtil.setSize(percent: .02),
                   colorIconsSvg: ColorResources.WHITE,
                 ),
               ),
@@ -126,16 +128,15 @@ Widget _headerImagePage1() {
             Positioned(
               // left: 291.55,
               right: 0,
-              top: 71.96,
+              top: IZISizeUtil.setSize(percent: .06),
               child: SizedBox(
-                width: IZISizeUtil.setSizeWithWidth(percent: .3),
-                height: 159.46,
+                width: IZISizeUtil.setSizeWithWidth(percent: .25),
+                height: IZISizeUtil.setSize(percent: .15),
                 child: IZIImage(
                   ImagesPath.img3_next1,
-                  width: IZISizeUtil.setSizeWithWidth(percent: .04),
-                  //height: IZISizeUtil.setSizeWithWidth(percent: .04),
+                  // width: IZISizeUtil.setSizeWithWidth(percent: .04),
                   colorIconsSvg: ColorResources.WHITE,
-                  fit: BoxFit.fitWidth,
+                  //  fit: BoxFit.cover,
                 ),
               ),
             ),

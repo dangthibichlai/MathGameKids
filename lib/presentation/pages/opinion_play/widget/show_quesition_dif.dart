@@ -44,7 +44,7 @@ class ShowQuesitionDif extends StatelessWidget {
     return Padding(
       padding: padding ??
           IZISizeUtil.setEdgeInsetsOnly(
-              top: IZISizeUtil.setSizeWithWidth(percent: .1),
+              top: IZISizeUtil.setSizeWithWidth(percent: .02),
               //bottom: IZISizeUtil.setSizeWithWidth(percent: .02),
               left: IZISizeUtil.setSizeWithWidth(percent: .07),
               right: IZISizeUtil.setSizeWithWidth(percent: .07)),
@@ -56,7 +56,7 @@ class ShowQuesitionDif extends StatelessWidget {
           Stack(children: [
             SizedBox(
               width: IZISizeUtil.setSizeWithWidth(percent: .9),
-              height: height ?? IZISizeUtil.setSizeWithWidth(percent: .9),
+              height: heightQuestion ?? IZISizeUtil.setSize(percent: .35),
             ),
             Container(
               margin: IZISizeUtil.setEdgeInsetsOnly(
@@ -64,13 +64,11 @@ class ShowQuesitionDif extends StatelessWidget {
               ),
               alignment: Alignment.center,
               width: IZISizeUtil.setSizeWithWidth(percent: .85),
-              height:
-                  heightQuestion ?? IZISizeUtil.setSizeWithWidth(percent: .74),
+              height: height ?? IZISizeUtil.setSize(percent: .3),
               decoration: BoxDecoration(
                   color: ColorResources.WHITE,
                   borderRadius: BorderRadius.circular(IZISizeUtil.RADIUS_3X),
-                  border: Border.all(
-                      color: ColorResources.BD_CT_QUESITION, width: 5),
+                  border: Border.all(color: ColorResources.BD_CT_QUESITION, width: 5),
                   boxShadow: const [
                     BoxShadow(
                       color: Colors.transparent,
@@ -110,11 +108,11 @@ class ShowQuesitionDif extends StatelessWidget {
                 child: Row(
                   children: [
                     Text(
-                     countCorrect.toString(),
-                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                          fontWeight: FontWeight.w800,
-                          color: ColorResources.GREEN,
-                          fontFamily: 'Filson'),
+                      countCorrect.toString(),
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleMedium!
+                          .copyWith(fontWeight: FontWeight.w800, color: ColorResources.GREEN, fontFamily: 'Filson'),
                     ),
                     const SizedBox(
                       width: IZISizeUtil.SPACE_1X,
@@ -142,16 +140,16 @@ class ShowQuesitionDif extends StatelessWidget {
                 ),
                 child: Text(
                   '$count/10',
-                  style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                      fontWeight: FontWeight.w600,
-                      color: ColorResources.WHITE,
-                      fontFamily: 'Filson'),
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleSmall!
+                      .copyWith(fontWeight: FontWeight.w600, color: ColorResources.WHITE, fontFamily: 'Filson'),
                 ),
               ),
             ),
             if (isSkip ?? false)
               Positioned(
-                bottom: IZISizeUtil.setSizeWithWidth(percent: .2),
+                bottom: IZISizeUtil.setSize(percent: .06),
                 right: IZISizeUtil.setSizeWithWidth(percent: .04),
                 child: GestureDetector(
                   onTap: () {
@@ -163,16 +161,15 @@ class ShowQuesitionDif extends StatelessWidget {
                     height: IZISizeUtil.setSize(percent: .045),
                     decoration: BoxDecoration(
                       color: ColorResources.WHITE,
-                      borderRadius:
-                          BorderRadius.circular(IZISizeUtil.RADIUS_2X),
+                      borderRadius: BorderRadius.circular(IZISizeUtil.RADIUS_2X),
                       border: Border.all(color: ColorResources.LIGHT_BLUE),
                     ),
-                   child: const Icon(
-                        Icons.double_arrow_rounded,
-                        size: 30,
-                        color: ColorResources.BACKGROUND,
-                        weight: 800,
-                      ),
+                    child: const Icon(
+                      Icons.double_arrow_rounded,
+                      size: 30,
+                      color: ColorResources.BACKGROUND,
+                      weight: 800,
+                    ),
                   ),
                 ),
               )

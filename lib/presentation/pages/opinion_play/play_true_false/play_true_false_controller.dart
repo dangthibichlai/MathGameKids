@@ -13,7 +13,7 @@ import '../../../../core/shared_pref/constants/enum_helper.dart';
 class PlayTrueFalseController extends GetxController
     // ignore: deprecated_member_use
     with
-        SingleGetTickerProviderMixin {
+        GetSingleTickerProviderStateMixin {
   RxString currentQuestion = "5 + 8 = 15".obs;
   RxBool correctAnswer = false.obs;
   RxList<bool> currentOptions = List<bool>.generate(2, (index) => true).obs;
@@ -32,6 +32,7 @@ class PlayTrueFalseController extends GetxController
   AnimationController? controller;
   Rx<Color> color = ColorResources.WHITE.obs;
   Rx<bool> isEnable = true.obs;
+  int levelAdd = 1;
 
   @override
   void onInit() {
@@ -49,11 +50,10 @@ class PlayTrueFalseController extends GetxController
         Get.find<SoundController>().closeSoundGame();
       }
       //Nếu đã trả lời đủ 10 câu hỏi, chuyển đến trang kết quả
-      Get.toNamed(MainRouters.RESULT, arguments: {
-        'countWrong': countWrong,
-        'countCorrect': countCorrect,
-        'countSkip': countSkip,
-        'route': route,
+      Get.offAndToNamed(MainRouters.RESULT, arguments: {
+        'countWrong': countWrong.value,
+        'countCorrect': countCorrect.value,
+        'countSkip': countSkip.value,
       });
     }
 
@@ -89,12 +89,12 @@ class PlayTrueFalseController extends GetxController
         Get.find<SoundController>().closeSoundGame();
       }
       //Nếu đã trả lời đủ 10 câu hỏi, chuyển đến trang kết quả
-      Get.toNamed(MainRouters.RESULT, arguments: {
-        'countWrong': countWrong,
-        'countCorrect': countCorrect,
-        'countSkip': countSkip,
-        'route': route,
+      Get.offAndToNamed(MainRouters.RESULT, arguments: {
+        'countWrong': countWrong.value,
+        'countCorrect': countCorrect.value,
+        'countSkip': countSkip.value,
       });
+
       count = 1.obs;
     }
     controller = AnimationController(
@@ -117,14 +117,20 @@ class PlayTrueFalseController extends GetxController
       case MATHLEVEL.EASY:
         textLevel = RxString('easy'.tr);
         rangeRandom = MathLevelValueMax.EASY_VALUE;
+        levelAdd = MathLevelValueMin.EASY_VALUE_ADD;
+
         break;
       case MATHLEVEL.MEDIUM:
         textLevel = RxString('medium'.tr);
         rangeRandom = MathLevelValueMax.MEDIUM_VALUE;
+        levelAdd = MathLevelValueMin.MEDIUM_VALUE_ADD;
+
         break;
       case MATHLEVEL.HARD:
         textLevel = RxString('hard'.tr);
         rangeRandom = MathLevelValueMax.HARD_VALUE;
+        levelAdd = MathLevelValueMin.HARD_VALUE_ADD;
+        break;
     }
   }
 
@@ -132,18 +138,6 @@ class PlayTrueFalseController extends GetxController
 // random theo mức độ với phép tính cộng trừ nhân chia
     final Random random = Random();
     String routeOperation = '';
-    int levelAdd = 1;
-    switch (level) {
-      case MathLevelValueMax.EASY_VALUE:
-        levelAdd = MathLevelValueMin.EASY_VALUE_ADD;
-        break;
-      case MathLevelValueMax.MEDIUM_VALUE:
-        levelAdd = MathLevelValueMin.MEDIUM_VALUE_ADD;
-        break;
-      case MathLevelValueMax.HARD_VALUE:
-        levelAdd = MathLevelValueMin.HARD_VALUE_ADD;
-        break;
-    }
 // random phép tính cộng trừ nhân chia phép tính cần kiểm tra là true hay false
     int num1 = random.nextInt(level) + levelAdd;
     int num2 = random.nextInt(level) + levelAdd;
@@ -176,6 +170,10 @@ class PlayTrueFalseController extends GetxController
         break;
       case MainRouters.DIVISION:
         routeOperation = '/';
+        while (num1 % num2 != 0 || num1 == num2) {
+          num1 = random.nextInt(level) + levelAdd;
+          num2 = random.nextInt(level) + levelAdd;
+        }
         result = num1 ~/ num2;
         break;
     }

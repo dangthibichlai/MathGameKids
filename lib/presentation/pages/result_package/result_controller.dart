@@ -3,22 +3,23 @@ import 'package:template/presentation/pages/opinion_play/extend_back_ads.dart';
 import 'package:template/presentation/widgets/controller/sound_controller.dart';
 
 class ResultController extends GetxController {
-  Rx<int> countWrong = 0.obs;
-  Rx<int> countCorrect = 0.obs;
-  Rx<int> countSkip = 0.obs;
-  String router = '';
+  int countWrong = 0;
+  int countCorrect = 0;
+  int countSkip = 0;
 
   @override
   void onInit() {
-    countWrong.value = Get.arguments['countWrong'].value;
-    countCorrect.value = Get.arguments['countCorrect'].value;
-    countSkip.value = Get.arguments['countSkip'].value;
-    router = Get.arguments['route'] as String;
+    countWrong = Get.arguments['countWrong'];
+    countCorrect = Get.arguments['countCorrect'];
+    countSkip = Get.arguments['countSkip'];
 
     if (Get.isRegistered<SoundController>()) {
       Get.find<SoundController>().continueBackgroundSound();
     }
-    ExtendBackAds.showAdsCompleteGame();
+    // delay 2s to show ads.
+    Future.delayed(const Duration(microseconds: 2000), () {
+      ExtendBackAds.showAdsCompleteGame();
+    });
     super.onInit();
   }
 
@@ -36,9 +37,6 @@ class ResultController extends GetxController {
 
   @override
   void onClose() {
-    countWrong.close();
-    countCorrect.close();
-    countSkip.close();
     Get.find<SoundController>().playBackgroundSound();
     super.onClose();
   }

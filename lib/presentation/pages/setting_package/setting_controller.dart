@@ -63,7 +63,7 @@ class SettingController extends GetxController with WidgetsBindingObserver {
       onSuccess: (data) {
         linkAdroid.value = data.linkAdroid.toString();
         linkIOS.value = data.linkIos.toString();
-        appEmail.value = data.appEmail.toString(); 
+        appEmail.value = data.appEmail.toString();
       },
       onError: (e) {
         log('Error get term at $e');
@@ -141,7 +141,7 @@ class SettingController extends GetxController with WidgetsBindingObserver {
             // Inapp review
             final InAppReview inAppReview = InAppReview.instance;
             if (await inAppReview.isAvailable()) {
-              inAppReview.requestReview();
+              await inAppReview.requestReview();
             }
           }
         },
@@ -267,7 +267,7 @@ class SettingController extends GetxController with WidgetsBindingObserver {
     if (purchaseDetailsList.isEmpty) {
       IZIAlert().info(
           message:
-              'You are not a VIP member. Please subscribe to become a VIP member'
+              'not_vip'
                   .tr);
     }
 

@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:template/core/di_container.dart';
 import 'package:template/core/export/core_export.dart';
+import 'package:template/presentation/pages/dash_board/dash_board_controller.dart';
 
 class ChangeLanguageController extends GetxController {
   ///
@@ -44,7 +45,7 @@ class ChangeLanguageController extends GetxController {
     },
     {
       'value': 'vi',
-      'name': 'Tiếng Việt'.tr,
+      'name': 'Vietnamese'.tr,
       'image': ImagesPath.vnFlag,
       'isSelected': false,
     },
@@ -86,10 +87,13 @@ class ChangeLanguageController extends GetxController {
         multipleLanguages[i]['isSelected'] = false;
       }
     }
+
     update();
 
     // Change language.
     LocalizationService.changeLocale(
         multipleLanguages[index]['value'].toString());
+    Get.find<DashBoardController>().init();
+    // gọi hàm init ở DashBoardController
   }
 }

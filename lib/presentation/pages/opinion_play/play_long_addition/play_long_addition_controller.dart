@@ -32,6 +32,7 @@ class PlayLongAdditionController extends GetxController {
   RxInt position = 0.obs;
   RxInt numberOder = 0.obs;
   String routeOperation = '';
+  int levelAdd = 1;
 
   RxString inputValue = ''.obs;
 
@@ -72,12 +73,12 @@ class PlayLongAdditionController extends GetxController {
         Get.find<SoundController>().closeSoundGame();
       }
       //Nếu đã bỏ qua câu hỏi thứ 10, chuyển đến trang kết quả
-      Get.toNamed(MainRouters.RESULT, arguments: {
-        'countWrong': countWrong,
-        'countCorrect': countCorrect,
-        'countSkip': countSkip,
-        'route': route,
+      Get.offAndToNamed(MainRouters.RESULT, arguments: {
+        'countWrong': countWrong.value,
+        'countCorrect': countCorrect.value,
+        'countSkip': countSkip.value,
       });
+
       isShowResult.value = true;
       count = 1.obs;
     }
@@ -88,18 +89,6 @@ class PlayLongAdditionController extends GetxController {
     // random theo mức độ với phép tính cộng trừ nhân chia
     final Random random = Random();
 
-    int levelAdd = 1;
-    switch (level) {
-      case MathLevelValueMax.EASY_VALUE:
-        levelAdd = MathLevelValueMin.EASY_VALUE_ADD;
-        break;
-      case MathLevelValueMax.MEDIUM_VALUE:
-        levelAdd = MathLevelValueMin.MEDIUM_VALUE_ADD;
-        break;
-      case MathLevelValueMax.HARD_VALUE:
-        levelAdd = MathLevelValueMin.HARD_VALUE_ADD;
-        break;
-    }
     num1.value = random.nextInt(level) + levelAdd;
     num2.value = random.nextInt(level) + levelAdd;
 
@@ -163,14 +152,20 @@ class PlayLongAdditionController extends GetxController {
       case MATHLEVEL.EASY:
         textLevel = RxString('easy'.tr);
         rangeRandom = MathLevelValueMax.EASY_VALUE;
+        levelAdd = MathLevelValueMin.EASY_VALUE_ADD;
+
         break;
       case MATHLEVEL.MEDIUM:
         textLevel = RxString('medium'.tr);
         rangeRandom = MathLevelValueMax.MEDIUM_VALUE;
+        levelAdd = MathLevelValueMin.MEDIUM_VALUE_ADD;
+
         break;
       case MATHLEVEL.HARD:
         textLevel = RxString('hard'.tr);
         rangeRandom = MathLevelValueMax.HARD_VALUE;
+        levelAdd = MathLevelValueMin.HARD_VALUE_ADD;
+        break;
     }
   }
 

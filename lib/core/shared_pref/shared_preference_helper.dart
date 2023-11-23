@@ -7,7 +7,7 @@ class SharedPreferenceHelper {
   final SharedPreferences _sharedPreference;
 
   // constructor
-  SharedPreferenceHelper(this._sharedPreference, sharedPreferences);
+  SharedPreferenceHelper(this._sharedPreference);
 
   // Token Device
   String get getTokenDevice {
@@ -165,8 +165,7 @@ class SharedPreferenceHelper {
   void setIsRatedApp({required bool isRate}) {
     _sharedPreference.setBool(Preferences.isRatedApp, isRate);
   }
-
-  // link Ios
+    // link Ios
   String get getLinkIos {
     return _sharedPreference.getString(Preferences.linkIos) ?? '';
   }

@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'dart:math';
-import 'package:image/image.dart' as img;
+// import 'package:image/image.dart' as img;
 import 'package:dio/dio.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -40,21 +40,21 @@ mixin IZIOther {
   ///
   /// Fix image Orientation.
   ///
-  static Future<File> fixImageOrientation(File imageFile) async {
-    final imageBytes = await imageFile.readAsBytes();
-    final image = img.decodeImage(imageBytes);
+  // static Future<File> fixImageOrientation(File imageFile) async {
+  //   final imageBytes = await imageFile.readAsBytes();
+  //   final image = img.decodeImage(imageBytes);
 
-    img.Image fixedImage;
-    if (image!.width > image.height) {
-      fixedImage = img.copyRotate(image, angle: -90);
-    } else {
-      fixedImage = img.copyRotate(image, angle: 0);
-    }
+  //   img.Image fixedImage;
+  //   if (image!.width > image.height) {
+  //     fixedImage = img.copyRotate(image, angle: -90);
+  //   } else {
+  //     fixedImage = img.copyRotate(image, angle: 0);
+  //   }
 
-    final fixedImageFile = File(imageFile.path);
-    fixedImageFile.writeAsBytesSync(img.encodeJpg(fixedImage));
-    return fixedImageFile;
-  }
+  //   final fixedImageFile = File(imageFile.path);
+  //   fixedImageFile.writeAsBytesSync(img.encodeJpg(fixedImage));
+  //   return fixedImageFile;
+  // }
 
   ///
   /// Get duration video.

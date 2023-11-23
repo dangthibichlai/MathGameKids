@@ -8,22 +8,20 @@ import 'package:template/core/services/google_admod_services/open_ads_manager/ap
 import 'package:template/core/shared_pref/constants/enum_helper.dart';
 import 'package:template/core/shared_pref/shared_preference_helper.dart';
 import 'package:template/core/utils/color_resources.dart';
-import 'package:template/presentation/pages/opinion_play/extend_back_ads.dart';
 import 'package:template/presentation/pages/opinion_play/play_multiplayer/player_model.dart';
 import 'package:template/presentation/widgets/controller/sound_controller.dart';
 
-class MutilPlayDecimalController extends GetxController
-    with SingleGetTickerProviderMixin {
+class MutilPlayDecimalController extends GetxController with GetSingleTickerProviderStateMixin {
   RxString currentQuestion = "5 + 8 = ?".obs;
   double correctAnswer = 13.0;
   RxList<String> currentOptions = List<String>.generate(4, (index) => '').obs;
   bool isCorrect = true;
   final RxMap<String, Color> answerColors = <String, Color>{}.obs;
-  RxInt count = 1.obs;
+  RxInt count = 0.obs;
   RxInt countWrong = 0.obs;
   RxInt countCorrect = 0.obs;
   RxInt countSkip = 0.obs;
-  final Map<String, dynamic> arguments = Get.arguments;
+  final Map<String, dynamic> arguments = Get.arguments; // bị trống
   MATHLEVEL level = Get.arguments['level'];
   String route = Get.arguments['route'];
   String title = Get.arguments['title'];
@@ -36,6 +34,7 @@ class MutilPlayDecimalController extends GetxController
   late Animation<double> animation;
   RxDouble progress = 0.0.obs;
   bool isScreenExited = false;
+  int levelAdd = 1;
   String resultPlay = '';
   final sound = Get.find<SoundController>();
   Rx<PlayerModel> player1 = PlayerModel(
@@ -62,15 +61,14 @@ class MutilPlayDecimalController extends GetxController
     generateQuestion(rangeRandom, route);
     progress.value = 0;
     // ignore: prefer_final_locals
-    animationController =
-        AnimationController(vsync: this, duration: const Duration(seconds: 10));
-    animation =
-        Tween<double>(begin: 0.0, end: 1.0).animate(animationController);
+    animationController = AnimationController(vsync: this, duration: const Duration(seconds: 10));
+    animation = Tween<double>(begin: 0.0, end: 1.0).animate(animationController);
     animationController.forward();
-    if (isScreenExited) {
-      animationController.stop();
-    }
+
     animation.addListener(() {
+      if (isScreenExited) {
+        animationController.stop();
+      }
       progress.value = animation.value;
       if (animation.isCompleted) {
         if (count.value > 10) {
@@ -83,9 +81,16 @@ class MutilPlayDecimalController extends GetxController
             sound.closeSoundGame();
             sound.continueBackgroundSound();
           }
-          Get.toNamed(MainRouters.RESULTDECIMAL);
-          ExtendBackAds.showAdsCompleteGame();
+          Get.offNamed(MainRouters.RESULTDECIMAL, arguments: {
+            'player1': player1.value,
+            'player2': player2.value,
+            'oldArguments': arguments,
+          });
+          isScreenExited = true;
+          return;
         } else {
+          player1.value.isEnable.value = true;
+          player2.value.isEnable.value = true;
           generateQuestion(rangeRandom, route);
           progress.value = 0;
           animationController.reset();
@@ -115,41 +120,6 @@ class MutilPlayDecimalController extends GetxController
     animationController.forward();
   }
 
-  void resetGame() {
-    count.value = 0;
-    countWrong.value = 0;
-    countCorrect.value = 0;
-    countSkip.value = 0;
-    isShowResult.value = false;
-    player1.value.correctAnswer = 0;
-    player2.value.correctAnswer = 0;
-    player1.value.wrongAnswer = 0;
-    player2.value.wrongAnswer = 0;
-    player1.value.isEnable.value = true;
-    player2.value.isEnable.value = true;
-    currentOptions.clear();
-    animationController =
-        AnimationController(vsync: this, duration: const Duration(seconds: 10));
-    animation =
-        Tween<double>(begin: 0.0, end: 1.0).animate(animationController);
-    animationController.forward();
-    if (isScreenExited) {
-      animationController.stop();
-    }
-  }
-
-  // @override
-  // void onClose() {
-  //   super.onClose();
-  //   textLevel.value = '';
-  //   count = 0.obs;
-  //   countWrong = 0.obs;
-  //   countCorrect = 0.obs;
-  //   countSkip = 0.obs;
-  //   // ignore: invalid_use_of_protected_member
-  //   //animationController.clearListeners();
-  // } // được gọi
-
   void checkAnswerMuti(String selectedAnswer, int index, PlayerModel player) {
     if (selectedAnswer.compareTo(correctAnswer.toStringAsFixed(2)) == 0) {
       if (Get.isRegistered<SoundController>()) {
@@ -177,10 +147,8 @@ class MutilPlayDecimalController extends GetxController
       player.wrongAnswer++;
       // enable các button
       player.isEnable.value = false;
-      if (player1.value.isEnable.value == false &&
-          player2.value.isEnable.value == false) {
-        final int index =
-            currentOptions.indexOf(correctAnswer.toStringAsFixed(2));
+      if (player1.value.isEnable.value == false && player2.value.isEnable.value == false) {
+        final int index = currentOptions.indexOf(correctAnswer.toStringAsFixed(2));
         player1.value.answerColors.value[index] = ColorResources.GREEN;
         player2.value.answerColors.value[index] = ColorResources.GREEN;
 
@@ -206,14 +174,20 @@ class MutilPlayDecimalController extends GetxController
       case MATHLEVEL.EASY:
         textLevel = RxString('easy'.tr);
         rangeRandom = MathLevelValueMax.EASY_VALUE;
+        levelAdd = MathLevelValueMin.EASY_VALUE_ADD;
+
         break;
       case MATHLEVEL.MEDIUM:
         textLevel = RxString('medium'.tr);
         rangeRandom = MathLevelValueMax.MEDIUM_VALUE;
+        levelAdd = MathLevelValueMin.MEDIUM_VALUE_ADD;
+
         break;
       case MATHLEVEL.HARD:
         textLevel = RxString('hard'.tr);
         rangeRandom = MathLevelValueMax.HARD_VALUE;
+        levelAdd = MathLevelValueMin.HARD_VALUE_ADD;
+        break;
     }
   }
 
@@ -248,32 +222,27 @@ class MutilPlayDecimalController extends GetxController
         Get.find<SoundController>().closeSoundGame();
       }
       //onClose();
-      print('dnsl: ${player1.value.isEnable.value}');
-      print('oke1');
+
       checkAware(player1.value, player2.value);
       if (Get.isRegistered<SoundController>()) {
         sound.closeSoundGame();
         sound.continueBackgroundSound();
       }
-      Get.toNamed(MainRouters.RESULTDECIMAL);
-      ExtendBackAds.showAdsCompleteGame();
+
+      Get.offNamed(MainRouters.RESULTDECIMAL, arguments: {
+        'player1': player1.value,
+        'player2': player2.value,
+        'oldArguments': arguments,
+      });
+      //ExtendBackAds.showAdsCompleteGame();
+      isScreenExited = true;
+      return;
     }
     count.value++;
     // random theo mức độ với phép tính cộng trừ nhân chia
     final Random random = Random();
     String routeOperation = '';
-    int levelAdd = 1;
-    switch (level) {
-      case MathLevelValueMax.EASY_VALUE:
-        levelAdd = MathLevelValueMin.EASY_VALUE_ADD;
-        break;
-      case MathLevelValueMax.MEDIUM_VALUE:
-        levelAdd = MathLevelValueMin.MEDIUM_VALUE_ADD;
-        break;
-      case MathLevelValueMax.HARD_VALUE:
-        levelAdd = MathLevelValueMin.HARD_VALUE_ADD;
-        break;
-    }
+
     String num1 = ((random.nextDouble() * level) + levelAdd).toStringAsFixed(2);
     String num2 = ((random.nextDouble() * level) + levelAdd).toStringAsFixed(2);
     print('num1 is: $num1');
@@ -300,8 +269,7 @@ class MutilPlayDecimalController extends GetxController
     print('num1 is: $correctAnswer');
 
     while (currentOptions.length < 4) {
-      final String option =
-          ((random.nextDouble() * level) + levelAdd).toStringAsFixed(2);
+      final String option = ((random.nextDouble() * level) + levelAdd).toStringAsFixed(2);
 
       if (!currentOptions.contains(option)) {
         currentOptions.add(option);

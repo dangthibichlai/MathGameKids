@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:template/config/routes/route_path/main_routh.dart';
+import 'package:template/presentation/pages/opinion_play/play_deciamal/result_decimal_controller.dart';
 import 'package:template/presentation/pages/opinion_play/play_multiplayer/player_model.dart';
-
-import 'package:template/presentation/pages/opinion_play/play_square_root/multi_square_controller.dart';
 import 'package:template/presentation/widgets/controller/sound_controller.dart';
+
 import 'package:template/presentation/widgets/home_component/gri_container.dart';
 import 'package:template/presentation/widgets/result_components/container_result.dart';
 import '../../../../core/helper/izi_size_util.dart';
 import '../../../../core/utils/color_resources.dart';
 
-class ResultSquarePage extends GetView<MultiSquareRootController> {
+class ResultSquarePage extends GetView<ResultDecimalController> {
   const ResultSquarePage({super.key});
 
   @override
@@ -31,13 +31,10 @@ class ResultSquarePage extends GetView<MultiSquareRootController> {
                 children: [
                   Expanded(
                     child: RotatedBox(
-                        quarterTurns: 2,
-                        child: _screenResult(context, controller.player1.value,
-                            color: ColorResources.BG)),
+                        quarterTurns: 2, child: _screenResult(context, controller.player1, color: ColorResources.BG)),
                   ),
                   Expanded(
-                    child: _screenResult(context, controller.player2.value,
-                        color: ColorResources.BG_BT_PL2),
+                    child: _screenResult(context, controller.player2, color: ColorResources.BG_BT_PL2),
                   ),
                 ],
               ),
@@ -48,8 +45,7 @@ class ResultSquarePage extends GetView<MultiSquareRootController> {
     );
   }
 
-  Widget _screenResult(BuildContext context, PlayerModel player,
-      {Color? color}) {
+  Widget _screenResult(BuildContext context, PlayerModel player, {Color? color}) {
     return Container(
       padding: EdgeInsets.only(
         left: IZISizeUtil.setSizeWithWidth(percent: .1),
@@ -62,22 +58,19 @@ class ResultSquarePage extends GetView<MultiSquareRootController> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           if (player.result == 'You Won'.tr)
-            RotatedBox(
-              quarterTurns: -2,
-              child: Lottie.asset(
-                'assets/logo/resultMultiplayer_win.json',
-                width: IZISizeUtil.setSizeWithWidth(percent: .25),
-                height: IZISizeUtil.setSizeWithWidth(percent: .25),
-              ),
+            Lottie.asset(
+              'assets/logo/resultMultiplayer_win.json',
+              width: IZISizeUtil.setSizeWithWidth(percent: .25),
+              height: IZISizeUtil.setSizeWithWidth(percent: .25),
             )
           else
             const SizedBox(),
           Text(
             player.result ?? '',
-            style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                fontWeight: FontWeight.w900,
-                color: ColorResources.WHITE,
-                fontFamily: 'Filson'),
+            style: Theme.of(context)
+                .textTheme
+                .labelLarge!
+                .copyWith(fontWeight: FontWeight.w900, color: ColorResources.WHITE, fontFamily: 'Filson'),
           ),
           ContainerResult(
             height: IZISizeUtil.setSizeWithWidth(percent: .22),
@@ -103,9 +96,7 @@ class ResultSquarePage extends GetView<MultiSquareRootController> {
             children: [
               GridViewContainer(
                 onTap: () {
-                  controller.isScreenExited = true;
-                  controller.animationController.dispose();
-                  Get.offAllNamed(controller.route);
+                  Get.back();
                 },
                 color: ColorResources.BG,
                 borderColor: ColorResources.BG_BT,
@@ -115,12 +106,16 @@ class ResultSquarePage extends GetView<MultiSquareRootController> {
               ),
               GridViewContainer(
                 onTap: () {
-                  controller.resetGame();
-                  controller.onInit();
-                  Get.toNamed(MainRouters.MULTISQUARE);
+                  Get.back();
+                  Get.toNamed(MainRouters.MULTISQUARE, arguments: {
+                    'level': controller.level,
+                    'route': controller.route,
+                    'title': controller.title,
+                  });
+                  final sound = Get.find<SoundController>();
                   if (Get.isRegistered<SoundController>()) {
-                    controller.sound.playPlaySound();
-                    controller.sound.pauseBackgroundSound();
+                    sound.playPlaySound();
+                    sound.pauseBackgroundSound();
                   }
                 },
                 color: ColorResources.BG,

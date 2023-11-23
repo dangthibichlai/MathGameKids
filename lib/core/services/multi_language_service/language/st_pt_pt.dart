@@ -1,13 +1,27 @@
 const Map<String, String> pt = {
+   'buy_Package_5': 'Comprando... Por favor, aguarde um momento.',
+  'buy_Package_6': 'Você ainda não comprou um pacote.',
+  'buy_Package_7': 'Restaurando compra...',
+  'buy_Package_8': 'Compra restaurada com sucesso.',
+  'buy_Package_9': 'Erro ao restaurar compra. Por favor, tente novamente mais tarde.',
+  'buy_Package_10': 'Configurando a conta...',
+  'success': 'Sucesso',
+  'info': 'Informação',
+  'warning': 'Aviso',
+  'error': 'Erro',
+  'error_001': 'Algo deu errado. Por favor, tente novamente mais tarde!',
+  'not_vip':
+      'Você não é um membro VIP. Por favor, inscreva-se para se tornar um membro VIP.',
   'pro': 'Pro',
   'rematch': 'Revanche',
   'exit': 'Sair',
   'rate': 'Por favor, avalie para melhorar sua experiência. Obrigado!',
   'rate_1': 'O melhor que poderíamos conseguir :)',
   'You Won': 'Você Ganhou',
-  'You Lost': 'Você Perdeu',
+  'You Lose': 'Você Perdeu',
   'Tie': 'Empate',
-  'sub_text_premium': 'Aprenda e jogue ao mesmo tempo - Explore o mundo da Matemática',
+  'sub_text_premium':
+      'Aprenda e jogue ao mesmo tempo - Explore o mundo da Matemática',
   'true': 'VERDADEIRO',
   'false': 'FALSO',
   'pri_001': 'Política de Privacidade',
@@ -30,8 +44,10 @@ const Map<String, String> pt = {
   'medium': 'Médio',
   'hard': 'Difícil',
   'select_difficult': 'Selecionar Dificuldade',
-  'page_view_title_001': 'Pronto para aprimorar suas habilidades em Matemática?',
-  'page_view_subtitle_001': 'Inúmeros exercícios de Matemática com operações +, -, x, /',
+  'page_view_title_001':
+      'Pronto para aprimorar suas habilidades em Matemática?',
+  'page_view_subtitle_001':
+      'Inúmeros exercícios de Matemática com operações +, -, x, /',
   'page_view_title_002': 'Explore o mundo fascinante da Matemática',
   'page_view_subtitle_002': 'Desafie-se com exercícios de Matemática',
   'premium_title': 'Atualizar Pacote',
@@ -74,10 +90,11 @@ const Map<String, String> pt = {
   'result_Page_5': ' Concluído',
   'preminum_Page_1': 'DESBLOQUEAR POR \$4.99',
   'addition_Page_1': 'Adição',
-  
+
   // Comentários
   'feedback_001': 'Envie-nos alguns comentários!',
-  'feedback_002': 'Encontrou um erro? Tem uma sugestão? Preencha o formulário abaixo e vamos dar uma olhada!',
+  'feedback_002':
+      'Encontrou um erro? Tem uma sugestão? Preencha o formulário abaixo e vamos dar uma olhada!',
   'feedback_003': 'Digite seus comentários aqui! (mínimo de 6 caracteres)',
   'feedback_004': 'Enviar fotos',
   'feedback_005': 'ENVIAR',
@@ -93,12 +110,13 @@ const Map<String, String> pt = {
   'setting_05': 'Avalie-nos',
   'setting_07': 'O melhor que podemos obter :”>',
   'setting_08': '',
-  'setting_24': 'Por favor, nos avalie para melhorar sua experiência. Obrigado!',
+  'setting_24':
+      'Por favor, nos avalie para melhorar sua experiência. Obrigado!',
   'setting_25': 'Valorizamos seus comentários.',
   'setting_26': 'Vamos melhorar sua experiência',
   'setting_27': 'Estamos comprometidos em torná-lo ainda melhor.',
   'setting_28': 'Estamos encantados que você goste de usar nosso aplicativo',
-  'setting_29': 'Estamos entusiasmados em saber que você adora nosso aplicativo.',
+  'setting_29':
+      'Estamos entusiasmados em saber que você adora nosso aplicativo.',
   'setting_30': 'Avalie no Google Play',
-
 };

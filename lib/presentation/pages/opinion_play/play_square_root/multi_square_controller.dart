@@ -5,14 +5,12 @@ import 'package:flutter_neumorphic_plus/flutter_neumorphic.dart';
 import 'package:get/get.dart';
 import 'package:template/config/routes/route_path/main_routh.dart';
 import 'package:template/core/utils/color_resources.dart';
-import 'package:template/presentation/pages/opinion_play/extend_back_ads.dart';
 import 'package:template/presentation/pages/opinion_play/play_multiplayer/player_model.dart';
 import 'package:template/presentation/widgets/controller/sound_controller.dart';
 
 import '../../../../core/shared_pref/constants/enum_helper.dart';
 
-class MultiSquareRootController extends GetxController
-    with SingleGetTickerProviderMixin {
+class MultiSquareRootController extends GetxController with GetSingleTickerProviderStateMixin {
   int correctAnswer = 13;
   RxList<int> currentOptions = List<int>.generate(4, (index) => 0).obs;
   bool isCorrect = true;
@@ -25,7 +23,8 @@ class MultiSquareRootController extends GetxController
   MATHLEVEL level = Get.arguments['level'];
   String route = Get.arguments['route'];
   String title = Get.arguments['title'];
-  int rangeRandom = 10;
+  int rangeRandom = 1;
+  int levelAdd = 1;
   RxString textLevel = ''.obs;
   bool isSkip = false;
   RxInt currentQuestion = 0.obs;
@@ -61,15 +60,14 @@ class MultiSquareRootController extends GetxController
     print('route is: ${level.name}');
     generateQuestion(rangeRandom, route);
     progress.value = 0;
-    animationController =
-        AnimationController(vsync: this, duration: const Duration(seconds: 10));
-    animation =
-        Tween<double>(begin: 0.0, end: 1.0).animate(animationController);
+    animationController = AnimationController(vsync: this, duration: const Duration(seconds: 10));
+    animation = Tween<double>(begin: 0.0, end: 1.0).animate(animationController);
     animationController.forward();
-    if (isScreenExited) {
-      animationController.stop();
-    }
+
     animation.addListener(() {
+      if (isScreenExited) {
+        animationController.stop();
+      }
       progress.value = animation.value;
       if (animation.isCompleted) {
         count.value++;
@@ -80,10 +78,15 @@ class MultiSquareRootController extends GetxController
           }
           //Nếu đã bỏ qua câu hỏi thứ 10, chuyển đến trang kết quả
           checkAware(player1.value, player2.value);
-          Get.toNamed(MainRouters.RESULTMULTISQUARE);
-           ExtendBackAds.showAdsCompleteGame();
-          
+          Get.offNamed(MainRouters.RESULTMULTISQUARE, arguments: {
+            'player1': player1.value,
+            'player2': player2.value,
+            'oldArguments': arguments,
+          });
+          // ExtendBackAds.showAdsCompleteGame();
+
           count = 1.obs;
+          return;
         } else {
           generateQuestion(rangeRandom, route);
           progress.value = 0;
@@ -92,43 +95,36 @@ class MultiSquareRootController extends GetxController
         }
       }
     });
-    if (title.compareTo('select_four_5'.tr) == 0) {
-      isSkip = true;
-    }
-
   }
 
   void checkLevel(MATHLEVEL level) {
+    if (title.compareTo('select_game_2'.tr) == 0) {
+      isSkip = true;
+    }
     switch (level) {
       case MATHLEVEL.EASY:
-        textLevel = RxString('Easy');
-        rangeRandom = 8;
+        textLevel = RxString('easy'.tr);
+        rangeRandom = MathLevelValueMax.EASY_VALUE_SQ;
+        levelAdd = MathLevelValueMin.EASY_VALUE__MUL_ADD;
         break;
       case MATHLEVEL.MEDIUM:
-        textLevel = RxString('Medium');
-        rangeRandom = 89;
+        textLevel = RxString('medium'.tr);
+        rangeRandom = MathLevelValueMax.MEDIUM_VALUE_SQ;
+        levelAdd = MathLevelValueMin.MEDIUM_VALUE_MUL_ADD;
+
         break;
       case MATHLEVEL.HARD:
-        textLevel = RxString('Hard');
-        rangeRandom = 10;
+        textLevel = RxString('hard'.tr);
+        rangeRandom = MathLevelValueMax.HARD_VALUE_SQ;
+        levelAdd = MathLevelValueMin.HARD_VALUE_MUL_ADD;
+        break;
     }
   }
 
   void generateQuestion(int level, String route) {
     // random theo mức độ với phép tính cộng trừ nhân chia
     final Random random = Random();
-    int levelAdd = 1;
-    switch (level) {
-      case MathLevelValueMax.EASY_VALUE:
-        levelAdd = MathLevelValueMin.EASY_VALUE_ADD;
-        break;
-      case MathLevelValueMax.MEDIUM_VALUE:
-        levelAdd = MathLevelValueMin.MEDIUM_VALUE_ADD;
-        break;
-      case MathLevelValueMax.HARD_VALUE:
-        levelAdd = MathLevelValueMin.HARD_VALUE_ADD;
-        break;
-    }
+
     correctAnswer = random.nextInt(level) + levelAdd;
     currentQuestion.value = pow(correctAnswer, 2).toInt();
 
@@ -191,9 +187,14 @@ class MultiSquareRootController extends GetxController
           }
           print('oke1');
           checkAware(player1.value, player2.value);
-          Get.toNamed(MainRouters.RESULTMULTISQUARE);
-           ExtendBackAds.showAdsCompleteGame();
+          Get.offNamed(MainRouters.RESULTMULTISQUARE, arguments: {
+            'player1': player1.value,
+            'player2': player2.value,
+            'oldArguments': arguments,
+          });
+          //   ExtendBackAds.showAdsCompleteGame();
           isScreenExited = true;
+          return;
         }
         count.value++;
         generateQuestion(rangeRandom, route);
@@ -206,8 +207,7 @@ class MultiSquareRootController extends GetxController
       player.wrongAnswer++;
       // enable các button
       player.isEnable.value = false;
-      if (player1.value.isEnable.value == false &&
-          player2.value.isEnable.value == false) {
+      if (player1.value.isEnable.value == false && player2.value.isEnable.value == false) {
         final int index = currentOptions.indexOf(correctAnswer);
         player1.value.answerColors.value[index] = ColorResources.GREEN;
         player2.value.answerColors.value[index] = ColorResources.GREEN;
@@ -233,16 +233,20 @@ class MultiSquareRootController extends GetxController
               sound.closeSoundGame();
               sound.continueBackgroundSound();
             }
-            onClose();
-            print('oke1');
+
             checkAware(player1.value, player2.value);
             if (Get.isRegistered<SoundController>()) {
               sound.closeSoundGame();
               sound.continueBackgroundSound();
             }
-            Get.toNamed(MainRouters.RESULTMULTISQUARE);
-             ExtendBackAds.showAdsCompleteGame();
+            Get.offNamed(MainRouters.RESULTMULTISQUARE, arguments: {
+              'player1': player1.value,
+              'player2': player2.value,
+              'oldArguments': arguments,
+            });
+            //   ExtendBackAds.showAdsCompleteGame();
             isScreenExited = true;
+            return;
           }
           count.value++;
           generateQuestion(rangeRandom, route);
@@ -278,10 +282,8 @@ class MultiSquareRootController extends GetxController
     player2.value.isEnable.value = true;
     currentOptions.clear();
     isScreenExited = false;
-    animationController =
-        AnimationController(vsync: this, duration: const Duration(seconds: 10));
-    animation =
-        Tween<double>(begin: 0.0, end: 1.0).animate(animationController);
+    animationController = AnimationController(vsync: this, duration: const Duration(seconds: 10));
+    animation = Tween<double>(begin: 0.0, end: 1.0).animate(animationController);
     animationController.forward();
     if (isScreenExited) {
       animationController.stop();
