@@ -30,7 +30,6 @@ class PlayFracticeController extends GetxController {
   Rx<Fraction> operand1 = Fraction(1, 1).obs;
   Rx<Fraction> operand2 = Fraction(1, 1).obs;
   Fraction fraction = Fraction(1, 1);
-  // Fraction result = Fraction(0, 0);
   String routeOperation = '';
   int levelAdd = 1;
   @override
@@ -58,14 +57,11 @@ class PlayFracticeController extends GetxController {
     operand1 = Fraction(1, 1).obs;
     operand2 = Fraction(1, 1).obs;
     Fraction(1, 1);
-    // Fraction result = Fraction(0, 0);
     routeOperation = '';
     levelAdd = 1;
     super.onInit();
-    // textLevel = RxString(level.name);
     checkLevel(level);
     generateQuestion(rangeRandom, route);
-    print('route is: $route');
   }
 
   @override
@@ -84,13 +80,13 @@ class PlayFracticeController extends GetxController {
   }
 
   void skipQuestion() {
-    countSkip.value++; // Tang bi?n d?m s? câu dã b? qua lên 1
+    countSkip.value++;
     count++;
     if (count.value > 10) {
       if (Get.isRegistered<SoundController>()) {
         Get.find<SoundController>().closeSoundGame();
       }
-      //N?u dã b? qua câu h?i th? 10, chuy?n d?n trang k?t qu?
+
       Get.offAndToNamed(MainRouters.RESULT, arguments: {
         'countWrong': countWrong.value,
         'countCorrect': countCorrect.value,
@@ -99,19 +95,15 @@ class PlayFracticeController extends GetxController {
 
       count = 1.obs;
     }
-    generateQuestion(rangeRandom, route); // T?o câu h?i m?i} //
+    generateQuestion(rangeRandom, route);
   }
 
   void checkAnswer(Fraction selectedAnswer, int index) {
-    print('selectedAnswer is: $currentOptions[selectedAnswer]');
-    print('correctAnswer is: $correctAnswer');
-
-    // ignore: unrelated_type_equality_checks
     if (selectedAnswer == correctAnswer) {
       if (Get.isRegistered<SoundController>()) {
         Get.find<SoundController>().playAnswerTrueSound();
       }
-      // N?u câu tr? l?i dúng
+
       isCorrect = true;
       answerColors[index] = Colors.green;
       countCorrect.value++;
@@ -119,22 +111,20 @@ class PlayFracticeController extends GetxController {
       if (Get.isRegistered<SoundController>()) {
         Get.find<SoundController>().playAnswerFalseSound();
       }
-      // N?u câu tr? l?i sai
+
       isCorrect = false;
       answerColors[index] = Colors.red;
-      // xNH
       countWrong.value++;
       for (int i = 0; i < currentOptions.length; i++) {
         if (currentOptions[i] == correctAnswer) {
           answerColors[i] = Colors.green;
-          break; // D?ng sau khi tìm th?y câu tr? l?i dúng
+          break;
         }
       }
     }
 
-    count.value++; // Tang bi?n d?m s? câu dã chuy?n qua lên 1
+    count.value++;
     Future.delayed(const Duration(milliseconds: 800), () {
-      // kh?i t?o l?i màu cho button
       answerColors.clear();
       generateQuestion(rangeRandom, route);
     });
@@ -142,7 +132,6 @@ class PlayFracticeController extends GetxController {
       if (Get.isRegistered<SoundController>()) {
         Get.find<SoundController>().closeSoundGame();
       }
-      // chuy?n trang và truy?n bi?n qua trang k?t qu?
       Get.offAndToNamed(MainRouters.RESULT, arguments: {
         'countWrong': countWrong.value,
         'countCorrect': countCorrect.value,
@@ -150,7 +139,7 @@ class PlayFracticeController extends GetxController {
       });
 
       count = 1.obs;
-    } // T?o câu h?i m?i
+    }
   }
 
   void checkLevel(MATHLEVEL level) {
@@ -175,37 +164,6 @@ class PlayFracticeController extends GetxController {
   void generateQuestion(int level, String route) {
     operand1.value = fraction.createRandomFraction(level, levelAdd);
     operand2.value = fraction.createRandomFraction(level, levelAdd);
-    print(' operand1.value is: $operand1');
-    print(' operand2.value is: $operand2');
-    print(Get.currentRoute);
-    // switch (title) {
-    //   case 'Practice Addition':
-    //     routeOperation = '+';
-    //     // g?i hàn tính t?ng
-    //     correctAnswer = operand1.value + operand2.value;
-    //     break;
-    //   case 'Practice Subtraction':
-    //     routeOperation = '-';
-    //     // n?u phân s? th? 1 nh? hon phân s? th? 2 thì d?i v? trí 2 phân s?
-    //     if ((operand1.value.numerator / operand1.value.denominator) <
-    //         (operand2.value.numerator / operand2.value.denominator)) {
-    //       final Fraction temp = operand1.value;
-    //       operand1.value = operand2.value;
-    //       operand2.value = temp;
-    //     }
-    //     correctAnswer = operand1.value - operand2.value;
-    //     break;
-    //   case 'Practice Multiplication':
-    //     routeOperation = 'x';
-    //     correctAnswer = operand1.value * operand2.value;
-    //     break;
-    //   case 'Practice Division':
-    //     routeOperation = '/';
-    //     correctAnswer = operand1.value / operand2.value;
-    //     break;
-    // }
-    // print(operand1.value);
-    // print(operand2.value);
     if (title.compareTo('select_four_1'.tr) == 0) {
       routeOperation = '+';
       correctAnswer = operand1.value + operand2.value;
@@ -234,7 +192,6 @@ class PlayFracticeController extends GetxController {
     }
     currentOptions.clear();
     correctAnswer = fraction.simplify(correctAnswer.numerator, correctAnswer.denominator);
-    print(correctAnswer);
     currentOptions.add(correctAnswer);
     while (currentOptions.length < 4) {
       final Fraction fraction1 = fraction.createRandomFraction(level, levelAdd);

@@ -20,7 +20,6 @@ class PlayPracticeController extends GetxController with WidgetsBindingObserver 
   RxString currentQuestion = "5 + 8 = ?".obs;
   int correctAnswer = 13;
   RxList<int> currentOptions = List<int>.generate(4, (index) => 0).obs;
-  bool isCorrect = true;
   final RxMap<int, Color> answerColors = <int, Color>{}.obs;
   RxInt count = 1.obs;
   RxInt countWrong = 0.obs;
@@ -72,34 +71,25 @@ class PlayPracticeController extends GetxController with WidgetsBindingObserver 
       return;
     }
     isEnable.value = false;
-    // kiểm tra đáp án  đúng hay sai sai thì hiển thị màu đỏ cho button, đúng hiện màu xanh cho button, sai làm cho đến khi chọn đúng thì mới qua câu tiếp theo
     if (selectedAnswer == correctAnswer) {
       if (Get.isRegistered<SoundController>()) {
         Get.find<SoundController>().playAnswerTrueSound();
       }
-      isCorrect = true;
       answerColors[selectedAnswer] = ColorResources.GREEN;
       countCorrect++;
       count++;
 
       print('count is: $count');
-      // ignore: unrelated_type_equality_checks
       if (count > 10) {
         if (Get.isRegistered<SoundController>()) {
           Get.find<SoundController>().closeSoundGame();
         }
-        // chuyển trang và truyền biến qua trang kết quả
-
         Get.offAndToNamed(MainRouters.RESULT, arguments: {
           'countWrong': countWrong.value,
           'countCorrect': countCorrect.value,
           'countSkip': countSkip.value,
         });
-
-        isShowResult.value = true;
-        count = 1.obs;
       }
-
       Future.delayed(const Duration(milliseconds: 800), () {
         // khởi tạo lại màu cho button
         answerColors.clear();
@@ -110,7 +100,6 @@ class PlayPracticeController extends GetxController with WidgetsBindingObserver 
       if (Get.isRegistered<SoundController>()) {
         Get.find<SoundController>().playAnswerFalseSound();
       }
-      isCorrect = false;
       answerColors[selectedAnswer] = ColorResources.RED;
       answerColors.refresh();
       countWrong++;

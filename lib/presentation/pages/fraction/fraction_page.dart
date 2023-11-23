@@ -50,7 +50,7 @@ class FractionPage extends GetView<FractionController> {
                 GriViewComponent(
                   itemCount: Get.find<DashBoardController>().listFour.length,
                   itemBuilder: (p0, p1) => ContainerGridFunction(
-                    item: Get.find<DashBoardController>().listFour[p1],
+                    item: Get.find<DashBoardController>().listFour[p1], 
                   ),
                 ),
               ],
