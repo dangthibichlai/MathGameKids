@@ -37,7 +37,7 @@ dependencies:
   permission_handler: ^11.0.0
   pin_code_fields: ^8.0.1
   pull_to_refresh: ^2.0.0
-  shared_preferences: ^2.0.6
+  shared_preferences: ^2.2.2
   skeleton_loader: ^2.0.0+4
   tiengviet: ^0.5.0
   timeago: ^3.1.0
@@ -109,6 +109,7 @@ dependencies:
   rate_my_app: ^2.0.0
   audioplayers: ^5.2.0
   flutter_statusbarcolor_ns: ^0.5.0
+  mockito: ^5.4.3
   
 
 dev_dependencies:

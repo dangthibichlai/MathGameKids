@@ -16,21 +16,51 @@ class PlayFracticeController extends GetxController {
   RxInt countWrong = 0.obs;
   RxInt countCorrect = 0.obs;
   RxInt countSkip = 0.obs;
-  final Map<String, dynamic> arguments = Get.arguments;
-  MATHLEVEL level = Get.arguments['level'];
-  String route = Get.arguments['route'];
-  String title = Get.arguments['title'];
-  bool isSkip = Get.arguments['isSkip'];
+  Map<String, dynamic> arguments = {
+    'level': "Easy",
+    'route': "/addition",
+    'title': "Addition",
+  };
+  MATHLEVEL level = MATHLEVEL.EASY;
+  String route = "/addition";
+  String title = "Addition";
+  bool isSkip = false;
   int rangeRandom = 10;
   RxString textLevel = ''.obs;
   Rx<Fraction> operand1 = Fraction(1, 1).obs;
   Rx<Fraction> operand2 = Fraction(1, 1).obs;
-  final Fraction fraction = Fraction(1, 1);
+  Fraction fraction = Fraction(1, 1);
   // Fraction result = Fraction(0, 0);
   String routeOperation = '';
   int levelAdd = 1;
   @override
   void onInit() {
+    currentQuestion = "5 + 8 = ?".obs;
+    correctAnswer = Fraction(1, 1);
+    currentOptions = List<Fraction>.generate(4, (index) => Fraction(0, 0)).obs;
+    isCorrect = true;
+    answerColors = <int, Color>{}.obs;
+    count = 1.obs;
+    countWrong = 0.obs;
+    countCorrect = 0.obs;
+    countSkip = 0.obs;
+    arguments = {
+      'level': "Easy",
+      'route': "/addition",
+      'title': "Addition",
+    };
+    level = MATHLEVEL.EASY;
+    route = "/addition";
+    title = "Addition";
+    isSkip = true;
+    rangeRandom = 10;
+    textLevel = ''.obs;
+    operand1 = Fraction(1, 1).obs;
+    operand2 = Fraction(1, 1).obs;
+    Fraction(1, 1);
+    // Fraction result = Fraction(0, 0);
+    routeOperation = '';
+    levelAdd = 1;
     super.onInit();
     // textLevel = RxString(level.name);
     checkLevel(level);

@@ -16,6 +16,8 @@ import 'package:template/presentation/pages/begin_screen/onboarding/onboarding_c
 
 class MockAuthRepository extends Mock implements AuthRepository {}
 
+class MockSharedPreferences extends Mock implements SharedPreferences {}
+
 void main() async {
   // ignore: await_only_futures
   // await WidgetsFlutterBinding.ensureInitialized();
@@ -23,6 +25,7 @@ void main() async {
 
   await di.init(); // dùng để khởi tạo các service, repository, controller
   SharedPreferences.setMockInitialValues({});
+
   // Initialize mobile ads.
   MobileAds.instance.initialize();
 
@@ -57,8 +60,13 @@ void main() async {
   PackageDescriptionController packageDescriptionController;
   PageController _pageController;
   AuthRepository authRepository = GetIt.instance<AuthRepository>();
+  SharedPreferences sharedPreferences = GetIt.instance<SharedPreferences>();
 
   setUp(() {
+    WidgetsFlutterBinding.ensureInitialized();
+    sharedPreferences = GetIt.instance<SharedPreferences>();
+
+    SharedPreferences.setMockInitialValues({});
     packageDescriptionController = PackageDescriptionController();
     _pageController = PageController();
     authRepository = GetIt.instance<AuthRepository>();
