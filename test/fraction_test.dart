@@ -226,8 +226,13 @@ void main() {
           operand2Value.numerator >= controller.levelAdd &&
               operand2Value.numerator <=
                   (controller.levelAdd + controller.rangeRandom);
+      final bool isZero1 = operand1Value.denominator == 0;
+      final bool isZero2 = operand1Value.denominator == 0;
+
       expect(checkOperand1, isTrue);
       expect(checkOperand2, isTrue);
+      expect(isZero1, isFalse);
+      expect(isZero2, isFalse);
     });
   });
 }

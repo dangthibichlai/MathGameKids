@@ -16,7 +16,7 @@ class MathLevelValueMax {
   static const int EASY_VALUE_SQ = 5;
   static const int MEDIUM_VALUE_SQ = 10;
   static const int HARD_VALUE_SQ = 15;
-
+//
   //
 }
 
