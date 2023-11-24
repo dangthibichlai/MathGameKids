@@ -109,7 +109,7 @@ dependencies:
   rate_my_app: ^2.0.0
   audioplayers: ^5.2.0
   flutter_statusbarcolor_ns: ^0.5.0
-  mockito: ^5.4.3
+  mockito: ^5.4.2
   
 
 dev_dependencies:
