@@ -174,14 +174,14 @@ void main() {
       controller.countSkip = 0.obs;
       int correctCount = 0;
       int wrongCount = 0;
-      Random random = Random();
+      final Random random = Random();
 
       for (int j = 0; j < 10; j++) {
         controller.checkLevel(controller.level);
         controller.generateQuestion(controller.rangeRandom, controller.route);
-        int position =
+        final int position =
             controller.currentOptions.indexOf(controller.correctAnswer);
-        int randomNumber = random.nextInt(4);
+        final int randomNumber = random.nextInt(4);
         controller.checkAnswer(controller.currentOptions[randomNumber], j);
         if (randomNumber == position) {
           correctCount++;
@@ -191,6 +191,43 @@ void main() {
       }
       expect(controller.countCorrect.value, correctCount);
       expect(controller.countWrong.value, wrongCount);
+    });
+    test("Check generate value for level MEDIUM", () {
+      // Arrange
+      controller.level = MATHLEVEL.MEDIUM;
+
+      //Act
+      controller.checkLevel(controller.level);
+
+      //Assertoke
+
+      expect(controller.textLevel, RxString('Medium'));
+      expect(controller.rangeRandom, 9);
+      expect(controller.levelAdd, 11);
+    });
+
+    test("Is generate question  following by checkLevel Medium", () {
+      // Arrange
+      controller.level = MATHLEVEL.MEDIUM;
+
+      //tức dòng nàu
+      controller.checkLevel(controller.level);
+      controller.generateQuestion(controller.rangeRandom, controller.route);
+      // Lấy giá trị của operand1 và operand2
+      final Fraction operand1Value = controller.operand1.value;
+      final Fraction operand2Value = controller.operand2.value;
+
+      // Kiểm tra xem giá trị có nằm trong khoảng mong đợi không
+      final bool checkOperand1 =
+          operand1Value.numerator >= controller.levelAdd &&
+              operand1Value.numerator <=
+                  (controller.levelAdd + controller.rangeRandom);
+      final bool checkOperand2 =
+          operand2Value.numerator >= controller.levelAdd &&
+              operand2Value.numerator <=
+                  (controller.levelAdd + controller.rangeRandom);
+      expect(checkOperand1, isTrue);
+      expect(checkOperand2, isTrue);
     });
   });
 }

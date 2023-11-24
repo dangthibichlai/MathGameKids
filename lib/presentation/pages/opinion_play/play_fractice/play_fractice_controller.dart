@@ -9,7 +9,8 @@ import '../../../../core/shared_pref/constants/enum_helper.dart';
 class PlayFracticeController extends GetxController {
   RxString currentQuestion = "5 + 8 = ?".obs;
   Fraction correctAnswer = Fraction(1, 1);
-  RxList<Fraction> currentOptions = List<Fraction>.generate(4, (index) => Fraction(0, 0)).obs;
+  RxList<Fraction> currentOptions =
+      List<Fraction>.generate(4, (index) => Fraction(0, 0)).obs;
   bool isCorrect = true;
   RxMap<int, Color> answerColors = <int, Color>{}.obs;
   RxInt count = 1.obs;
@@ -158,6 +159,7 @@ class PlayFracticeController extends GetxController {
         textLevel = RxString('Hard');
         rangeRandom = 15;
         levelAdd = MathLevelValueMin.MEDIUM_VALUE_ADD;
+        break;
     }
   }
 
@@ -191,7 +193,8 @@ class PlayFracticeController extends GetxController {
       correctAnswer = operand1.value / operand2.value;
     }
     currentOptions.clear();
-    correctAnswer = fraction.simplify(correctAnswer.numerator, correctAnswer.denominator);
+    correctAnswer =
+        fraction.simplify(correctAnswer.numerator, correctAnswer.denominator);
     currentOptions.add(correctAnswer);
     while (currentOptions.length < 4) {
       final Fraction fraction1 = fraction.createRandomFraction(level, levelAdd);
