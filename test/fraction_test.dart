@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 import 'package:template/core/base_widget/izi_image.dart';
+import 'package:template/core/shared_pref/constants/enum_helper.dart';
 import 'package:template/presentation/pages/opinion_play/play_fractice/model/fraction_model.dart';
 import 'package:template/presentation/pages/opinion_play/play_fractice/play_fractice_controller.dart';
 import 'package:template/presentation/pages/result_package/result_page.dart';
@@ -41,6 +42,44 @@ void main() {
     tearDown(() {
       // Clear the mocks and reset the controller
       Get.reset();
+    });
+    group('checkLevel', () {
+      test('should set values for MATHLEVEL.EASY', () {
+        // Arrange
+        const MATHLEVEL level = MATHLEVEL.EASY;
+
+        // Act
+        controller.checkLevel(level);
+
+        // Assert
+        expect(controller.textLevel, equals(RxString('Easy')));
+        expect(controller.rangeRandom, equals(7));
+        expect(controller.levelAdd, equals(MathLevelValueMin.EASY_VALUE_ADD));
+      });
+
+      test('should set values for MATHLEVEL.MEDIUM', () {
+        // Arrange
+        const MATHLEVEL level = MATHLEVEL.MEDIUM;
+
+        // Act
+        controller.checkLevel(level);
+
+        // Assert
+        expect(controller.textLevel, equals(RxString('Medium')));
+        expect(controller.rangeRandom, equals(9));
+        expect(controller.levelAdd, equals(MathLevelValueMin.MEDIUM_VALUE_ADD));
+      });
+
+      test('should set values for MATHLEVEL.HARD', () {
+        // Arrange
+        const MATHLEVEL level = MATHLEVEL.HARD;
+        // Act
+        controller.checkLevel(level);
+        // Assert
+        expect(controller.textLevel, equals(RxString('Hard')));
+        expect(controller.rangeRandom, equals(15));
+        expect(controller.levelAdd, equals(MathLevelValueMin.MEDIUM_VALUE_ADD));
+      });
     });
 
     // Hàm SkipQuestion
