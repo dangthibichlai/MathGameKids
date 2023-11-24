@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 import 'package:template/core/base_widget/izi_image.dart';
+import 'package:template/core/shared_pref/constants/enum_helper.dart';
 import 'package:template/presentation/pages/opinion_play/play_fractice/model/fraction_model.dart';
 import 'package:template/presentation/pages/opinion_play/play_fractice/play_fractice_controller.dart';
 import 'package:template/presentation/pages/result_package/result_page.dart';
@@ -152,6 +153,42 @@ void main() {
       }
       expect(controller.countCorrect.value, correctCount);
       expect(controller.countWrong.value, wrongCount);
+    });
+    test("Check generate value for level MEDIUM", () {
+      // Arrange
+      controller.level = MATHLEVEL.MEDIUM;
+
+      //Act
+      controller.checkLevel(controller.level);
+
+      //Assertoke
+
+      expect(controller.textLevel, RxString('Medium'));
+      expect(controller.rangeRandom, 9);
+      expect(controller.levelAdd, 11);
+    });
+
+    test("Is generate question  following by checkLevel Medium", () {
+      // Arrange
+      controller.level = MATHLEVEL.MEDIUM;
+
+      //tức dòng nàu
+      controller.checkLevel(controller.level);
+      // Act & Assert
+      for (int i = 0; i < 10; i++) {
+        controller.checkLevel(controller.level);
+        controller.generateQuestion(controller.rangeRandom, controller.route);
+
+        // Lấy giá trị của operand1 và operand2
+        Fraction operand1Value = controller.operand1.value;
+        Fraction operand2Value = controller.operand2.value;
+
+        // Kiểm tra xem giá trị có nằm trong khoảng mong đợi không
+        bool check = (operand1Value.numerator >= controller.levelAdd &&
+            operand2Value.numerator <=
+                (controller.levelAdd + controller.rangeRandom));
+        expect(check, isTrue);
+      }
     });
   });
 }
