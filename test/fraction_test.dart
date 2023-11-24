@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
@@ -5,6 +7,7 @@ import 'package:template/core/base_widget/izi_image.dart';
 import 'package:template/presentation/pages/opinion_play/play_fractice/model/fraction_model.dart';
 import 'package:template/presentation/pages/opinion_play/play_fractice/play_fractice_controller.dart';
 import 'package:template/presentation/pages/result_package/result_page.dart';
+import 'dart:math';
 
 void main() {
   group('PlayFracticeController Tests', () {
@@ -15,7 +18,8 @@ void main() {
       controller.onInit();
       controller.currentQuestion = "5 + 8 = ?".obs;
       controller.correctAnswer = Fraction(1, 1);
-      controller.currentOptions = List<Fraction>.generate(4, (index) => Fraction(0, 0)).obs;
+      controller.currentOptions =
+          List<Fraction>.generate(4, (index) => Fraction(0, 0)).obs;
       controller.isCorrect = true;
       controller.answerColors = <int, Color>{}.obs;
       controller.count = 1.obs;
@@ -80,7 +84,8 @@ void main() {
       // Act
       controller.checkLevel(controller.level);
       controller.generateQuestion(controller.rangeRandom, controller.route);
-      final position = controller.currentOptions.indexOf(controller.correctAnswer);
+      final position =
+          controller.currentOptions.indexOf(controller.correctAnswer);
       controller.checkAnswer(controller.correctAnswer, position);
 
       // Assert
@@ -100,8 +105,10 @@ void main() {
       // Act
       controller.checkLevel(controller.level);
       controller.generateQuestion(controller.rangeRandom, controller.route);
-      final wrongPosition = controller.currentOptions.indexWhere((element) => element != controller.correctAnswer);
-      controller.checkAnswer(controller.currentOptions[wrongPosition], wrongPosition);
+      final wrongPosition = controller.currentOptions
+          .indexWhere((element) => element != controller.correctAnswer);
+      controller.checkAnswer(
+          controller.currentOptions[wrongPosition], wrongPosition);
 
       // Assert
       expect(controller.countCorrect.value, 0);
@@ -118,7 +125,33 @@ void main() {
       expect(controller.operand1.value, isA<Fraction>());
       expect(controller.operand2.value, isA<Fraction>());
       expect(controller.currentOptions.length, 4);
-      expect(controller.currentOptions.contains(controller.correctAnswer), true);
+      expect(
+          controller.currentOptions.contains(controller.correctAnswer), true);
+    });
+    test('Check in ResultPage', () {
+      // Act
+      controller.countWrong = 0.obs;
+      controller.countCorrect = 0.obs;
+      controller.countSkip = 0.obs;
+      int correctCount = 0;
+      int wrongCount = 0;
+      Random random = Random();
+
+      for (int j = 0; j < 10; j++) {
+        controller.checkLevel(controller.level);
+        controller.generateQuestion(controller.rangeRandom, controller.route);
+        int position =
+            controller.currentOptions.indexOf(controller.correctAnswer);
+        int randomNumber = random.nextInt(4);
+        controller.checkAnswer(controller.currentOptions[randomNumber], j);
+        if (randomNumber == position) {
+          correctCount++;
+        } else {
+          wrongCount++;
+        }
+      }
+      expect(controller.countCorrect.value, correctCount);
+      expect(controller.countWrong.value, wrongCount);
     });
   });
 }
