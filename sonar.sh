@@ -6,4 +6,4 @@ flutter test
 flutter test --machine --coverage > tests.output 
 
 # Run the analysis and publish to the SonarQube server
-sonar-scanner
+D:\Workspace\MathGameKids\docker-repositories\Sonar-Docker\sonar-scanner-5.0.1.3006-windows\bin\sonar-scanner

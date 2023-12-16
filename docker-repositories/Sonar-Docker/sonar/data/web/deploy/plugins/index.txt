@@ -7,6 +7,7 @@ iac,true,sonar-iac-plugin-1.22.0.7057.jar|ebfc47d84dca4206c64a3f70285c14b3
 javascript,true,sonar-javascript-plugin-10.9.0.24449.jar|89b8bf8294029975772c45b0bc6ad035
 ruby,true,sonar-ruby-plugin-1.15.0.4655.jar|0c7e084443770eb32129caa9121bb60e
 sonarscala,true,sonar-scala-plugin-1.15.0.4655.jar|233a31f31fcd44b55cc5641c7d311882
+flutter,false,sonar-flutter-plugin-0.5.1-SNAPSHOT.jar|97355ba1fa0e362261b5c037cc15f7fa
 csharp,false,sonar-csharp-plugin-9.13.0.79967.jar|f258d0e8d5db9eb17ba5e59a71c3b0ee
 java,true,sonar-java-plugin-7.27.1.33504.jar|0c321948382319e392a8fd63cf08c71d
 web,true,sonar-html-plugin-3.11.0.4708.jar|f695e008c70a165e2e5e046b300a3dc2
