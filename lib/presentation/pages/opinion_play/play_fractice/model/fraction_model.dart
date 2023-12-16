@@ -61,7 +61,6 @@ class Fraction {
 
   Fraction simplify(int numerator, int denominator) {
     final int gcdValue = _gcd(numerator, denominator);
-    print(gcdValue);
     return Fraction(numerator ~/ gcdValue, denominator ~/ gcdValue);
   }
 }

@@ -1,10 +1,14 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 import 'package:template/core/base_widget/izi_image.dart';
+import 'package:template/core/shared_pref/constants/enum_helper.dart';
 import 'package:template/presentation/pages/opinion_play/play_fractice/model/fraction_model.dart';
 import 'package:template/presentation/pages/opinion_play/play_fractice/play_fractice_controller.dart';
 import 'package:template/presentation/pages/result_package/result_page.dart';
+import 'dart:math';
 
 void main() {
   group('PlayFracticeController Tests', () {
@@ -15,7 +19,8 @@ void main() {
       controller.onInit();
       controller.currentQuestion = "5 + 8 = ?".obs;
       controller.correctAnswer = Fraction(1, 1);
-      controller.currentOptions = List<Fraction>.generate(4, (index) => Fraction(0, 0)).obs;
+      controller.currentOptions =
+          List<Fraction>.generate(4, (index) => Fraction(0, 0)).obs;
       controller.isCorrect = true;
       controller.answerColors = <int, Color>{}.obs;
       controller.count = 1.obs;
@@ -41,6 +46,44 @@ void main() {
     tearDown(() {
       // Clear the mocks and reset the controller
       Get.reset();
+    });
+    group('checkLevel', () {
+      test('should set values for MATHLEVEL.EASY', () {
+        // Arrange
+        const MATHLEVEL level = MATHLEVEL.EASY;
+
+        // Act
+        controller.checkLevel(level);
+
+        // Assert
+        expect(controller.textLevel, equals(RxString('Easy')));
+        expect(controller.rangeRandom, equals(7));
+        expect(controller.levelAdd, equals(MathLevelValueMin.EASY_VALUE_ADD));
+      });
+
+      test('should set values for MATHLEVEL.MEDIUM', () {
+        // Arrange
+        const MATHLEVEL level = MATHLEVEL.MEDIUM;
+
+        // Act
+        controller.checkLevel(level);
+
+        // Assert
+        expect(controller.textLevel, equals(RxString('Medium')));
+        expect(controller.rangeRandom, equals(9));
+        expect(controller.levelAdd, equals(MathLevelValueMin.MEDIUM_VALUE_ADD));
+      });
+
+      test('should set values for MATHLEVEL.HARD', () {
+        // Arrange
+        const MATHLEVEL level = MATHLEVEL.HARD;
+        // Act
+        controller.checkLevel(level);
+        // Assert
+        expect(controller.textLevel, equals(RxString('Hard')));
+        expect(controller.rangeRandom, equals(15));
+        expect(controller.levelAdd, equals(MathLevelValueMin.MEDIUM_VALUE_ADD));
+      });
     });
 
     // Hàm SkipQuestion
@@ -80,7 +123,8 @@ void main() {
       // Act
       controller.checkLevel(controller.level);
       controller.generateQuestion(controller.rangeRandom, controller.route);
-      final position = controller.currentOptions.indexOf(controller.correctAnswer);
+      final position =
+          controller.currentOptions.indexOf(controller.correctAnswer);
       controller.checkAnswer(controller.correctAnswer, position);
 
       // Assert
@@ -100,8 +144,10 @@ void main() {
       // Act
       controller.checkLevel(controller.level);
       controller.generateQuestion(controller.rangeRandom, controller.route);
-      final wrongPosition = controller.currentOptions.indexWhere((element) => element != controller.correctAnswer);
-      controller.checkAnswer(controller.currentOptions[wrongPosition], wrongPosition);
+      final wrongPosition = controller.currentOptions
+          .indexWhere((element) => element != controller.correctAnswer);
+      controller.checkAnswer(
+          controller.currentOptions[wrongPosition], wrongPosition);
 
       // Assert
       expect(controller.countCorrect.value, 0);
@@ -118,7 +164,75 @@ void main() {
       expect(controller.operand1.value, isA<Fraction>());
       expect(controller.operand2.value, isA<Fraction>());
       expect(controller.currentOptions.length, 4);
-      expect(controller.currentOptions.contains(controller.correctAnswer), true);
+      expect(
+          controller.currentOptions.contains(controller.correctAnswer), true);
+    });
+    test('Check in ResultPage', () {
+      // Act
+      controller.countWrong = 0.obs;
+      controller.countCorrect = 0.obs;
+      controller.countSkip = 0.obs;
+      int correctCount = 0;
+      int wrongCount = 0;
+      final Random random = Random();
+
+      for (int j = 0; j < 10; j++) {
+        controller.checkLevel(controller.level);
+        controller.generateQuestion(controller.rangeRandom, controller.route);
+        final int position =
+            controller.currentOptions.indexOf(controller.correctAnswer);
+        final int randomNumber = random.nextInt(4);
+        controller.checkAnswer(controller.currentOptions[randomNumber], j);
+        if (randomNumber == position) {
+          correctCount++;
+        } else {
+          wrongCount++;
+        }
+      }
+      expect(controller.countCorrect.value, correctCount);
+      expect(controller.countWrong.value, wrongCount);
+    });
+    test("Check generate value for level MEDIUM", () {
+      // Arrange
+      controller.level = MATHLEVEL.MEDIUM;
+
+      //Act
+      controller.checkLevel(controller.level);
+
+      //Assertoke
+
+      expect(controller.textLevel, RxString('Medium'));
+      expect(controller.rangeRandom, 9);
+      expect(controller.levelAdd, 11);
+    });
+
+    test("Is generate question  following by checkLevel Medium", () {
+      // Arrange
+      controller.level = MATHLEVEL.MEDIUM;
+
+      //tức dòng nàu
+      controller.checkLevel(controller.level);
+      controller.generateQuestion(controller.rangeRandom, controller.route);
+      // Lấy giá trị của operand1 và operand2
+      final Fraction operand1Value = controller.operand1.value;
+      final Fraction operand2Value = controller.operand2.value;
+
+      // Kiểm tra xem giá trị có nằm trong khoảng mong đợi không
+      final bool checkOperand1 =
+          operand1Value.numerator >= controller.levelAdd &&
+              operand1Value.numerator <=
+                  (controller.levelAdd + controller.rangeRandom);
+      final bool checkOperand2 =
+          operand2Value.numerator >= controller.levelAdd &&
+              operand2Value.numerator <=
+                  (controller.levelAdd + controller.rangeRandom);
+      final bool isZero1 = operand1Value.denominator == 0;
+      final bool isZero2 = operand1Value.denominator == 0;
+
+      expect(checkOperand1, isTrue);
+      expect(checkOperand2, isTrue);
+      expect(isZero1, isFalse);
+      expect(isZero2, isFalse);
     });
   });
 }
