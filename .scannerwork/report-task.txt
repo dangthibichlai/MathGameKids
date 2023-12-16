@@ -1,0 +1,6 @@
+projectKey=TestMathGameKids
+serverUrl=http://localhost:9000
+serverVersion=10.3.0.82913
+dashboardUrl=http://localhost:9000/dashboard?id=TestMathGameKids
+ceTaskId=AYxvQomm7RaUf1D6wKZE
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYxvQomm7RaUf1D6wKZE
