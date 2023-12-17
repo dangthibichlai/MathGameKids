@@ -117,3 +117,8 @@ app.*.symbols
 !/dev/ci/**/Gemfile.lock
 
 .fvm/flutter_sdk
+
+.scannerwork
+docker-repositories
+sonar-project.properties
+sonar.bat
