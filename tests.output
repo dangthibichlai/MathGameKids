@@ -1,0 +1,33 @@
+{"protocolVersion":"0.1.1","runnerVersion":null,"pid":252,"type":"start","time":0}
+{"suite":{"id":0,"platform":"vm","path":"D:/Flutter/MathGameKids/test/fraction_test.dart"},"type":"suite","time":0}
+{"test":{"id":1,"name":"loading D:/Flutter/MathGameKids/test/fraction_test.dart","suiteID":0,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":1}
+{"count":1,"time":5,"type":"allSuites"}
+
+[{"event":"test.startedProcess","params":{"vmServiceUri":"http://127.0.0.1:54583/ThUJAf2PVuw=/","observatoryUri":"http://127.0.0.1:54583/ThUJAf2PVuw=/"}}]
+{"testID":1,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":2392}
+{"group":{"id":2,"suiteID":0,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":11,"line":null,"column":null,"url":null},"type":"group","time":2395}
+{"group":{"id":3,"suiteID":0,"parentID":2,"name":"PlayFracticeController Tests","metadata":{"skip":false,"skipReason":null},"testCount":11,"line":14,"column":3,"url":"file:///D:/Flutter/MathGameKids/test/fraction_test.dart"},"type":"group","time":2396}
+{"group":{"id":4,"suiteID":0,"parentID":3,"name":"PlayFracticeController Tests checkLevel","metadata":{"skip":false,"skipReason":null},"testCount":3,"line":50,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/fraction_test.dart"},"type":"group","time":2396}
+{"test":{"id":5,"name":"PlayFracticeController Tests checkLevel should set values for MATHLEVEL.EASY","suiteID":0,"groupIDs":[2,3,4],"metadata":{"skip":false,"skipReason":null},"line":51,"column":7,"url":"file:///D:/Flutter/MathGameKids/test/fraction_test.dart"},"type":"testStart","time":2396}
+{"testID":5,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2469}
+{"test":{"id":6,"name":"PlayFracticeController Tests checkLevel should set values for MATHLEVEL.MEDIUM","suiteID":0,"groupIDs":[2,3,4],"metadata":{"skip":false,"skipReason":null},"line":64,"column":7,"url":"file:///D:/Flutter/MathGameKids/test/fraction_test.dart"},"type":"testStart","time":2470}
+{"testID":6,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2472}
+{"test":{"id":7,"name":"PlayFracticeController Tests checkLevel should set values for MATHLEVEL.HARD","suiteID":0,"groupIDs":[2,3,4],"metadata":{"skip":false,"skipReason":null},"line":77,"column":7,"url":"file:///D:/Flutter/MathGameKids/test/fraction_test.dart"},"type":"testStart","time":2472}
+{"testID":7,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2475}
+{"test":{"id":8,"name":"PlayFracticeController Tests Skip Question Test - click skip button","suiteID":0,"groupIDs":[2,3],"metadata":{"skip":false,"skipReason":null},"line":90,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/fraction_test.dart"},"type":"testStart","time":2476}
+{"testID":8,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2479}
+{"test":{"id":9,"name":"PlayFracticeController Tests Skip Question Test - click skip when end of question","suiteID":0,"groupIDs":[2,3],"metadata":{"skip":false,"skipReason":null},"line":102,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/fraction_test.dart"},"type":"testStart","time":2479}
+{"testID":9,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2485}
+{"test":{"id":10,"name":"PlayFracticeController Tests Check Answer Test - Correct Answer","suiteID":0,"groupIDs":[2,3],"metadata":{"skip":false,"skipReason":null},"line":115,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/fraction_test.dart"},"type":"testStart","time":2486}
+{"testID":10,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2490}
+{"test":{"id":11,"name":"PlayFracticeController Tests Check Answer Test - Incorrect Answer","suiteID":0,"groupIDs":[2,3],"metadata":{"skip":false,"skipReason":null},"line":136,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/fraction_test.dart"},"type":"testStart","time":2491}
+{"testID":11,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2493}
+{"test":{"id":12,"name":"PlayFracticeController Tests Generate Question Test","suiteID":0,"groupIDs":[2,3],"metadata":{"skip":false,"skipReason":null},"line":158,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/fraction_test.dart"},"type":"testStart","time":2493}
+{"testID":12,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2496}
+{"test":{"id":13,"name":"PlayFracticeController Tests Check in ResultPage","suiteID":0,"groupIDs":[2,3],"metadata":{"skip":false,"skipReason":null},"line":170,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/fraction_test.dart"},"type":"testStart","time":2496}
+{"testID":13,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2499}
+{"test":{"id":14,"name":"PlayFracticeController Tests Check generate value for level MEDIUM","suiteID":0,"groupIDs":[2,3],"metadata":{"skip":false,"skipReason":null},"line":195,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/fraction_test.dart"},"type":"testStart","time":2499}
+{"testID":14,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2501}
+{"test":{"id":15,"name":"PlayFracticeController Tests Is generate question  following by checkLevel Medium","suiteID":0,"groupIDs":[2,3],"metadata":{"skip":false,"skipReason":null},"line":209,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/fraction_test.dart"},"type":"testStart","time":2501}
+{"testID":15,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2504}
+{"success":true,"type":"done","time":3685}
