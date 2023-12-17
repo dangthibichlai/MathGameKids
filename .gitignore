@@ -120,3 +120,5 @@ app.*.symbols
 
 .scannerwork
 docker-repositories
+sonar-project.properties
+sonar.bat
