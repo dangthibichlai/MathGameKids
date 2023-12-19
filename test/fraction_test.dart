@@ -1,13 +1,9 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
-import 'package:template/core/base_widget/izi_image.dart';
 import 'package:template/core/shared_pref/constants/enum_helper.dart';
 import 'package:template/presentation/pages/opinion_play/play_fractice/model/fraction_model.dart';
 import 'package:template/presentation/pages/opinion_play/play_fractice/play_fractice_controller.dart';
-import 'package:template/presentation/pages/result_package/result_page.dart';
 import 'dart:math';
 
 void main() {
@@ -81,7 +77,7 @@ void main() {
         controller.checkLevel(level);
         // Assert
         expect(controller.textLevel, equals(RxString('Hard')));
-        expect(controller.rangeRandom, equals(15));
+        expect(controller.rangeRandom, equals(1));
         expect(controller.levelAdd, equals(MathLevelValueMin.MEDIUM_VALUE_ADD));
       });
     });

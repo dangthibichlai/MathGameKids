@@ -28,11 +28,9 @@ Future<void> init() async {
 
   sl.registerLazySingleton(() => Connectivity());
 
-  print('TechMind01');
   // Key validate.
   sl.registerSingleton<KeyValidateAds>(KeyValidateAds());
 
-  print('TechMind02');
 
   // Core
   sl.registerSingleton<DioClient>(DioClient());

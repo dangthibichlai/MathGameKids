@@ -43,14 +43,15 @@ class SplashController extends GetxController with GetTickerProviderStateMixin {
             //_onLoginApp(isLogger: _logger);
           } else {
             // Load ads.
-            appOpenAdManager.showOpenAppAds(
-              onSuccess: () {
-                Get.toNamed(MainRouters.HOME);
-              },
-              onError: () {
-                Get.toNamed(AuthRouter.NEXTPAGE1);
-              },
-            );
+            // appOpenAdManager.showOpenAppAds(
+            //   onSuccess: () {
+            //     Get.toNamed(MainRouters.HOME);
+            //   },
+            //   onError: () {
+            //     Get.toNamed(AuthRouter.NEXTPAGE1);
+            //   },
+            // );
+            Get.toNamed(MainRouters.HOME);
           }
         } else {
           Get.offNamed(AuthRouter.CHOOSE_LANGUAGE);

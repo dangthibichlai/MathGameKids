@@ -145,11 +145,12 @@ class ChooseLanguagePage extends GetView<ChooseLanguageController> {
               ),
             ),
             // Show banner ads.
-            NativeAdsWidget(
-              callBack: () {
-                controller.showSkipLanguage();
-              },
-            ),
+            Text("Chọn ngôn ngữ")
+            // NativeAdsWidget(
+            //   callBack: () {
+            //     controller.showSkipLanguage();
+            //   },
+            // ),
           ],
         ),
       ),
