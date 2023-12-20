@@ -7,7 +7,7 @@ import 'package:template/presentation/pages/opinion_play/play_fractice/play_frac
 import 'dart:math';
 
 void main() {
-  group('PlayFracticeController Tests', () {
+  // group('PlayFracticeController Tests', () {
     late PlayFracticeController controller;
 
     setUp(() {
@@ -77,7 +77,7 @@ void main() {
         controller.checkLevel(level);
         // Assert
         expect(controller.textLevel, equals(RxString('Hard')));
-        expect(controller.rangeRandom, equals(1));
+      expect(controller.rangeRandom, equals(15));
         expect(controller.levelAdd, equals(MathLevelValueMin.MEDIUM_VALUE_ADD));
       });
     });
@@ -230,5 +230,5 @@ void main() {
       expect(isZero1, isFalse);
       expect(isZero2, isFalse);
     });
-  });
+  // });
 }

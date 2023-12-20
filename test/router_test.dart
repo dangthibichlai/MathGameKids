@@ -1,35 +1,29 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
+import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:template/config/routes/route_path/main_routh.dart';
 import 'package:template/core/base_widget/izi_app_bar.dart';
 import 'package:template/core/di_container.dart' as di;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:template/core/di_container.dart';
+import 'package:template/core/export/core_export.dart';
+import 'package:template/core/shared_pref/constants/preferences.dart';
 import 'package:template/core/utils/color_resources.dart';
 
 import 'package:template/main.dart';
 
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:template/config/routes/route_path/auth_routh.dart';
-import 'package:template/config/theme/dark_theme.dart';
 import 'package:template/core/helper/izi_timezone.dart';
-import 'package:template/core/services/multi_language_service/localization_service.dart';
-import 'package:template/config/routes/app_pages.dart';
-import 'package:template/config/theme/app_theme.dart';
-import 'package:template/core/utils/app_constants.dart';
-import 'package:template/core/utils/color_resources.dart';
-import 'package:template/presentation/app_binding.dart';
+
 import 'package:timeago/timeago.dart' as time_ago;
 
 void main() {
-  group('Check function for routing correct screen', () {
-    setUp(() async {
+  setUpAll(() async {
       SharedPreferences.setMockInitialValues({});
       Get.testMode = true;
 
@@ -38,7 +32,7 @@ void main() {
       await di.init(); // dùng để khởi tạo các service, repository, controller
 
       // Initialize mobile ads.
-      MobileAds.instance.initialize();
+    // MobileAds.instance.initialize();
 
       SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
@@ -46,9 +40,9 @@ void main() {
         statusBarIconBrightness: Brightness.dark,
       ));
 
-      time_ago.setLocaleMessages('vi', time_ago.ViMessages());
+    // time_ago.setLocaleMessages('vi', time_ago.ViMessages());
 
-      IZITimeZone().initializeTimeZones();
+    // IZITimeZone().initializeTimeZones();
 
       EasyLoading.instance
         ..displayDuration = const Duration(milliseconds: 1500)
@@ -75,21 +69,42 @@ void main() {
       await widgetTester.pumpWidget(const MyApp(), const Duration(seconds: 0));
       final widgetToFind = find.byType(ScreenUtilInit);
       expect(widgetToFind, findsOneWidget);
+    final BuildContext mockContext = widgetTester.element(widgetToFind);
       final getScreenUtilUnit =
-          widgetTester.widget(widgetToFind) as ScreenUtilInit;
-      final getMaterialApp = getScreenUtilUnit.builder;
+          widgetTester.widget<ScreenUtilInit>(widgetToFind);
+    final getGestureDetector =
+        getScreenUtilUnit.builder!(mockContext, null) as GestureDetector;
+    final getMaterialApp = getGestureDetector.child as GetMaterialApp;
+    expect(getMaterialApp.initialRoute, AuthRouter.SPLASH);
+  });
 
-      expect(getMaterialApp.hashCode, AuthRouter.SPLASH);
+  testWidgets("routing to home when it not first run", (widgetTester) async {
+    sl<SharedPreferenceHelper>().setSplash(status: true);
+    var i = sl<SharedPreferenceHelper>().getSplash;
+
+    await widgetTester.pumpWidget(const MyApp());
+    await widgetTester.pumpAndSettle();
+
+    final currentRoute = Get.routing.current;
+
+    expect(currentRoute, MainRouters.HOME);
     });
 
     testWidgets("Checking in splash is not routing to homepage in first run",
         (widgetTester) async {
+    sl<SharedPreferenceHelper>().setSplash(status: false);
+
       await widgetTester.pumpWidget(const MyApp());
       await widgetTester.pumpAndSettle();
-      final widgetToFind = find.byType(BaseAppBar);
-      expect(widgetToFind, findsOneWidget);
-      final baseAppBar = widgetTester.widget(widgetToFind) as BaseAppBar;
-      expect(baseAppBar.title, "Chọn ngôn ngữ");
+
+    final currentRoute = Get.routing.current;
+
+    expect(currentRoute, AuthRouter.CHOOSE_LANGUAGE);
     });
-  });
+
+  tearDownAll(() => {
+        Get.reset(),
+        GetIt.I.reset(),
+      });
+  
 }

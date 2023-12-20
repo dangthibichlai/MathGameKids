@@ -1,6 +1,7 @@
 import 'package:connectivity/connectivity.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:template/core/export/core_export.dart';
 import 'package:template/core/services/google_admod_services/key_validate_ads.dart';
 import 'package:template/data/export/data_export.dart';
 import 'package:template/core/services/notification_services/local_notification_service.dart';
@@ -30,6 +31,7 @@ Future<void> init() async {
 
   // Key validate.
   sl.registerSingleton<KeyValidateAds>(KeyValidateAds());
+
 
 
   // Core
