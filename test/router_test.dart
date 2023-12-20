@@ -71,6 +71,17 @@ void main() {
         ..dismissOnTap = false;
     });
 
+    testWidgets("Checking - Is Splash in first loading", (widgetTester) async {
+      await widgetTester.pumpWidget(const MyApp(), const Duration(seconds: 0));
+      final widgetToFind = find.byType(ScreenUtilInit);
+      expect(widgetToFind, findsOneWidget);
+      final getScreenUtilUnit =
+          widgetTester.widget(widgetToFind) as ScreenUtilInit;
+      final getMaterialApp = getScreenUtilUnit.builder;
+
+      expect(getMaterialApp.hashCode, AuthRouter.SPLASH);
+    });
+
     testWidgets("Checking in splash is not routing to homepage in first run",
         (widgetTester) async {
       await widgetTester.pumpWidget(const MyApp());
