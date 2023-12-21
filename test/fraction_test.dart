@@ -108,7 +108,7 @@ void main() {
 
       // Assert
       expect(controller.count.value, 1);
-      expect(Get.previousRoute, "");
+      expect(Get.previousRoute, ""); 
     });
 
     // Hàm checkAnswer

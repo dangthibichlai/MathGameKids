@@ -14,6 +14,8 @@ import 'shared_pref/shared_preference_helper.dart';
 final sl = GetIt.instance;
 
 Future<void> init() async {
+  sl.registerSingleton<KeyValidateAds>(KeyValidateAds());
+
   // External
   final sharedPreferences = await SharedPreferences.getInstance();
   sl.registerSingleton<SharedPreferenceHelper>(
@@ -30,7 +32,6 @@ Future<void> init() async {
 
   print('TechMind01');
   // Key validate.
-  sl.registerSingleton<KeyValidateAds>(KeyValidateAds());
 
   print('TechMind02');
 
