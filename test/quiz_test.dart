@@ -189,7 +189,6 @@ void main() {
       // Act
       controller.checkAnswer(13);
       // Assert
-      expect(controller.answerColors, null);
       expect(controller.answerColors[13], Colors.green);
       expect(controller.count.value, 1);
     });
