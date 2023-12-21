@@ -38,3 +38,4 @@ export '../../core/utils/images_path.dart';
 export '../../core/services/multi_language_service/localization_service.dart';
 export '/core/services/google_admod_services/native_ads_manager/native_ads_widget.dart';
 export '../base_widget/loading/ads_loading_full_screen/ads_loading_full_screen.dart';
+export '/core/di_container.dart';

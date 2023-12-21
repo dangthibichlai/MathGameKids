@@ -49,7 +49,7 @@ class PlayTrueFalseController extends GetxController
   }
 
   void skipQuestion() {
-    countSkip.value++; // Tăng biến đếm số câu đã bỏ qua lên 1
+    countSkip.value++;
     count++;
     if (count.value > 10) {
       if (Get.isRegistered<SoundController>()) {
@@ -64,7 +64,6 @@ class PlayTrueFalseController extends GetxController
       });
       countSkip.value = 0;
     }
-
     generateQuestion(rangeRandom, route);
   }
 
