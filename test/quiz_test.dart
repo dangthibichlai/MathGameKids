@@ -1,17 +1,16 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:template/core/shared_pref/constants/enum_helper.dart';
-import 'package:template/core/utils/color_resources.dart';
-import 'package:template/presentation/pages/opinion_play/play_true_false/play_true_false_controller.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:template/core/di_container.dart' as di;
+import 'package:template/core/export/core_export.dart';
+import 'package:template/core/shared_pref/constants/enum_helper.dart';
+import 'package:template/presentation/pages/opinion_play/play_quiz/play_quiz_controller.dart';
 
 void main() {
-  late PlayTrueFalseController controller;
+  late playQuizController controller;
 
   setUpAll(() async {
     SharedPreferences.setMockInitialValues({});
@@ -21,13 +20,11 @@ void main() {
 
     await di.init(); // dùng để khởi tạo các service, repository, controller
 
-
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
       statusBarBrightness: Brightness.dark,
       statusBarIconBrightness: Brightness.dark,
     ));
-
 
     EasyLoading.instance
       ..displayDuration = const Duration(milliseconds: 1500)
@@ -51,29 +48,52 @@ void main() {
   });
 
   setUp(() async {
-    controller = PlayTrueFalseController();
-
-    controller.onInit();
+    controller = playQuizController();
     controller.currentQuestion = "5 + 8 = ?".obs;
-    controller.correctAnswer = false.obs;
-    controller.currentOptions = List<bool>.generate(2, (index) => true).obs;
-    controller.isCorrect = false.obs;
+    controller.correctAnswer = 13;
+    controller.currentOptions = List<int>.generate(4, (index) => 0).obs;
+    controller.isCorrect = true;
     controller.answerColors = <int, Color>{}.obs;
     controller.count = 1.obs;
     controller.countWrong = 0.obs;
     controller.countCorrect = 0.obs;
     controller.countSkip = 0.obs;
-    controller.arguments = {
+    final Map<String, dynamic> arguments = {
       'level': "Easy",
-      'route': "/play_true_false",
-      'title': "True or False",
+      'route': "/play_quiz",
+      'title': "Quiz",
     };
-    controller.rangeRandom = 10;
+
+    controller.route = arguments['route'];
+    controller.title = arguments['title'];
+    controller.isSkip = true;
     controller.textLevel = ''.obs;
+    controller.isShowResult = false.obs;
     controller.levelAdd = 1;
-    controller.color = ColorResources.WHITE.obs;
-    controller.isEnable = true.obs;
-    Get.testMode = true;
+  });
+
+  group("Skip question", () {
+    test('should skip question', () {
+      // Arrange
+      controller.count = 1.obs;
+      controller.countSkip = 0.obs;
+      controller.skipQuestion();
+      // Act
+      // Assert
+      expect(controller.countSkip.value, 1);
+      expect(controller.count.value, 2);
+    });
+
+    test('skip question reset when 10', () {
+      // Arrange
+      controller.count = 10.obs;
+      controller.countSkip = 1.obs;
+      controller.skipQuestion();
+      // Act
+      // Assert
+      expect(controller.countSkip.value, 0);
+      expect(controller.count.value, 1);
+    });
   });
 
   group("check level", () {
@@ -116,70 +136,31 @@ void main() {
     });
   });
 
-  group("check answer", () {
-    test('Check Answer Test - Correct Answer', () {
-      controller.countCorrect = 0.obs;
-      controller.countWrong = 0.obs;
-      // Arrange
-      controller.currentQuestion = "5 + 5 = 10".obs;
-      controller.correctAnswer.value = true;
-
-      // Act
-      controller.checkLevel(controller.level);
-      controller.checkAnswer(true);
-
-      // Assert
-      expect(controller.countCorrect.value, 1);
-      expect(controller.countWrong.value, 0);
-      expect(controller.color.value, ColorResources.HOME_BD_3);
-    });
-
-    test('Check Answer Test - Wrong Answer', () {
-      controller.countCorrect = 0.obs;
-      controller.countWrong = 0.obs;
-      // Arrange
-      controller.currentQuestion = "5 + 5 = 11".obs;
-      controller.correctAnswer.value = true;
-
-      // Act
-      controller.checkLevel(controller.level);
-      controller.checkAnswer(false);
-
-      // Assert
-      expect(controller.countCorrect.value, 0);
-      expect(controller.countWrong.value, 1);
-      expect(controller.color.value, ColorResources.PLAYFALSE);
-    });
-  });
-
-  group("UI test", () {
+  group("UI", () {
     test("Color level", () {
       expect(controller.getLevelColor(MATHLEVEL.EASY), Colors.green);
       expect(controller.getLevelColor(MATHLEVEL.MEDIUM), Colors.orange);
       expect(controller.getLevelColor(MATHLEVEL.HARD), Colors.red);
     });
-
-    test("Skip question", () {
-      controller.countSkip.value = 0;
-      controller.skipQuestion();
-      expect(controller.countSkip.value, 1);
-    });
-
-    test("Skip question when 10", () {
-      controller.count.value = 10;
-      controller.countSkip.value = 9;
-
-      // Act
-      controller.skipQuestion();
-
-      // Assert
-      expect(controller.countSkip.value, 0);
-      expect(controller.count.value, 1);
-    });
   });
 
-  tearDownAll(() => {
-        // Clear the mocks and reset the controller
-        Get.reset()
-      });
+  group("check answer", () {
+    test("check correct answer", () {
+      // Arrange
+      controller.currentOptions = List<int>.generate(4, (index) => 0).obs;
+      controller.correctAnswer = 13;
+      controller.currentOptions[0] = 13;
+      controller.count.value = 1;
+      controller.countCorrect.value = 0;
+
+      // Act
+      controller.checkAnswer(13);
+      // Assert
+
+      expect(controller.answerColors[13], Colors.green);
+      expect(controller.countCorrect.value, 1);
+      expect(controller.count.value, 2);
+    });
+    test("check wrong answer", () {});
+  });
 }
