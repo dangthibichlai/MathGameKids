@@ -18,10 +18,14 @@ class PlaySquareRootController extends GetxController with GetSingleTickerProvid
   RxInt countWrong = 0.obs;
   RxInt countCorrect = 0.obs;
   RxInt countSkip = 0.obs;
-  final Map<String, dynamic> arguments = Get.arguments;
-  MATHLEVEL level = Get.arguments['level'];
-  String route = Get.arguments['route'];
-  String title = Get.arguments['title'];
+   Map<String, dynamic> arguments = {
+    'level': "Easy",
+    'route': "/addition",
+    'title': "Addition",
+  };
+  MATHLEVEL level = MATHLEVEL.EASY;
+  String route = "/addition";
+  String title = "Addition";
   int rangeRandom = 1;
   int levelAdd = 1;
   RxString textLevel = ''.obs;

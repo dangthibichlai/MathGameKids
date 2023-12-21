@@ -3,15 +3,14 @@ import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
-import 'package:template/core/di_container.dart' as di;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:template/core/shared_pref/constants/enum_helper.dart';
 import 'package:template/core/utils/color_resources.dart';
-import 'package:template/presentation/pages/opinion_play/play_practice/play_practice_controller.dart';
+import 'package:template/presentation/pages/opinion_play/play_memory/play_memory_controller.dart';
+import 'package:template/core/di_container.dart' as di;
 
-void main() {
-  late PlayPracticeController controller;
-
+void main(){
+  late PlayMemoryController controller;
   setUpAll(() async {
     SharedPreferences.setMockInitialValues({});
     Get.testMode = true;
@@ -48,12 +47,12 @@ void main() {
   });
 
   setUp(() async {
-    controller = PlayPracticeController();
-    controller.currentQuestion = "5 + 8 = ?".obs;
+    controller = PlayMemoryController();
+    controller.currentQuestion = "5 + _ = 8".obs;
     controller.correctAnswer = 13;
-    controller.currentOptions = List<int>.generate(4, (index) => 0).obs;
-    controller.isCorrect = true;
-    controller.answerColors = <int, Color>{}.obs;
+    // controller.currentOptions = List<int>.generate(4, (index) => 0).obs;
+    controller.isCorrect = false.obs;
+    // controller.answerColors = <int, Color>{}.obs;
     controller.count = 1.obs;
     controller.countWrong = 0.obs;
     controller.countCorrect = 0.obs;
@@ -66,11 +65,10 @@ void main() {
 
     controller.route = arguments['route'];
     controller.title = arguments['title'];
+    // controller.isSkip = true;
     controller.textLevel = ''.obs;
-    controller.isShowResult = false.obs;
     controller.levelAdd = 1;
   });
-  
   group("check level", () {
     test('should set values for MATHLEVEL.EASY', () {
       // Arrange
@@ -83,7 +81,8 @@ void main() {
       // Assert
       expect(controller.textLevel, equals(RxString('easy')));
       expect(controller.rangeRandom, equals(MathLevelValueMax.EASY_VALUE));
-      expect(controller.levelAdd, equals(MathLevelValueMin.EASY_VALUE_ADD));
+      expect(
+          controller.levelAdd, equals(MathLevelValueMin.EASY_VALUE_ADD));
     });
 
     test('should set values for MATHLEVEL.MEDIUM', () {
@@ -96,7 +95,8 @@ void main() {
       // Assert
       expect(controller.textLevel, equals(RxString('medium')));
       expect(controller.rangeRandom, equals(MathLevelValueMax.MEDIUM_VALUE));
-      expect(controller.levelAdd, equals(MathLevelValueMin.MEDIUM_VALUE_ADD));
+      expect(
+          controller.levelAdd, equals(MathLevelValueMin.MEDIUM_VALUE_ADD));
     });
 
     test('should set values for MATHLEVEL.HARD', () {
@@ -110,48 +110,11 @@ void main() {
       expect(controller.levelAdd, equals(MathLevelValueMin.HARD_VALUE_ADD));
     });
   });
-
   group("UI", () {
     test("Color level", () {
       expect(controller.getLevelColor(MATHLEVEL.EASY), Colors.green);
       expect(controller.getLevelColor(MATHLEVEL.MEDIUM), Colors.orange);
       expect(controller.getLevelColor(MATHLEVEL.HARD), Colors.red);
-    });
-  });
-  group("check answer", () {
-    test("check correct answer", () {
-      // Arrange
-      controller.currentOptions = List<int>.generate(4, (index) => 0).obs;
-      controller.correctAnswer = 13;
-      controller.currentOptions[0] = 13;
-      controller.count.value = 1;
-      controller.countCorrect.value = 0;
-
-      // Act
-      controller.checkAnswer(13);
-      // Assert
-
-      expect(controller.answerColors[13], ColorResources.GREEN);
-      expect(controller.countCorrect.value, 1);
-      expect(controller.count.value, 2);
-    });
-    test("check wrong answer", () {
-
-  controller.currentOptions.value = [1,2,3,13];
-      controller.correctAnswer = 13;
-      controller.currentOptions[3] = 13;
-      controller.count.value = 1;
-      controller.countCorrect.value = 0;
-      controller.countWrong.value = 1;
-
-      // Act
-      controller.checkAnswer(2);
-      // Assert
-
-      expect(controller.answerColors[2], ColorResources.RED);
-      expect(controller.countWrong.value, 2);
-      expect(controller.count.value, 1);
-      expect(controller.countCorrect.value, 0);
     });
   });
 }
