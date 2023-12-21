@@ -19,11 +19,15 @@ class playQuizController extends GetxController {
   RxInt countWrong = 0.obs;
   RxInt countCorrect = 0.obs;
   RxInt countSkip = 0.obs;
-  final Map<String, dynamic> arguments = Get.arguments;
-  MATHLEVEL level = Get.arguments['level'];
-  String route = Get.arguments['route'];
-  String title = Get.arguments['title'];
-  bool isSkip = Get.arguments['isSkip'];
+  final Map<String, dynamic> arguments = {
+    'level': "Easy",
+    'route': "/play_quiz",
+    'title': "Quiz",
+  };
+  late MATHLEVEL level = arguments['level'];
+  late String route = arguments['route'];
+  late String title = arguments['title'];
+  bool isSkip = true;
   int rangeRandom = 10;
   RxString textLevel = ''.obs;
   RxBool isShowResult = false.obs;
@@ -68,6 +72,7 @@ class playQuizController extends GetxController {
       });
 
       isShowResult.value = true;
+      countSkip.value = 0;
       count = 1.obs;
     }
     generateQuestion(rangeRandom, route); // Tạo câu hỏi mới} //

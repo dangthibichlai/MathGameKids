@@ -1,6 +1,7 @@
 import 'package:connectivity/connectivity.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:template/core/export/core_export.dart';
 import 'package:template/core/services/google_admod_services/key_validate_ads.dart';
 import 'package:template/data/export/data_export.dart';
 import 'package:template/core/services/notification_services/local_notification_service.dart';
@@ -14,6 +15,8 @@ import 'shared_pref/shared_preference_helper.dart';
 final sl = GetIt.instance;
 
 Future<void> init() async {
+  sl.registerSingleton<KeyValidateAds>(KeyValidateAds());
+
   // External
   final sharedPreferences = await SharedPreferences.getInstance();
   sl.registerSingleton<SharedPreferenceHelper>(
@@ -28,11 +31,9 @@ Future<void> init() async {
 
   sl.registerLazySingleton(() => Connectivity());
 
-  print('TechMind01');
   // Key validate.
-  sl.registerSingleton<KeyValidateAds>(KeyValidateAds());
 
-  print('TechMind02');
+
 
   // Core
   sl.registerSingleton<DioClient>(DioClient());

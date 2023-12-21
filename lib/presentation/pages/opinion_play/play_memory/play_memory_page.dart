@@ -143,7 +143,7 @@ class PlayMemoryPage extends GetView<PlayMemoryController> {
                             controller.reset();
                             controller.onInit();
                             if (controller.isRegistered) {
-                              controller.sound.playClickGameSound();
+                              // controller.sound.playClickGameSound();
                             }
                           },
                         ),

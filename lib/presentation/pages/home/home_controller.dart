@@ -81,11 +81,11 @@ class HomeController extends GetxController
   void onInit() {
     super.onInit();
     WidgetsBinding.instance.addObserver(this);
-    _animationController = AnimationController(
-      duration: const Duration(milliseconds: 1000),
-      vsync: this,
-    )..repeat(reverse: true);
-    getSound();
+    // _animationController = AnimationController(
+    //   duration: const Duration(milliseconds: 1000),
+    //   vsync: this,
+    // )..repeat(reverse: true);
+    // getSound();
     log('premium: $sl<SharedPreferenceHelper>().getPremium.toString()');
   }
 
@@ -102,7 +102,7 @@ class HomeController extends GetxController
   @override
   void onClose() {
     WidgetsBinding.instance.removeObserver(this);
-    _animationController.dispose();
+  //  _animationController.dispose();
 
     super.dispose();
   }

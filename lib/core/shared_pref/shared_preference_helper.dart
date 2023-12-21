@@ -20,7 +20,6 @@ class SharedPreferenceHelper {
 
   // splash: ----------------------------------------------------------
   bool get getSplash {
-    print('aaaaa ${_sharedPreference.getBool(Preferences.isSplash)}');
     return _sharedPreference.getBool(Preferences.isSplash) ?? false;
   }
 

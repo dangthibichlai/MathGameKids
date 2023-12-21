@@ -6,12 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
 import 'package:template/config/routes/route_path/main_routh.dart';
-import 'package:template/core/export/core_export.dart';
 import 'package:template/core/shared_pref/constants/enum_helper.dart';
 import 'package:template/presentation/widgets/controller/sound_controller.dart';
 
-class PlayPracticeController extends GetxController with WidgetsBindingObserver {
-  final KeyValidateAds keyValidateAds = GetIt.I.get<KeyValidateAds>();
+import '../../../../core/export/core_export.dart';
+
+class PlayPracticeController extends GetxController
+    with WidgetsBindingObserver {
   // ignore_for_file: unnecessary_statements, avoid_bool_literals_in_conditional_expressions
 
   // 1-9 : easy
@@ -20,15 +21,25 @@ class PlayPracticeController extends GetxController with WidgetsBindingObserver 
   RxString currentQuestion = "5 + 8 = ?".obs;
   int correctAnswer = 13;
   RxList<int> currentOptions = List<int>.generate(4, (index) => 0).obs;
-  final RxMap<int, Color> answerColors = <int, Color>{}.obs;
+  RxMap<int, Color> answerColors = <int, Color>{}.obs;
   RxInt count = 1.obs;
+  bool isCorrect = true;
+
   RxInt countWrong = 0.obs;
   RxInt countCorrect = 0.obs;
   RxInt countSkip = 0.obs;
-  final Map<String, dynamic> arguments = Get.arguments;
-  MATHLEVEL level = Get.arguments['level'];
-  String route = Get.arguments['route'];
-  String title = Get.arguments['title'];
+  RxInt num1 = 0.obs;
+  RxInt num2 = 0.obs;
+
+  Map<String, dynamic> arguments = {
+    'level': "Easy",
+    'route': "/addition",
+    'title': "Addition",
+  };
+  // MATHLEVEL level = Get.arguments['level'];
+  MATHLEVEL level = MATHLEVEL.EASY;
+  String route = "/addition";
+  String title = "Addition";
   int rangeRandom = 10;
   RxString textLevel = ''.obs;
   RxBool isShowResult = false.obs;
@@ -41,6 +52,8 @@ class PlayPracticeController extends GetxController with WidgetsBindingObserver 
     super.onInit();
 
     print('TechMind run h');
+    answerColors = <int, Color>{}.obs;
+    isCorrect = true;
 
     // textLevel = RxString(level.name);
     checkLevel(level);
@@ -75,6 +88,8 @@ class PlayPracticeController extends GetxController with WidgetsBindingObserver 
       if (Get.isRegistered<SoundController>()) {
         Get.find<SoundController>().playAnswerTrueSound();
       }
+      isCorrect = true;
+
       answerColors[selectedAnswer] = ColorResources.GREEN;
       countCorrect++;
       count++;
@@ -100,6 +115,8 @@ class PlayPracticeController extends GetxController with WidgetsBindingObserver 
       if (Get.isRegistered<SoundController>()) {
         Get.find<SoundController>().playAnswerFalseSound();
       }
+      isCorrect = false;
+
       answerColors[selectedAnswer] = ColorResources.RED;
       answerColors.refresh();
       countWrong++;
@@ -110,7 +127,7 @@ class PlayPracticeController extends GetxController with WidgetsBindingObserver 
   void checkLevel(MATHLEVEL level) {
     switch (level) {
       case MATHLEVEL.EASY:
-        textLevel = RxString('easy'.tr);
+        textLevel = RxString('hard'.tr);
         rangeRandom = MathLevelValueMax.EASY_VALUE;
         levelAdd = MathLevelValueMin.EASY_VALUE_ADD;
 
@@ -138,7 +155,7 @@ class PlayPracticeController extends GetxController with WidgetsBindingObserver 
     int num1 = random.nextInt(level) + levelAdd;
     int num2 = random.nextInt(level) + levelAdd;
     print('num1 is: $num1');
-    print('num1 is: $num2');
+    print('num2 is: $num2');
     print('route is: $route');
     switch (route) {
       case MainRouters.ADDITION:
@@ -178,12 +195,13 @@ class PlayPracticeController extends GetxController with WidgetsBindingObserver 
     currentQuestion.value = '$num1 $routeOperation $num2 = ?';
     currentOptions.clear();
     currentOptions.add(correctAnswer);
-    print('num1 is: $correctAnswer');
+    print('correct is: $correctAnswer');
 
     while (currentOptions.length < 4) {
       int option = random.nextInt(level * 2) + levelAdd;
       if (correctAnswer.toString().length > 2) {
-        option = random.nextInt(levelAdd) + correctAnswer; // giảm miền giá trị của đáp án với hard
+        option = random.nextInt(levelAdd) +
+            correctAnswer; // giảm miền giá trị của đáp án với hard
       }
       if (!currentOptions.contains(option)) {
         currentOptions.add(option);
@@ -203,4 +221,6 @@ class PlayPracticeController extends GetxController with WidgetsBindingObserver 
         return Colors.red;
     }
   }
+
+  
 }

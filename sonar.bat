@@ -1,6 +1,6 @@
 @echo off
 
-call flutter pub get
+@REM call flutter pub get
 call flutter test
 call flutter test --machine --coverage > tests.output
 

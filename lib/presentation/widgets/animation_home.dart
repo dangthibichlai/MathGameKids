@@ -43,7 +43,7 @@ class _GentleShakeImageState extends State<GentleShakeImage>
           milliseconds: widget.miliAnimation ??
               3000), // Increase duration for slower shake
       vsync: this,
-    )..repeat(reverse: true);
+    );
 
     _shakeAnimation =
         Tween<double>(begin: widget.begin ?? -0.1, end: widget.end ?? 0.1)
