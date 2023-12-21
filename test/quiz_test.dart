@@ -179,6 +179,20 @@ void main() {
       expect(controller.countCorrect.value, 0);
       expect(controller.count.value, 2);
     });
+    test("check answer when 10", () {
+      controller.currentOptions = List<int>.generate(4, (index) => 0).obs;
+      controller.correctAnswer = 13;
+      controller.currentOptions[0] = 13;
+      controller.count.value = 10;
+      controller.countCorrect.value = 0;
+
+      // Act
+      controller.checkAnswer(13);
+      // Assert
+      expect(controller.answerColors, null);
+      expect(controller.answerColors[13], Colors.green);
+      expect(controller.count.value, 1);
+    });
   });
 
   group("generate question ", () {
@@ -371,7 +385,16 @@ void main() {
       expect(
           controller.currentOptions.contains(controller.correctAnswer), true);
     });
-
-    
+  });
+  test("onClose", () {
+    controller.onClose();
+    expect(controller.currentOptions, [0, 0, 0, 0]);
+    expect(controller.correctAnswer, 13);
+    expect(controller.isCorrect, true);
+    expect(controller.answerColors, <int, Color>{}.obs);
+    expect(controller.count, 1.obs);
+    expect(controller.countWrong, 0.obs);
+    expect(controller.countCorrect, 0.obs);
+    expect(controller.countSkip, 0.obs);
   });
 }
