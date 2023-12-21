@@ -55,12 +55,14 @@ class PlayTrueFalseController extends GetxController
       if (Get.isRegistered<SoundController>()) {
         Get.find<SoundController>().closeSoundGame();
       }
+      count.value = 1;
       //Nếu đã trả lời đủ 10 câu hỏi, chuyển đến trang kết quả
       Get.offAndToNamed(MainRouters.RESULT, arguments: {
         'countWrong': countWrong.value,
         'countCorrect': countCorrect.value,
         'countSkip': countSkip.value,
       });
+      countSkip.value = 0;
     }
 
     generateQuestion(rangeRandom, route);

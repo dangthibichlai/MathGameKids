@@ -158,6 +158,32 @@ void main() {
     });
   });
 
+  group("UI test", () {
+    test("Color level", () {
+      expect(controller.getLevelColor(MATHLEVEL.EASY), Colors.green);
+      expect(controller.getLevelColor(MATHLEVEL.MEDIUM), Colors.orange);
+      expect(controller.getLevelColor(MATHLEVEL.HARD), Colors.red);
+    });
+
+    test("Skip question", () {
+      controller.countSkip.value = 0;
+      controller.skipQuestion();
+      expect(controller.countSkip.value, 1);
+    });
+
+    test("Skip question when 10", () {
+      controller.count.value = 10;
+      controller.countSkip.value = 9;
+
+      // Act
+      controller.skipQuestion();
+
+      // Assert
+      expect(controller.countSkip.value, 0);
+      expect(controller.count.value, 1);
+    });
+  });
+
   tearDownAll(() => {
         // Clear the mocks and reset the controller
         Get.reset()
