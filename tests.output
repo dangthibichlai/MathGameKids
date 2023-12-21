@@ -1,4 +1,4 @@
-{"protocolVersion":"0.1.1","runnerVersion":null,"pid":25784,"type":"start","time":0}
+{"protocolVersion":"0.1.1","runnerVersion":null,"pid":21416,"type":"start","time":0}
 {"suite":{"id":0,"platform":"vm","path":"D:/Flutter/MathGameKids/test/fraction_test.dart"},"type":"suite","time":0}
 {"test":{"id":1,"name":"loading D:/Flutter/MathGameKids/test/fraction_test.dart","suiteID":0,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":0}
 {"suite":{"id":2,"platform":"vm","path":"D:/Flutter/MathGameKids/test/quiz_test.dart"},"type":"suite","time":3}
@@ -9,176 +9,181 @@
 {"test":{"id":7,"name":"loading D:/Flutter/MathGameKids/test/true_false_test.dart","suiteID":6,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":4}
 {"count":4,"time":4,"type":"allSuites"}
 
-[{"event":"test.startedProcess","params":{"vmServiceUri":"http://127.0.0.1:62834/zeRRzFXHGls=/","observatoryUri":"http://127.0.0.1:62834/zeRRzFXHGls=/"}}]
-{"testID":1,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":2326}
-{"group":{"id":8,"suiteID":0,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":11,"line":null,"column":null,"url":null},"type":"group","time":2330}
-{"group":{"id":9,"suiteID":0,"parentID":8,"name":"checkLevel","metadata":{"skip":false,"skipReason":null},"testCount":3,"line":46,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/fraction_test.dart"},"type":"group","time":2330}
-{"test":{"id":10,"name":"checkLevel should set values for MATHLEVEL.EASY","suiteID":0,"groupIDs":[8,9],"metadata":{"skip":false,"skipReason":null},"line":47,"column":7,"url":"file:///D:/Flutter/MathGameKids/test/fraction_test.dart"},"type":"testStart","time":2331}
-{"testID":10,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2412}
-{"test":{"id":11,"name":"checkLevel should set values for MATHLEVEL.MEDIUM","suiteID":0,"groupIDs":[8,9],"metadata":{"skip":false,"skipReason":null},"line":60,"column":7,"url":"file:///D:/Flutter/MathGameKids/test/fraction_test.dart"},"type":"testStart","time":2413}
-{"testID":11,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2416}
-{"test":{"id":12,"name":"checkLevel should set values for MATHLEVEL.HARD","suiteID":0,"groupIDs":[8,9],"metadata":{"skip":false,"skipReason":null},"line":73,"column":7,"url":"file:///D:/Flutter/MathGameKids/test/fraction_test.dart"},"type":"testStart","time":2417}
-{"testID":12,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2420}
-{"test":{"id":13,"name":"Skip Question Test - click skip button","suiteID":0,"groupIDs":[8],"metadata":{"skip":false,"skipReason":null},"line":86,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/fraction_test.dart"},"type":"testStart","time":2420}
-{"testID":13,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2425}
-{"test":{"id":14,"name":"Skip Question Test - click skip when end of question","suiteID":0,"groupIDs":[8],"metadata":{"skip":false,"skipReason":null},"line":98,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/fraction_test.dart"},"type":"testStart","time":2425}
-{"testID":14,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2432}
-{"test":{"id":15,"name":"Check Answer Test - Correct Answer","suiteID":0,"groupIDs":[8],"metadata":{"skip":false,"skipReason":null},"line":111,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/fraction_test.dart"},"type":"testStart","time":2432}
-{"testID":15,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2439}
-{"test":{"id":16,"name":"Check Answer Test - Incorrect Answer","suiteID":0,"groupIDs":[8],"metadata":{"skip":false,"skipReason":null},"line":132,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/fraction_test.dart"},"type":"testStart","time":2439}
-{"testID":16,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2442}
-{"test":{"id":17,"name":"Generate Question Test","suiteID":0,"groupIDs":[8],"metadata":{"skip":false,"skipReason":null},"line":154,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/fraction_test.dart"},"type":"testStart","time":2443}
-{"testID":17,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2446}
-{"test":{"id":18,"name":"Check in ResultPage","suiteID":0,"groupIDs":[8],"metadata":{"skip":false,"skipReason":null},"line":167,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/fraction_test.dart"},"type":"testStart","time":2446}
-{"testID":18,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2450}
-{"test":{"id":19,"name":"Check generate value for level MEDIUM","suiteID":0,"groupIDs":[8],"metadata":{"skip":false,"skipReason":null},"line":192,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/fraction_test.dart"},"type":"testStart","time":2451}
-{"testID":19,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2453}
-{"test":{"id":20,"name":"Is generate question  following by checkLevel Medium","suiteID":0,"groupIDs":[8],"metadata":{"skip":false,"skipReason":null},"line":206,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/fraction_test.dart"},"type":"testStart","time":2454}
-{"testID":20,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2457}
+[{"event":"test.startedProcess","params":{"vmServiceUri":"http://127.0.0.1:64494/TwBECVtXySU=/","observatoryUri":"http://127.0.0.1:64494/TwBECVtXySU=/"}}]
+{"testID":1,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":2358}
+{"group":{"id":8,"suiteID":0,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":11,"line":null,"column":null,"url":null},"type":"group","time":2360}
+{"group":{"id":9,"suiteID":0,"parentID":8,"name":"checkLevel","metadata":{"skip":false,"skipReason":null},"testCount":3,"line":46,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/fraction_test.dart"},"type":"group","time":2362}
+{"test":{"id":10,"name":"checkLevel should set values for MATHLEVEL.EASY","suiteID":0,"groupIDs":[8,9],"metadata":{"skip":false,"skipReason":null},"line":47,"column":7,"url":"file:///D:/Flutter/MathGameKids/test/fraction_test.dart"},"type":"testStart","time":2362}
+{"testID":10,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2441}
+{"test":{"id":11,"name":"checkLevel should set values for MATHLEVEL.MEDIUM","suiteID":0,"groupIDs":[8,9],"metadata":{"skip":false,"skipReason":null},"line":60,"column":7,"url":"file:///D:/Flutter/MathGameKids/test/fraction_test.dart"},"type":"testStart","time":2446}
+{"testID":11,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2450}
+{"test":{"id":12,"name":"checkLevel should set values for MATHLEVEL.HARD","suiteID":0,"groupIDs":[8,9],"metadata":{"skip":false,"skipReason":null},"line":73,"column":7,"url":"file:///D:/Flutter/MathGameKids/test/fraction_test.dart"},"type":"testStart","time":2450}
+{"testID":12,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2454}
+{"test":{"id":13,"name":"Skip Question Test - click skip button","suiteID":0,"groupIDs":[8],"metadata":{"skip":false,"skipReason":null},"line":86,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/fraction_test.dart"},"type":"testStart","time":2454}
+{"testID":13,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2459}
+{"test":{"id":14,"name":"Skip Question Test - click skip when end of question","suiteID":0,"groupIDs":[8],"metadata":{"skip":false,"skipReason":null},"line":98,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/fraction_test.dart"},"type":"testStart","time":2459}
+{"testID":14,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2465}
+{"test":{"id":15,"name":"Check Answer Test - Correct Answer","suiteID":0,"groupIDs":[8],"metadata":{"skip":false,"skipReason":null},"line":111,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/fraction_test.dart"},"type":"testStart","time":2466}
+{"testID":15,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2472}
+{"test":{"id":16,"name":"Check Answer Test - Incorrect Answer","suiteID":0,"groupIDs":[8],"metadata":{"skip":false,"skipReason":null},"line":132,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/fraction_test.dart"},"type":"testStart","time":2473}
+{"testID":16,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2476}
+{"test":{"id":17,"name":"Generate Question Test","suiteID":0,"groupIDs":[8],"metadata":{"skip":false,"skipReason":null},"line":154,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/fraction_test.dart"},"type":"testStart","time":2477}
+{"testID":17,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2480}
+{"test":{"id":18,"name":"Check in ResultPage","suiteID":0,"groupIDs":[8],"metadata":{"skip":false,"skipReason":null},"line":167,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/fraction_test.dart"},"type":"testStart","time":2480}
+{"testID":18,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2484}
+{"test":{"id":19,"name":"Check generate value for level MEDIUM","suiteID":0,"groupIDs":[8],"metadata":{"skip":false,"skipReason":null},"line":192,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/fraction_test.dart"},"type":"testStart","time":2484}
+{"testID":19,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2487}
+{"test":{"id":20,"name":"Is generate question  following by checkLevel Medium","suiteID":0,"groupIDs":[8],"metadata":{"skip":false,"skipReason":null},"line":206,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/fraction_test.dart"},"type":"testStart","time":2488}
+{"testID":20,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2492}
 
-[{"event":"test.startedProcess","params":{"vmServiceUri":"http://127.0.0.1:62841/oECggDDWJvM=/","observatoryUri":"http://127.0.0.1:62841/oECggDDWJvM=/"}}]
-{"testID":3,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":2778}
-{"group":{"id":21,"suiteID":2,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":19,"line":null,"column":null,"url":null},"type":"group","time":2779}
-{"test":{"id":22,"name":"(setUpAll)","suiteID":2,"groupIDs":[21],"metadata":{"skip":false,"skipReason":null},"line":16,"column":3,"url":"file:///D:/Flutter/MathGameKids/test/quiz_test.dart"},"type":"testStart","time":2779}
-{"testID":22,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":2880}
-{"group":{"id":23,"suiteID":2,"parentID":21,"name":"Skip question","metadata":{"skip":false,"skipReason":null},"testCount":2,"line":76,"column":3,"url":"file:///D:/Flutter/MathGameKids/test/quiz_test.dart"},"type":"group","time":2880}
-{"test":{"id":24,"name":"Skip question should skip question","suiteID":2,"groupIDs":[21,23],"metadata":{"skip":false,"skipReason":null},"line":77,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/quiz_test.dart"},"type":"testStart","time":2880}
-{"testID":24,"messageType":"print","message":"num1 is: 10","type":"print","time":2904}
-{"testID":24,"messageType":"print","message":"num1 is: 1","type":"print","time":2905}
-{"testID":24,"messageType":"print","message":"num1 is: 13","type":"print","time":2905}
-{"testID":24,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2905}
-{"test":{"id":25,"name":"Skip question skip question reset when 10","suiteID":2,"groupIDs":[21,23],"metadata":{"skip":false,"skipReason":null},"line":88,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/quiz_test.dart"},"type":"testStart","time":2906}
-{"testID":25,"messageType":"print","message":"num1 is: 2","type":"print","time":2915}
-{"testID":25,"messageType":"print","message":"num1 is: 1","type":"print","time":2917}
-{"testID":25,"messageType":"print","message":"num1 is: 13","type":"print","time":2917}
-{"testID":25,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2917}
-{"group":{"id":26,"suiteID":2,"parentID":21,"name":"check level","metadata":{"skip":false,"skipReason":null},"testCount":3,"line":100,"column":3,"url":"file:///D:/Flutter/MathGameKids/test/quiz_test.dart"},"type":"group","time":2918}
-{"test":{"id":27,"name":"check level should set values for MATHLEVEL.EASY","suiteID":2,"groupIDs":[21,26],"metadata":{"skip":false,"skipReason":null},"line":101,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/quiz_test.dart"},"type":"testStart","time":2918}
-{"testID":27,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2923}
-{"test":{"id":28,"name":"check level should set values for MATHLEVEL.MEDIUM","suiteID":2,"groupIDs":[21,26],"metadata":{"skip":false,"skipReason":null},"line":115,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/quiz_test.dart"},"type":"testStart","time":2923}
-{"testID":28,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2927}
-{"test":{"id":29,"name":"check level should set values for MATHLEVEL.HARD","suiteID":2,"groupIDs":[21,26],"metadata":{"skip":false,"skipReason":null},"line":128,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/quiz_test.dart"},"type":"testStart","time":2928}
-{"testID":29,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2931}
-{"group":{"id":30,"suiteID":2,"parentID":21,"name":"UI","metadata":{"skip":false,"skipReason":null},"testCount":1,"line":140,"column":3,"url":"file:///D:/Flutter/MathGameKids/test/quiz_test.dart"},"type":"group","time":2931}
-{"test":{"id":31,"name":"UI Color level","suiteID":2,"groupIDs":[21,30],"metadata":{"skip":false,"skipReason":null},"line":141,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/quiz_test.dart"},"type":"testStart","time":2931}
-{"testID":31,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2936}
-{"group":{"id":32,"suiteID":2,"parentID":21,"name":"check answer","metadata":{"skip":false,"skipReason":null},"testCount":2,"line":148,"column":3,"url":"file:///D:/Flutter/MathGameKids/test/quiz_test.dart"},"type":"group","time":2936}
-{"test":{"id":33,"name":"check answer check correct answer","suiteID":2,"groupIDs":[21,32],"metadata":{"skip":false,"skipReason":null},"line":149,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/quiz_test.dart"},"type":"testStart","time":2936}
-{"testID":33,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2941}
-{"test":{"id":34,"name":"check answer check wrong answer","suiteID":2,"groupIDs":[21,32],"metadata":{"skip":false,"skipReason":null},"line":165,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/quiz_test.dart"},"type":"testStart","time":2941}
-{"testID":34,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2944}
-{"group":{"id":35,"suiteID":2,"parentID":21,"name":"generate question ","metadata":{"skip":false,"skipReason":null},"testCount":11,"line":184,"column":3,"url":"file:///D:/Flutter/MathGameKids/test/quiz_test.dart"},"type":"group","time":2945}
-{"test":{"id":36,"name":"generate question  generate question is correct easy and addition","suiteID":2,"groupIDs":[21,35],"metadata":{"skip":false,"skipReason":null},"line":185,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/quiz_test.dart"},"type":"testStart","time":2945}
-{"testID":36,"messageType":"print","message":"num1 is: 5","type":"print","time":2948}
-{"testID":36,"messageType":"print","message":"num1 is: 2","type":"print","time":2949}
-{"testID":36,"messageType":"print","message":"num1 is: 7","type":"print","time":2949}
-{"testID":36,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2949}
-{"test":{"id":37,"name":"generate question  generate question is correct easy and addition","suiteID":2,"groupIDs":[21,35],"metadata":{"skip":false,"skipReason":null},"line":202,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/quiz_test.dart"},"type":"testStart","time":2949}
-{"testID":37,"messageType":"print","message":"num1 is: 1","type":"print","time":2955}
-{"testID":37,"messageType":"print","message":"num1 is: 6","type":"print","time":2956}
-{"testID":37,"messageType":"print","message":"num1 is: 7","type":"print","time":2957}
-{"testID":37,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2958}
-{"test":{"id":38,"name":"generate question  generate question is correct easy and subtraction","suiteID":2,"groupIDs":[21,35],"metadata":{"skip":false,"skipReason":null},"line":219,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/quiz_test.dart"},"type":"testStart","time":2958}
-{"testID":38,"messageType":"print","message":"num1 is: 1","type":"print","time":2965}
-{"testID":38,"messageType":"print","message":"num1 is: 7","type":"print","time":2965}
-{"testID":38,"messageType":"print","message":"num1 is: 0","type":"print","time":2966}
-{"testID":38,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2966}
-{"test":{"id":39,"name":"generate question  generate question is correct easy and multiplication","suiteID":2,"groupIDs":[21,35],"metadata":{"skip":false,"skipReason":null},"line":236,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/quiz_test.dart"},"type":"testStart","time":2966}
-{"testID":39,"messageType":"print","message":"num1 is: 2","type":"print","time":2971}
-{"testID":39,"messageType":"print","message":"num1 is: 1","type":"print","time":2971}
-{"testID":39,"messageType":"print","message":"num1 is: 5","type":"print","time":2971}
-{"testID":39,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2972}
-{"test":{"id":40,"name":"generate question  generate question is correct easy and division","suiteID":2,"groupIDs":[21,35],"metadata":{"skip":false,"skipReason":null},"line":253,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/quiz_test.dart"},"type":"testStart","time":2972}
-{"testID":40,"messageType":"print","message":"num1 is: 7","type":"print","time":2974}
-{"testID":40,"messageType":"print","message":"num1 is: 6","type":"print","time":2975}
-{"testID":40,"messageType":"print","message":"num1 is: 2","type":"print","time":2975}
-{"testID":40,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2975}
-{"test":{"id":41,"name":"generate question  generate question is correct medium and addition","suiteID":2,"groupIDs":[21,35],"metadata":{"skip":false,"skipReason":null},"line":270,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/quiz_test.dart"},"type":"testStart","time":2976}
-{"testID":41,"messageType":"print","message":"num1 is: 4","type":"print","time":2978}
-{"testID":41,"messageType":"print","message":"num1 is: 5","type":"print","time":2978}
-{"testID":41,"messageType":"print","message":"num1 is: 9","type":"print","time":2979}
-{"testID":41,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2979}
-{"test":{"id":42,"name":"generate question  generate question is correct medium and subtraction","suiteID":2,"groupIDs":[21,35],"metadata":{"skip":false,"skipReason":null},"line":287,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/quiz_test.dart"},"type":"testStart","time":2980}
-{"testID":42,"messageType":"print","message":"num1 is: 1","type":"print","time":2982}
-{"testID":42,"messageType":"print","message":"num1 is: 4","type":"print","time":2983}
-{"testID":42,"messageType":"print","message":"num1 is: 3","type":"print","time":2983}
-{"testID":42,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2983}
-{"test":{"id":43,"name":"generate question  generate question is correct medium and multiplication","suiteID":2,"groupIDs":[21,35],"metadata":{"skip":false,"skipReason":null},"line":304,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/quiz_test.dart"},"type":"testStart","time":2984}
-{"testID":43,"messageType":"print","message":"num1 is: 6","type":"print","time":2987}
-{"testID":43,"messageType":"print","message":"num1 is: 7","type":"print","time":2987}
-{"testID":43,"messageType":"print","message":"num1 is: 7","type":"print","time":2987}
-{"testID":43,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2988}
-{"test":{"id":44,"name":"generate question  generate question is correct medium and division","suiteID":2,"groupIDs":[21,35],"metadata":{"skip":false,"skipReason":null},"line":321,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/quiz_test.dart"},"type":"testStart","time":2988}
-{"testID":44,"messageType":"print","message":"num1 is: 2","type":"print","time":2990}
-{"testID":44,"messageType":"print","message":"num1 is: 4","type":"print","time":2991}
-{"testID":44,"messageType":"print","message":"num1 is: 5","type":"print","time":2991}
-{"testID":44,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2992}
-{"test":{"id":45,"name":"generate question  generate question is correct hard and addition","suiteID":2,"groupIDs":[21,35],"metadata":{"skip":false,"skipReason":null},"line":339,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/quiz_test.dart"},"type":"testStart","time":2992}
-{"testID":45,"messageType":"print","message":"num1 is: 5","type":"print","time":2996}
-{"testID":45,"messageType":"print","message":"num1 is: 4","type":"print","time":2996}
-{"testID":45,"messageType":"print","message":"num1 is: 9","type":"print","time":2996}
-{"testID":45,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2996}
-{"test":{"id":46,"name":"generate question  generate question is correct hard and subtraction","suiteID":2,"groupIDs":[21,35],"metadata":{"skip":false,"skipReason":null},"line":357,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/quiz_test.dart"},"type":"testStart","time":2997}
-{"testID":46,"messageType":"print","message":"num1 is: 3","type":"print","time":2999}
-{"testID":46,"messageType":"print","message":"num1 is: 2","type":"print","time":2999}
-{"testID":46,"messageType":"print","message":"num1 is: 1","type":"print","time":2999}
-{"testID":46,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":3000}
-{"test":{"id":47,"name":"(tearDownAll)","suiteID":2,"groupIDs":[21],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":3000}
-{"testID":47,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":3002}
+[{"event":"test.startedProcess","params":{"vmServiceUri":"http://127.0.0.1:64501/woh1Sm8Tk4U=/","observatoryUri":"http://127.0.0.1:64501/woh1Sm8Tk4U=/"}}]
+{"testID":3,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":2938}
+{"group":{"id":21,"suiteID":2,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":21,"line":null,"column":null,"url":null},"type":"group","time":2938}
+{"test":{"id":22,"name":"(setUpAll)","suiteID":2,"groupIDs":[21],"metadata":{"skip":false,"skipReason":null},"line":16,"column":3,"url":"file:///D:/Flutter/MathGameKids/test/quiz_test.dart"},"type":"testStart","time":2939}
+{"testID":22,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":3033}
+{"group":{"id":23,"suiteID":2,"parentID":21,"name":"Skip question","metadata":{"skip":false,"skipReason":null},"testCount":2,"line":76,"column":3,"url":"file:///D:/Flutter/MathGameKids/test/quiz_test.dart"},"type":"group","time":3034}
+{"test":{"id":24,"name":"Skip question should skip question","suiteID":2,"groupIDs":[21,23],"metadata":{"skip":false,"skipReason":null},"line":77,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/quiz_test.dart"},"type":"testStart","time":3034}
+{"testID":24,"messageType":"print","message":"num1 is: 1","type":"print","time":3057}
+{"testID":24,"messageType":"print","message":"num1 is: 8","type":"print","time":3058}
+{"testID":24,"messageType":"print","message":"num1 is: 13","type":"print","time":3058}
+{"testID":24,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":3058}
+{"test":{"id":25,"name":"Skip question skip question reset when 10","suiteID":2,"groupIDs":[21,23],"metadata":{"skip":false,"skipReason":null},"line":88,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/quiz_test.dart"},"type":"testStart","time":3059}
+{"testID":25,"messageType":"print","message":"num1 is: 9","type":"print","time":3066}
+{"testID":25,"messageType":"print","message":"num1 is: 7","type":"print","time":3066}
+{"testID":25,"messageType":"print","message":"num1 is: 13","type":"print","time":3067}
+{"testID":25,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":3068}
+{"group":{"id":26,"suiteID":2,"parentID":21,"name":"check level","metadata":{"skip":false,"skipReason":null},"testCount":3,"line":100,"column":3,"url":"file:///D:/Flutter/MathGameKids/test/quiz_test.dart"},"type":"group","time":3068}
+{"test":{"id":27,"name":"check level should set values for MATHLEVEL.EASY","suiteID":2,"groupIDs":[21,26],"metadata":{"skip":false,"skipReason":null},"line":101,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/quiz_test.dart"},"type":"testStart","time":3068}
+{"testID":27,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":3073}
+{"test":{"id":28,"name":"check level should set values for MATHLEVEL.MEDIUM","suiteID":2,"groupIDs":[21,26],"metadata":{"skip":false,"skipReason":null},"line":115,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/quiz_test.dart"},"type":"testStart","time":3073}
+{"testID":28,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":3076}
+{"test":{"id":29,"name":"check level should set values for MATHLEVEL.HARD","suiteID":2,"groupIDs":[21,26],"metadata":{"skip":false,"skipReason":null},"line":128,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/quiz_test.dart"},"type":"testStart","time":3076}
+{"testID":29,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":3079}
+{"group":{"id":30,"suiteID":2,"parentID":21,"name":"UI","metadata":{"skip":false,"skipReason":null},"testCount":1,"line":140,"column":3,"url":"file:///D:/Flutter/MathGameKids/test/quiz_test.dart"},"type":"group","time":3079}
+{"test":{"id":31,"name":"UI Color level","suiteID":2,"groupIDs":[21,30],"metadata":{"skip":false,"skipReason":null},"line":141,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/quiz_test.dart"},"type":"testStart","time":3079}
+{"testID":31,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":3085}
+{"group":{"id":32,"suiteID":2,"parentID":21,"name":"check answer","metadata":{"skip":false,"skipReason":null},"testCount":3,"line":148,"column":3,"url":"file:///D:/Flutter/MathGameKids/test/quiz_test.dart"},"type":"group","time":3085}
+{"test":{"id":33,"name":"check answer check correct answer","suiteID":2,"groupIDs":[21,32],"metadata":{"skip":false,"skipReason":null},"line":149,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/quiz_test.dart"},"type":"testStart","time":3085}
+{"testID":33,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":3090}
+{"test":{"id":34,"name":"check answer check wrong answer","suiteID":2,"groupIDs":[21,32],"metadata":{"skip":false,"skipReason":null},"line":165,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/quiz_test.dart"},"type":"testStart","time":3090}
+{"testID":34,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":3093}
+{"test":{"id":35,"name":"check answer check answer when 10","suiteID":2,"groupIDs":[21,32],"metadata":{"skip":false,"skipReason":null},"line":182,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/quiz_test.dart"},"type":"testStart","time":3094}
+{"testID":35,"error":"Expected: <null>\n  Actual: {13: MaterialColor:MaterialColor(primary value: Color(0xff4caf50))}\n","stackTrace":"package:matcher                                     expect\npackage:flutter_test/src/widget_tester.dart 458:18  expect\ntest\\quiz_test.dart 192:7                           main.<fn>.<fn>\n","isFailure":true,"type":"error","time":3130}
+{"testID":35,"result":"failure","skipped":false,"hidden":false,"type":"testDone","time":3130}
+{"group":{"id":36,"suiteID":2,"parentID":21,"name":"generate question ","metadata":{"skip":false,"skipReason":null},"testCount":11,"line":198,"column":3,"url":"file:///D:/Flutter/MathGameKids/test/quiz_test.dart"},"type":"group","time":3131}
+{"test":{"id":37,"name":"generate question  generate question is correct easy and addition","suiteID":2,"groupIDs":[21,36],"metadata":{"skip":false,"skipReason":null},"line":199,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/quiz_test.dart"},"type":"testStart","time":3131}
+{"testID":37,"messageType":"print","message":"num1 is: 5","type":"print","time":3136}
+{"testID":37,"messageType":"print","message":"num1 is: 2","type":"print","time":3136}
+{"testID":37,"messageType":"print","message":"num1 is: 7","type":"print","time":3136}
+{"testID":37,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":3136}
+{"test":{"id":38,"name":"generate question  generate question is correct easy and addition","suiteID":2,"groupIDs":[21,36],"metadata":{"skip":false,"skipReason":null},"line":216,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/quiz_test.dart"},"type":"testStart","time":3137}
+{"testID":38,"messageType":"print","message":"num1 is: 6","type":"print","time":3144}
+{"testID":38,"messageType":"print","message":"num1 is: 7","type":"print","time":3144}
+{"testID":38,"messageType":"print","message":"num1 is: 13","type":"print","time":3144}
+{"testID":38,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":3144}
+{"test":{"id":39,"name":"generate question  generate question is correct easy and subtraction","suiteID":2,"groupIDs":[21,36],"metadata":{"skip":false,"skipReason":null},"line":233,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/quiz_test.dart"},"type":"testStart","time":3145}
+{"testID":39,"messageType":"print","message":"num1 is: 3","type":"print","time":3150}
+{"testID":39,"messageType":"print","message":"num1 is: 6","type":"print","time":3150}
+{"testID":39,"messageType":"print","message":"num1 is: 1","type":"print","time":3150}
+{"testID":39,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":3150}
+{"test":{"id":40,"name":"generate question  generate question is correct easy and multiplication","suiteID":2,"groupIDs":[21,36],"metadata":{"skip":false,"skipReason":null},"line":250,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/quiz_test.dart"},"type":"testStart","time":3151}
+{"testID":40,"messageType":"print","message":"num1 is: 8","type":"print","time":3154}
+{"testID":40,"messageType":"print","message":"num1 is: 7","type":"print","time":3154}
 
-[{"event":"test.startedProcess","params":{"vmServiceUri":"http://127.0.0.1:62848/64g30-aZ-NY=/","observatoryUri":"http://127.0.0.1:62848/64g30-aZ-NY=/"}}]
-{"testID":5,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":3296}
-{"group":{"id":48,"suiteID":4,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":3,"line":null,"column":null,"url":null},"type":"group","time":3296}
-{"test":{"id":49,"name":"Checking - Is Splash in first loading","suiteID":4,"groupIDs":[48],"metadata":{"skip":false,"skipReason":null},"line":151,"column":5,"url":"package:flutter_test/src/widget_tester.dart","root_line":63,"root_column":5,"root_url":"file:///D:/Flutter/MathGameKids/test/router_test.dart"},"type":"testStart","time":3297}
-{"testID":49,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":3613}
-{"test":{"id":50,"name":"routing to home when it not first run","suiteID":4,"groupIDs":[48],"metadata":{"skip":false,"skipReason":null},"line":151,"column":5,"url":"package:flutter_test/src/widget_tester.dart","root_line":76,"root_column":3,"root_url":"file:///D:/Flutter/MathGameKids/test/router_test.dart"},"type":"testStart","time":3613}
+[{"event":"test.startedProcess","params":{"vmServiceUri":"http://127.0.0.1:64509/_9xYzqYm2ug=/","observatoryUri":"http://127.0.0.1:64509/_9xYzqYm2ug=/"}}]
+{"testID":40,"messageType":"print","message":"num1 is: 30","type":"print","time":3154}
+{"testID":40,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":3155}
+{"test":{"id":41,"name":"generate question  generate question is correct easy and division","suiteID":2,"groupIDs":[21,36],"metadata":{"skip":false,"skipReason":null},"line":267,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/quiz_test.dart"},"type":"testStart","time":3155}
+{"testID":41,"messageType":"print","message":"num1 is: 1","type":"print","time":3157}
+{"testID":41,"messageType":"print","message":"num1 is: 1","type":"print","time":3158}
+{"testID":41,"messageType":"print","message":"num1 is: 7","type":"print","time":3158}
+{"testID":41,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":3158}
+{"test":{"id":42,"name":"generate question  generate question is correct medium and addition","suiteID":2,"groupIDs":[21,36],"metadata":{"skip":false,"skipReason":null},"line":284,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/quiz_test.dart"},"type":"testStart","time":3159}
+{"testID":42,"messageType":"print","message":"num1 is: 8","type":"print","time":3162}
+{"testID":42,"messageType":"print","message":"num1 is: 7","type":"print","time":3162}
+{"testID":42,"messageType":"print","message":"num1 is: 15","type":"print","time":3162}
+{"testID":42,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":3163}
+{"test":{"id":43,"name":"generate question  generate question is correct medium and subtraction","suiteID":2,"groupIDs":[21,36],"metadata":{"skip":false,"skipReason":null},"line":301,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/quiz_test.dart"},"type":"testStart","time":3163}
+{"testID":43,"messageType":"print","message":"num1 is: 8","type":"print","time":3166}
+{"testID":43,"messageType":"print","message":"num1 is: 4","type":"print","time":3166}
+{"testID":43,"messageType":"print","message":"num1 is: 4","type":"print","time":3166}
+{"testID":43,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":3167}
+{"test":{"id":44,"name":"generate question  generate question is correct medium and multiplication","suiteID":2,"groupIDs":[21,36],"metadata":{"skip":false,"skipReason":null},"line":318,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/quiz_test.dart"},"type":"testStart","time":3167}
+{"testID":44,"messageType":"print","message":"num1 is: 8","type":"print","time":3169}
+{"testID":44,"messageType":"print","message":"num1 is: 1","type":"print","time":3170}
+{"testID":44,"messageType":"print","message":"num1 is: 12","type":"print","time":3170}
+{"testID":44,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":3170}
+{"test":{"id":45,"name":"generate question  generate question is correct medium and division","suiteID":2,"groupIDs":[21,36],"metadata":{"skip":false,"skipReason":null},"line":335,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/quiz_test.dart"},"type":"testStart","time":3170}
+{"testID":45,"messageType":"print","message":"num1 is: 2","type":"print","time":3172}
+{"testID":45,"messageType":"print","message":"num1 is: 7","type":"print","time":3173}
+{"testID":45,"messageType":"print","message":"num1 is: 5","type":"print","time":3173}
+{"testID":45,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":3173}
+{"test":{"id":46,"name":"generate question  generate question is correct hard and addition","suiteID":2,"groupIDs":[21,36],"metadata":{"skip":false,"skipReason":null},"line":353,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/quiz_test.dart"},"type":"testStart","time":3173}
+{"testID":46,"messageType":"print","message":"num1 is: 5","type":"print","time":3176}
+{"testID":46,"messageType":"print","message":"num1 is: 5","type":"print","time":3176}
+{"testID":46,"messageType":"print","message":"num1 is: 10","type":"print","time":3176}
+{"testID":46,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":3177}
+{"test":{"id":47,"name":"generate question  generate question is correct hard and subtraction","suiteID":2,"groupIDs":[21,36],"metadata":{"skip":false,"skipReason":null},"line":371,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/quiz_test.dart"},"type":"testStart","time":3177}
+{"testID":47,"messageType":"print","message":"num1 is: 5","type":"print","time":3180}
+{"testID":47,"messageType":"print","message":"num1 is: 5","type":"print","time":3180}
+{"testID":47,"messageType":"print","message":"num1 is: 0","type":"print","time":3180}
+{"testID":47,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":3181}
+{"test":{"id":48,"name":"onClose","suiteID":2,"groupIDs":[21],"metadata":{"skip":false,"skipReason":null},"line":389,"column":3,"url":"file:///D:/Flutter/MathGameKids/test/quiz_test.dart"},"type":"testStart","time":3181}
+{"testID":48,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":3185}
+{"test":{"id":49,"name":"(tearDownAll)","suiteID":2,"groupIDs":[21],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":3185}
+{"testID":49,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":3187}
+{"testID":5,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":3390}
+{"group":{"id":50,"suiteID":4,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":3,"line":null,"column":null,"url":null},"type":"group","time":3390}
+{"test":{"id":51,"name":"Checking - Is Splash in first loading","suiteID":4,"groupIDs":[50],"metadata":{"skip":false,"skipReason":null},"line":151,"column":5,"url":"package:flutter_test/src/widget_tester.dart","root_line":63,"root_column":5,"root_url":"file:///D:/Flutter/MathGameKids/test/router_test.dart"},"type":"testStart","time":3391}
+{"testID":51,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":3734}
+{"test":{"id":52,"name":"routing to home when it not first run","suiteID":4,"groupIDs":[50],"metadata":{"skip":false,"skipReason":null},"line":151,"column":5,"url":"package:flutter_test/src/widget_tester.dart","root_line":76,"root_column":3,"root_url":"file:///D:/Flutter/MathGameKids/test/router_test.dart"},"type":"testStart","time":3735}
 
-[{"event":"test.startedProcess","params":{"vmServiceUri":"http://127.0.0.1:62856/Cj_kD052Ack=/","observatoryUri":"http://127.0.0.1:62856/Cj_kD052Ack=/"}}]
-{"testID":7,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":4000}
-{"group":{"id":51,"suiteID":6,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":8,"line":null,"column":null,"url":null},"type":"group","time":4001}
-{"test":{"id":52,"name":"(setUpAll)","suiteID":6,"groupIDs":[51],"metadata":{"skip":false,"skipReason":null},"line":16,"column":3,"url":"file:///D:/Flutter/MathGameKids/test/true_false_test.dart"},"type":"testStart","time":4002}
-{"testID":52,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":4087}
-{"group":{"id":53,"suiteID":6,"parentID":51,"name":"check level","metadata":{"skip":false,"skipReason":null},"testCount":3,"line":79,"column":3,"url":"file:///D:/Flutter/MathGameKids/test/true_false_test.dart"},"type":"group","time":4087}
-{"test":{"id":54,"name":"check level should set values for MATHLEVEL.EASY","suiteID":6,"groupIDs":[51,53],"metadata":{"skip":false,"skipReason":null},"line":80,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/true_false_test.dart"},"type":"testStart","time":4087}
-{"testID":54,"messageType":"print","message":"false","type":"print","time":4111}
-{"testID":54,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":4111}
-{"test":{"id":55,"name":"check level should set values for MATHLEVEL.MEDIUM","suiteID":6,"groupIDs":[51,53],"metadata":{"skip":false,"skipReason":null},"line":94,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/true_false_test.dart"},"type":"testStart","time":4112}
-{"testID":55,"messageType":"print","message":"false","type":"print","time":4116}
-{"testID":55,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":4116}
-{"test":{"id":56,"name":"check level should set values for MATHLEVEL.HARD","suiteID":6,"groupIDs":[51,53],"metadata":{"skip":false,"skipReason":null},"line":107,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/true_false_test.dart"},"type":"testStart","time":4117}
-{"testID":56,"messageType":"print","message":"true","type":"print","time":4120}
-{"testID":56,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":4120}
-{"group":{"id":57,"suiteID":6,"parentID":51,"name":"check answer","metadata":{"skip":false,"skipReason":null},"testCount":2,"line":119,"column":3,"url":"file:///D:/Flutter/MathGameKids/test/true_false_test.dart"},"type":"group","time":4121}
-{"test":{"id":58,"name":"check answer Check Answer Test - Correct Answer","suiteID":6,"groupIDs":[51,57],"metadata":{"skip":false,"skipReason":null},"line":120,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/true_false_test.dart"},"type":"testStart","time":4121}
-{"testID":58,"messageType":"print","message":"false","type":"print","time":4132}
-{"testID":58,"messageType":"print","message":"answer is: true","type":"print","time":4133}
-{"testID":58,"messageType":"print","message":"correctAnswer is: true","type":"print","time":4133}
-{"testID":58,"messageType":"print","message":"5 + 5 = 10","type":"print","time":4133}
-{"testID":58,"messageType":"print","message":"count is: true","type":"print","time":4134}
-{"testID":58,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":4134}
-{"test":{"id":59,"name":"check answer Check Answer Test - Wrong Answer","suiteID":6,"groupIDs":[51,57],"metadata":{"skip":false,"skipReason":null},"line":137,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/true_false_test.dart"},"type":"testStart","time":4135}
-{"testID":59,"messageType":"print","message":"true","type":"print","time":4138}
-{"testID":59,"messageType":"print","message":"answer is: false","type":"print","time":4138}
-{"testID":59,"messageType":"print","message":"correctAnswer is: true","type":"print","time":4138}
-{"testID":59,"messageType":"print","message":"5 + 5 = 11","type":"print","time":4139}
-{"testID":59,"messageType":"print","message":"count is: false","type":"print","time":4139}
-{"testID":59,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":4140}
-{"group":{"id":60,"suiteID":6,"parentID":51,"name":"UI test","metadata":{"skip":false,"skipReason":null},"testCount":3,"line":155,"column":3,"url":"file:///D:/Flutter/MathGameKids/test/true_false_test.dart"},"type":"group","time":4140}
-{"test":{"id":61,"name":"UI test Color level","suiteID":6,"groupIDs":[51,60],"metadata":{"skip":false,"skipReason":null},"line":156,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/true_false_test.dart"},"type":"testStart","time":4140}
-{"testID":61,"messageType":"print","message":"true","type":"print","time":4146}
-{"testID":61,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":4146}
-{"test":{"id":62,"name":"UI test Skip question","suiteID":6,"groupIDs":[51,60],"metadata":{"skip":false,"skipReason":null},"line":162,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/true_false_test.dart"},"type":"testStart","time":4147}
-{"testID":62,"messageType":"print","message":"false","type":"print","time":4150}
-{"testID":62,"messageType":"print","message":"true","type":"print","time":4150}
-{"testID":62,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":4150}
-{"test":{"id":63,"name":"UI test Skip question when 10","suiteID":6,"groupIDs":[51,60],"metadata":{"skip":false,"skipReason":null},"line":168,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/true_false_test.dart"},"type":"testStart","time":4151}
-{"testID":63,"messageType":"print","message":"true","type":"print","time":4161}
-{"testID":63,"messageType":"print","message":"false","type":"print","time":4162}
-{"testID":63,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":4163}
-{"test":{"id":64,"name":"(tearDownAll)","suiteID":6,"groupIDs":[51],"metadata":{"skip":false,"skipReason":null},"line":181,"column":3,"url":"file:///D:/Flutter/MathGameKids/test/true_false_test.dart"},"type":"testStart","time":4163}
-{"testID":64,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":4172}
-{"testID":50,"messageType":"print","message":"pre: false","type":"print","time":4504}
-{"testID":50,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":4505}
-{"test":{"id":65,"name":"Checking in splash is not routing to homepage in first run","suiteID":4,"groupIDs":[48],"metadata":{"skip":false,"skipReason":null},"line":151,"column":5,"url":"package:flutter_test/src/widget_tester.dart","root_line":88,"root_column":5,"root_url":"file:///D:/Flutter/MathGameKids/test/router_test.dart"},"type":"testStart","time":4505}
-{"testID":65,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":4686}
-{"success":true,"type":"done","time":5534}
+[{"event":"test.startedProcess","params":{"vmServiceUri":"http://127.0.0.1:64516/oK4Lo6sI0ZA=/","observatoryUri":"http://127.0.0.1:64516/oK4Lo6sI0ZA=/"}}]
+{"testID":7,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":3988}
+{"group":{"id":53,"suiteID":6,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":8,"line":null,"column":null,"url":null},"type":"group","time":3988}
+{"test":{"id":54,"name":"(setUpAll)","suiteID":6,"groupIDs":[53],"metadata":{"skip":false,"skipReason":null},"line":16,"column":3,"url":"file:///D:/Flutter/MathGameKids/test/true_false_test.dart"},"type":"testStart","time":3988}
+{"testID":54,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":4076}
+{"group":{"id":55,"suiteID":6,"parentID":53,"name":"check level","metadata":{"skip":false,"skipReason":null},"testCount":3,"line":79,"column":3,"url":"file:///D:/Flutter/MathGameKids/test/true_false_test.dart"},"type":"group","time":4077}
+{"test":{"id":56,"name":"check level should set values for MATHLEVEL.EASY","suiteID":6,"groupIDs":[53,55],"metadata":{"skip":false,"skipReason":null},"line":80,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/true_false_test.dart"},"type":"testStart","time":4077}
+{"testID":56,"messageType":"print","message":"false","type":"print","time":4098}
+{"testID":56,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":4099}
+{"test":{"id":57,"name":"check level should set values for MATHLEVEL.MEDIUM","suiteID":6,"groupIDs":[53,55],"metadata":{"skip":false,"skipReason":null},"line":94,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/true_false_test.dart"},"type":"testStart","time":4099}
+{"testID":57,"messageType":"print","message":"true","type":"print","time":4102}
+{"testID":57,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":4102}
+{"test":{"id":58,"name":"check level should set values for MATHLEVEL.HARD","suiteID":6,"groupIDs":[53,55],"metadata":{"skip":false,"skipReason":null},"line":107,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/true_false_test.dart"},"type":"testStart","time":4103}
+{"testID":58,"messageType":"print","message":"true","type":"print","time":4105}
+{"testID":58,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":4105}
+{"group":{"id":59,"suiteID":6,"parentID":53,"name":"check answer","metadata":{"skip":false,"skipReason":null},"testCount":2,"line":119,"column":3,"url":"file:///D:/Flutter/MathGameKids/test/true_false_test.dart"},"type":"group","time":4106}
+{"test":{"id":60,"name":"check answer Check Answer Test - Correct Answer","suiteID":6,"groupIDs":[53,59],"metadata":{"skip":false,"skipReason":null},"line":120,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/true_false_test.dart"},"type":"testStart","time":4106}
+{"testID":60,"messageType":"print","message":"true","type":"print","time":4115}
+{"testID":60,"messageType":"print","message":"answer is: true","type":"print","time":4115}
+{"testID":60,"messageType":"print","message":"correctAnswer is: true","type":"print","time":4115}
+{"testID":60,"messageType":"print","message":"5 + 5 = 10","type":"print","time":4115}
+{"testID":60,"messageType":"print","message":"count is: true","type":"print","time":4116}
+{"testID":60,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":4116}
+{"test":{"id":61,"name":"check answer Check Answer Test - Wrong Answer","suiteID":6,"groupIDs":[53,59],"metadata":{"skip":false,"skipReason":null},"line":137,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/true_false_test.dart"},"type":"testStart","time":4116}
+{"testID":61,"messageType":"print","message":"false","type":"print","time":4119}
+{"testID":61,"messageType":"print","message":"answer is: false","type":"print","time":4119}
+{"testID":61,"messageType":"print","message":"correctAnswer is: true","type":"print","time":4119}
+{"testID":61,"messageType":"print","message":"5 + 5 = 11","type":"print","time":4119}
+{"testID":61,"messageType":"print","message":"count is: false","type":"print","time":4119}
+{"testID":61,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":4120}
+{"group":{"id":62,"suiteID":6,"parentID":53,"name":"UI test","metadata":{"skip":false,"skipReason":null},"testCount":3,"line":155,"column":3,"url":"file:///D:/Flutter/MathGameKids/test/true_false_test.dart"},"type":"group","time":4120}
+{"test":{"id":63,"name":"UI test Color level","suiteID":6,"groupIDs":[53,62],"metadata":{"skip":false,"skipReason":null},"line":156,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/true_false_test.dart"},"type":"testStart","time":4120}
+{"testID":63,"messageType":"print","message":"true","type":"print","time":4124}
+{"testID":63,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":4124}
+{"test":{"id":64,"name":"UI test Skip question","suiteID":6,"groupIDs":[53,62],"metadata":{"skip":false,"skipReason":null},"line":162,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/true_false_test.dart"},"type":"testStart","time":4124}
+{"testID":64,"messageType":"print","message":"false","type":"print","time":4126}
+{"testID":64,"messageType":"print","message":"false","type":"print","time":4126}
+{"testID":64,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":4127}
+{"test":{"id":65,"name":"UI test Skip question when 10","suiteID":6,"groupIDs":[53,62],"metadata":{"skip":false,"skipReason":null},"line":168,"column":5,"url":"file:///D:/Flutter/MathGameKids/test/true_false_test.dart"},"type":"testStart","time":4127}
+{"testID":65,"messageType":"print","message":"true","type":"print","time":4135}
+{"testID":65,"messageType":"print","message":"false","type":"print","time":4135}
+{"testID":65,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":4137}
+{"test":{"id":66,"name":"(tearDownAll)","suiteID":6,"groupIDs":[53],"metadata":{"skip":false,"skipReason":null},"line":181,"column":3,"url":"file:///D:/Flutter/MathGameKids/test/true_false_test.dart"},"type":"testStart","time":4137}
+{"testID":66,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":4145}
+{"testID":52,"messageType":"print","message":"pre: false","type":"print","time":4684}
+{"testID":52,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":4690}
+{"test":{"id":67,"name":"Checking in splash is not routing to homepage in first run","suiteID":4,"groupIDs":[50],"metadata":{"skip":false,"skipReason":null},"line":151,"column":5,"url":"package:flutter_test/src/widget_tester.dart","root_line":88,"root_column":5,"root_url":"file:///D:/Flutter/MathGameKids/test/router_test.dart"},"type":"testStart","time":4690}
+{"testID":67,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":4838}
+{"success":false,"type":"done","time":5683}
