@@ -2,13 +2,11 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:template/config/routes/route_path/main_routh.dart';
-import 'package:template/core/base_widget/izi_app_bar.dart';
 import 'package:template/core/di_container.dart' as di;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:template/core/di_container.dart';
 import 'package:template/core/export/core_export.dart';
-import 'package:template/core/shared_pref/constants/preferences.dart';
 import 'package:template/core/utils/color_resources.dart';
 
 import 'package:template/main.dart';
@@ -16,14 +14,11 @@ import 'package:template/main.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:template/config/routes/route_path/auth_routh.dart';
-import 'package:template/core/helper/izi_timezone.dart';
 
-import 'package:timeago/timeago.dart' as time_ago;
 
 void main() {
-  setUpAll(() async {
+  setUp(() async {
       SharedPreferences.setMockInitialValues({});
       Get.testMode = true;
 
@@ -92,17 +87,17 @@ void main() {
 
     testWidgets("Checking in splash is not routing to homepage in first run",
         (widgetTester) async {
-    sl<SharedPreferenceHelper>().setSplash(status: false);
+    // sl<SharedPreferenceHelper>().setSplash(status: false);
 
-      await widgetTester.pumpWidget(const MyApp());
-      await widgetTester.pumpAndSettle();
+    await widgetTester.pumpWidget(const MyApp());
+    await widgetTester.pumpAndSettle();
 
     final currentRoute = Get.routing.current;
 
     expect(currentRoute, AuthRouter.CHOOSE_LANGUAGE);
     });
 
-  tearDownAll(() => {
+  tearDown(() => {
         Get.reset(),
         GetIt.I.reset(),
       });

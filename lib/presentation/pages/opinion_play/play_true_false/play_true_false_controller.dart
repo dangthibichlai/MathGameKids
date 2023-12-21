@@ -23,10 +23,14 @@ class PlayTrueFalseController extends GetxController
   RxInt countWrong = 0.obs;
   RxInt countCorrect = 0.obs;
   RxInt countSkip = 0.obs;
-  final Map<String, dynamic> arguments = Get.arguments;
-  MATHLEVEL level = Get.arguments['level'];
-  String route = Get.arguments['route'];
-  String title = Get.arguments['title'];
+  Map<String, dynamic> arguments = {
+    'level': "Easy",
+    'route': "/play_true_false",
+    'title': "True or False",
+  };
+  late MATHLEVEL level = MATHLEVEL.EASY;
+  late String route = arguments['route'];
+  late String title = arguments['title'];
   int rangeRandom = 10;
   RxString textLevel = ''.obs;
   AnimationController? controller;
@@ -37,6 +41,8 @@ class PlayTrueFalseController extends GetxController
   @override
   void onInit() {
     super.onInit();
+    route = arguments['route'];
+    title = arguments['title'];
 // textLevel = RxString(level.name);
     checkLevel(level);
     generateQuestion(rangeRandom, route);

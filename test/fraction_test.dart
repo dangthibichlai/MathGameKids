@@ -163,6 +163,7 @@ void main() {
       expect(
           controller.currentOptions.contains(controller.correctAnswer), true);
     });
+    
     test('Check in ResultPage', () {
       // Act
       controller.countWrong = 0.obs;
