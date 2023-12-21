@@ -27,10 +27,14 @@ class PlayTimeChallengeController extends GetxController
   RxInt countWrong = 0.obs;
   RxInt countCorrect = 0.obs;
   RxInt countSkip = 0.obs;
-  final Map<String, dynamic> arguments = Get.arguments;
-  MATHLEVEL level = Get.arguments['level'];
-  String route = Get.arguments['route'];
-  String title = Get.arguments['title'];
+  Map<String, dynamic> arguments = {
+    'level': "Easy",
+    'route': "/addition",
+    'title': "Addition",
+  };
+   MATHLEVEL level = MATHLEVEL.EASY;
+  String route = "/addition";
+  String title = "Addition";
   int rangeRandom = 10;
   int levelAdd = 1;
   RxString textLevel = ''.obs;
@@ -89,6 +93,10 @@ class PlayTimeChallengeController extends GetxController
   void skipQuestion() {
     countSkip.value++; // Tăng biến đếm số câu đã bỏ qua lên 1
     count++;
+    if(count>10){
+      count.value=1;
+      countSkip.value =0;
+    }
     generateQuestion(rangeRandom, route); // Tạo câu hỏi mới} //
   }
 

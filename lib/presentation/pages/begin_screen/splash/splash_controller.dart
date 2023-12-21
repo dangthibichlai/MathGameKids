@@ -18,7 +18,6 @@ class SplashController extends GetxController with GetTickerProviderStateMixin {
   SettingsModel settingModel = SettingsModel();
 
   // Open ads when open add and resumed app.
-  AppOpenAds appOpenAdManager = AppOpenAds();
   //final KeyValidateAds _keyValidateAds = GetIt.I.get<KeyValidateAds>();
 
   @override
@@ -34,24 +33,14 @@ class SplashController extends GetxController with GetTickerProviderStateMixin {
     _animationController =
         AnimationController(vsync: this, duration: const Duration(seconds: 3));
 
+
     // check logged in or not.
     _animationController!.forward().whenComplete(
       () async {
         if (_splash) {
-          if (_premium) {
-            Get.toNamed(MainRouters.HOME);
-            //_onLoginApp(isLogger: _logger);
-          } else {
-            // Load ads.
-            appOpenAdManager.showOpenAppAds(
-              onSuccess: () {
-                Get.toNamed(MainRouters.HOME);
-              },
-              onError: () {
-                Get.toNamed(AuthRouter.NEXTPAGE1);
-              },
-            );
-          }
+          
+          Get.toNamed(MainRouters.HOME);
+          
         } else {
           Get.offNamed(AuthRouter.CHOOSE_LANGUAGE);
         }

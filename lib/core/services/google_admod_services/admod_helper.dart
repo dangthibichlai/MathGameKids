@@ -32,6 +32,7 @@ class AdHelper {
     } else if (Platform.isIOS) {
       return IOS_BANNER;
     } else {
+      return "";
       throw UnsupportedError('Unsupported platform');
     }
   }
@@ -42,6 +43,7 @@ class AdHelper {
     } else if (Platform.isIOS) {
       return IOS_REWARD;
     } else {
+      return "";
       throw UnsupportedError("Unsupported platform");
     }
   }

@@ -1,17 +1,13 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
-import 'package:template/core/base_widget/izi_image.dart';
 import 'package:template/core/shared_pref/constants/enum_helper.dart';
 import 'package:template/presentation/pages/opinion_play/play_fractice/model/fraction_model.dart';
 import 'package:template/presentation/pages/opinion_play/play_fractice/play_fractice_controller.dart';
-import 'package:template/presentation/pages/result_package/result_page.dart';
 import 'dart:math';
 
 void main() {
-  group('PlayFracticeController Tests', () {
+  // group('PlayFracticeController Tests', () {
     late PlayFracticeController controller;
 
     setUp(() {
@@ -81,7 +77,7 @@ void main() {
         controller.checkLevel(level);
         // Assert
         expect(controller.textLevel, equals(RxString('Hard')));
-        expect(controller.rangeRandom, equals(15));
+      expect(controller.rangeRandom, equals(15));
         expect(controller.levelAdd, equals(MathLevelValueMin.MEDIUM_VALUE_ADD));
       });
     });
@@ -108,7 +104,7 @@ void main() {
 
       // Assert
       expect(controller.count.value, 1);
-      expect(Get.previousRoute, "");
+      expect(Get.previousRoute, ""); 
     });
 
     // Hàm checkAnswer
@@ -167,6 +163,7 @@ void main() {
       expect(
           controller.currentOptions.contains(controller.correctAnswer), true);
     });
+    
     test('Check in ResultPage', () {
       // Act
       controller.countWrong = 0.obs;
@@ -234,5 +231,5 @@ void main() {
       expect(isZero1, isFalse);
       expect(isZero2, isFalse);
     });
-  });
+  // });
 }

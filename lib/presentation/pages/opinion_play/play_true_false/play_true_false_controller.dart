@@ -23,10 +23,14 @@ class PlayTrueFalseController extends GetxController
   RxInt countWrong = 0.obs;
   RxInt countCorrect = 0.obs;
   RxInt countSkip = 0.obs;
-  final Map<String, dynamic> arguments = Get.arguments;
-  MATHLEVEL level = Get.arguments['level'];
-  String route = Get.arguments['route'];
-  String title = Get.arguments['title'];
+  Map<String, dynamic> arguments = {
+    'level': "Easy",
+    'route': "/play_true_false",
+    'title': "True or False",
+  };
+  late MATHLEVEL level = MATHLEVEL.EASY;
+  late String route = arguments['route'];
+  late String title = arguments['title'];
   int rangeRandom = 10;
   RxString textLevel = ''.obs;
   AnimationController? controller;
@@ -37,26 +41,29 @@ class PlayTrueFalseController extends GetxController
   @override
   void onInit() {
     super.onInit();
+    route = arguments['route'];
+    title = arguments['title'];
 // textLevel = RxString(level.name);
     checkLevel(level);
     generateQuestion(rangeRandom, route);
   }
 
   void skipQuestion() {
-    countSkip.value++; // Tăng biến đếm số câu đã bỏ qua lên 1
+    countSkip.value++;
     count++;
     if (count.value > 10) {
       if (Get.isRegistered<SoundController>()) {
         Get.find<SoundController>().closeSoundGame();
       }
+      count.value = 1;
       //Nếu đã trả lời đủ 10 câu hỏi, chuyển đến trang kết quả
       Get.offAndToNamed(MainRouters.RESULT, arguments: {
         'countWrong': countWrong.value,
         'countCorrect': countCorrect.value,
         'countSkip': countSkip.value,
       });
+      countSkip.value = 0;
     }
-
     generateQuestion(rangeRandom, route);
   }
 

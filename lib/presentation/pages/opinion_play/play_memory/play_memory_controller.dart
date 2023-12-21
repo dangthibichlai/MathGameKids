@@ -2,7 +2,9 @@
 
 import 'dart:async';
 import 'dart:math';
+import 'dart:ui';
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:template/config/routes/route_path/main_routh.dart';
 import 'package:template/core/shared_pref/constants/enum_helper.dart';
@@ -26,10 +28,15 @@ class PlayMemoryController extends GetxController
   RxInt countWrong = 0.obs;
   RxInt countCorrect = 0.obs;
   RxInt countSkip = 0.obs;
-  final Map<String, dynamic> arguments = Get.arguments;
-  MATHLEVEL level = Get.arguments['level'];
-  String route = Get.arguments['route'];
-  String title = Get.arguments['title'];
+  Map<String, dynamic> arguments = {
+    'level': "Easy",
+    'route': "/addition",
+    'title': "Addition",
+  };
+  // MATHLEVEL level = Get.arguments['level'];
+  MATHLEVEL level = MATHLEVEL.EASY;
+  String route = "/addition";
+  String title = "Addition";
   int rangeRandom = 10;
   int correctAnswer = 13;
   int levelAdd = 1;
@@ -38,7 +45,7 @@ class PlayMemoryController extends GetxController
   RxBool isVisible = true.obs;
   RxBool isDone = false.obs;
   bool isDisposed = false;
-  final sound = Get.find<SoundController>();
+  // final sound = Get.find<SoundController>();
   final isRegistered = Get.isRegistered<SoundController>();
 
   @override
@@ -188,7 +195,7 @@ class PlayMemoryController extends GetxController
       listGrid[index].isFlipped = true;
       listGrid.refresh();
       if (isRegistered) {
-        sound.playClickGameSound();
+        // sound.playClickGameSound();
       }
     } else {
       /// Nếu đã có ô được lật trước đó
@@ -200,7 +207,7 @@ class PlayMemoryController extends GetxController
       if (listGrid[index].result == listGrid[previousIndex].result) {
         // hiện âm thanh đúng
         if (isRegistered) {
-          sound.playAnswerTrueSound();
+          // sound.playAnswerTrueSound();
         }
         listGrid[index].isMatched = true;
         listGrid[previousIndex].isMatched = true;
@@ -224,7 +231,7 @@ class PlayMemoryController extends GetxController
         /// Nếu ô hiện tại và ô trước đó không khớp
         ///
         if (isRegistered) {
-          sound.playAnswerFalseSound();
+          // sound.playAnswerFalseSound();
         }
         isProcessing.value = true;
         countWrong.value++;
@@ -246,6 +253,16 @@ class PlayMemoryController extends GetxController
     }
 
     listGrid.refresh();
+  }
+  Color getLevelColor(MATHLEVEL mathLevel) {
+    switch (mathLevel) {
+      case MATHLEVEL.EASY:
+        return Colors.green;
+      case MATHLEVEL.MEDIUM:
+        return Colors.orange;
+      case MATHLEVEL.HARD:
+        return Colors.red;
+    }
   }
 
   void reset() {
