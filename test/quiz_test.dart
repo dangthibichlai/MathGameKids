@@ -4,6 +4,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:template/config/routes/route_path/main_routh.dart';
 import 'package:template/core/di_container.dart' as di;
 import 'package:template/core/export/core_export.dart';
 import 'package:template/core/shared_pref/constants/enum_helper.dart';
@@ -161,6 +162,216 @@ void main() {
       expect(controller.countCorrect.value, 1);
       expect(controller.count.value, 2);
     });
-    test("check wrong answer", () {});
+    test("check wrong answer", () {
+      // Arrange
+      controller.currentOptions.value = [9, 3, 13, 0];
+      controller.correctAnswer = 13;
+      controller.currentOptions[2] = 13;
+      controller.count.value = 1;
+      controller.countCorrect.value = 0;
+
+      // Act
+      controller.checkAnswer(9);
+      // Assert
+
+      expect(controller.answerColors[9], Colors.red);
+      expect(controller.answerColors[13], Colors.green);
+      expect(controller.countCorrect.value, 0);
+      expect(controller.count.value, 2);
+    });
+  });
+
+  group("generate question ", () {
+    test("generate question is correct easy and addition", () {
+      controller.level = MATHLEVEL.EASY;
+      controller.route = MainRouters.ADDITION;
+
+      controller.generateQuestion(8, controller.route);
+
+      var question = controller.currentQuestion.value;
+      var num1 = int.parse(question.split(' ')[0]);
+      var num2 = int.parse(question.split(' ')[2]);
+      var operation = question.split(' ')[1];
+      expect(operation, "+");
+      expect(num1 + num2, controller.correctAnswer);
+      expect(controller.currentOptions.length, 4);
+      expect(
+          controller.currentOptions.contains(controller.correctAnswer), true);
+    });
+
+    test("generate question is correct easy and addition", () {
+      controller.level = MATHLEVEL.EASY;
+      controller.route = MainRouters.ADDITION;
+
+      controller.generateQuestion(8, controller.route);
+
+      var question = controller.currentQuestion.value;
+      var num1 = int.parse(question.split(' ')[0]);
+      var num2 = int.parse(question.split(' ')[2]);
+      var operation = question.split(' ')[1];
+      expect(operation, "+");
+      expect(num1 + num2, controller.correctAnswer);
+      expect(controller.currentOptions.length, 4);
+      expect(
+          controller.currentOptions.contains(controller.correctAnswer), true);
+    });
+
+    test("generate question is correct easy and subtraction", () {
+      controller.level = MATHLEVEL.EASY;
+      controller.route = MainRouters.SUBTRACTION;
+
+      controller.generateQuestion(8, controller.route);
+
+      var question = controller.currentQuestion.value;
+      var num1 = int.parse(question.split(' ')[0]);
+      var num2 = int.parse(question.split(' ')[2]);
+      var operation = question.split(' ')[1];
+      expect(operation, "-");
+      expect(num1 - num2, controller.correctAnswer);
+      expect(controller.currentOptions.length, 4);
+      expect(
+          controller.currentOptions.contains(controller.correctAnswer), true);
+    });
+
+    test("generate question is correct easy and multiplication", () {
+      controller.level = MATHLEVEL.EASY;
+      controller.route = MainRouters.MULTIPLICATION;
+
+      controller.generateQuestion(8, controller.route);
+
+      var question = controller.currentQuestion.value;
+      var num1 = int.parse(question.split(' ')[0]);
+      var num2 = int.parse(question.split(' ')[2]);
+      var operation = question.split(' ')[1];
+      expect(operation, "x");
+      expect(num1 * num2, controller.correctAnswer);
+      expect(controller.currentOptions.length, 4);
+      expect(
+          controller.currentOptions.contains(controller.correctAnswer), true);
+    });
+
+    test("generate question is correct easy and division", () {
+      controller.level = MATHLEVEL.EASY;
+      controller.route = MainRouters.DIVISION;
+
+      controller.generateQuestion(8, controller.route);
+
+      var question = controller.currentQuestion.value;
+      var num1 = int.parse(question.split(' ')[0]);
+      var num2 = int.parse(question.split(' ')[2]);
+      var operation = question.split(' ')[1];
+      expect(operation, "/");
+      expect(num1 ~/ num2, controller.correctAnswer);
+      expect(controller.currentOptions.length, 4);
+      expect(
+          controller.currentOptions.contains(controller.correctAnswer), true);
+    });
+
+    test("generate question is correct medium and addition", () {
+      controller.level = MATHLEVEL.MEDIUM;
+      controller.route = MainRouters.ADDITION;
+
+      controller.generateQuestion(8, controller.route);
+
+      var question = controller.currentQuestion.value;
+      var num1 = int.parse(question.split(' ')[0]);
+      var num2 = int.parse(question.split(' ')[2]);
+      var operation = question.split(' ')[1];
+      expect(operation, "+");
+      expect(num1 + num2, controller.correctAnswer);
+      expect(controller.currentOptions.length, 4);
+      expect(
+          controller.currentOptions.contains(controller.correctAnswer), true);
+    });
+
+    test("generate question is correct medium and subtraction", () {
+      controller.level = MATHLEVEL.MEDIUM;
+      controller.route = MainRouters.SUBTRACTION;
+
+      controller.generateQuestion(8, controller.route);
+
+      var question = controller.currentQuestion.value;
+      var num1 = int.parse(question.split(' ')[0]);
+      var num2 = int.parse(question.split(' ')[2]);
+      var operation = question.split(' ')[1];
+      expect(operation, "-");
+      expect(num1 - num2, controller.correctAnswer);
+      expect(controller.currentOptions.length, 4);
+      expect(
+          controller.currentOptions.contains(controller.correctAnswer), true);
+    });
+
+    test("generate question is correct medium and multiplication", () {
+      controller.level = MATHLEVEL.MEDIUM;
+      controller.route = MainRouters.MULTIPLICATION;
+
+      controller.generateQuestion(8, controller.route);
+
+      var question = controller.currentQuestion.value;
+      var num1 = int.parse(question.split(' ')[0]);
+      var num2 = int.parse(question.split(' ')[2]);
+      var operation = question.split(' ')[1];
+      expect(operation, "x");
+      expect(num1 * num2, controller.correctAnswer);
+      expect(controller.currentOptions.length, 4);
+      expect(
+          controller.currentOptions.contains(controller.correctAnswer), true);
+    });
+
+    test("generate question is correct medium and division", () {
+      controller.level = MATHLEVEL.MEDIUM;
+      controller.route = MainRouters.DIVISION;
+
+      controller.generateQuestion(8, controller.route);
+
+      var question = controller.currentQuestion.value;
+      var num1 = int.parse(question.split(' ')[0]);
+      var num2 = int.parse(question.split(' ')[2]);
+      var operation = question.split(' ')[1];
+
+      expect(operation, "/");
+      expect(num1 ~/ num2, controller.correctAnswer);
+      expect(controller.currentOptions.length, 4);
+      expect(
+          controller.currentOptions.contains(controller.correctAnswer), true);
+    });
+
+    test("generate question is correct hard and addition", () {
+      controller.level = MATHLEVEL.HARD;
+      controller.route = MainRouters.ADDITION;
+
+      controller.generateQuestion(8, controller.route);
+
+      var question = controller.currentQuestion.value;
+      var num1 = int.parse(question.split(' ')[0]);
+
+      var num2 = int.parse(question.split(' ')[2]);
+      var operation = question.split(' ')[1];
+      expect(operation, "+");
+      expect(num1 + num2, controller.correctAnswer);
+      expect(controller.currentOptions.length, 4);
+      expect(
+          controller.currentOptions.contains(controller.correctAnswer), true);
+    });
+
+    test("generate question is correct hard and subtraction", () {
+      controller.level = MATHLEVEL.HARD;
+      controller.route = MainRouters.SUBTRACTION;
+
+      controller.generateQuestion(8, controller.route);
+
+      var question = controller.currentQuestion.value;
+      var num1 = int.parse(question.split(' ')[0]);
+
+      var num2 = int.parse(question.split(' ')[2]);
+      var operation = question.split(' ')[1];
+      expect(operation, "-");
+      expect(num1 - num2, controller.correctAnswer);
+      expect(controller.currentOptions.length, 4);
+      expect(
+          controller.currentOptions.contains(controller.correctAnswer), true);
+    });
+
+    
   });
 }
