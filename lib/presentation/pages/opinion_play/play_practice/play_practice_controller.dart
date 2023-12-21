@@ -127,7 +127,7 @@ class PlayPracticeController extends GetxController
   void checkLevel(MATHLEVEL level) {
     switch (level) {
       case MATHLEVEL.EASY:
-        textLevel = RxString('easy'.tr);
+        textLevel = RxString('hard'.tr);
         rangeRandom = MathLevelValueMax.EASY_VALUE;
         levelAdd = MathLevelValueMin.EASY_VALUE_ADD;
 
