@@ -122,7 +122,7 @@ class playQuizController extends GetxController {
   void checkLevel(MATHLEVEL level) {
     switch (level) {
       case MATHLEVEL.EASY:
-        textLevel = RxString('easya'.tr);
+        textLevel = RxString('easy'.tr);
         rangeRandom = MathLevelValueMax.EASY_VALUE;
         levelAdd = MathLevelValueMin.EASY_VALUE_ADD;
 
