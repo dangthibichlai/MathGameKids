@@ -10,7 +10,7 @@ import 'package:template/presentation/widgets/controller/sound_controller.dart';
 import '../../../../core/shared_pref/constants/enum_helper.dart';
 
 class PlaySquareRootController extends GetxController with GetSingleTickerProviderStateMixin {
-  int correctAnswer = 13;
+  int correctAnswer = 13;;;;;;;;;;;;;;;;
   RxList<int> currentOptions = List<int>.generate(4, (index) => 0).obs;
   bool isCorrect = true;
   final RxMap<int, Color> answerColors = <int, Color>{}.obs;
