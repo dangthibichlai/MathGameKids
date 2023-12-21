@@ -22,8 +22,6 @@ void main() {
 
     await di.init(); // dùng để khởi tạo các service, repository, controller
 
-    // Initialize mobile ads.
-    // MobileAds.instance.initialize();
 
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
@@ -31,9 +29,6 @@ void main() {
       statusBarIconBrightness: Brightness.dark,
     ));
 
-    // time_ago.setLocaleMessages('vi', time_ago.ViMessages());
-
-    // IZITimeZone().initializeTimeZones();
 
     EasyLoading.instance
       ..displayDuration = const Duration(milliseconds: 1500)
@@ -144,7 +139,7 @@ void main() {
       controller.countCorrect = 0.obs;
       controller.countWrong = 0.obs;
       // Arrange
-      controller.currentQuestion = "5 + 5 = 10".obs;
+      controller.currentQuestion = "5 + 5 = 11".obs;
       controller.correctAnswer.value = true;
 
       // Act
